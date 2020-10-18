@@ -9,10 +9,12 @@ services:
       - ./:/app
     environment:
       WEB_DOCUMENT_ROOT: /app/public
+      PHP_MEMORY_LIMIT: 4G
     ports:
       - 80:80
     links:
       - mysql
+    working_dir: '/app'
 
   mysql:
     image: mysql:5.7
@@ -30,21 +32,21 @@ services:
 #    volumes:
 #      - ./:/app
 
-#  phpmyadmin:
-#    depends_on:
-#      - mysql
-#    image: phpmyadmin/phpmyadmin
-#    container_name: phpmyadmin
-#    environment:
-#      - PMA_ARBITRARY=1
-#      - MYSQL_ROOT_PASSWORD=root
-#    restart: always
-#    ports:
-#      - 8088:80
-#    volumes:
-#      - /sessions
-#    links:
-#      - mysql
+  phpmyadmin:
+    depends_on:
+      - mysql
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    environment:
+      - PMA_ARBITRARY=1
+      - MYSQL_ROOT_PASSWORD=root
+    restart: always
+    ports:
+      - 8088:80
+    volumes:
+      - /sessions
+    links:
+      - mysql
 
 volumes:
   db_data:

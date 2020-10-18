@@ -35,38 +35,11 @@ class Page
      */
     private $children;
 
-    /**
-     * @ORM\Column(type="json")
-     */
-    private array $data = [];
-
-    /**
-     * @var Content[]
-     * @ORM\OneToMany(targetEntity="Seegurke\PageModule\Entity\Content", mappedBy="page")
-     */
-    private $content;
-
-    /**
-     * @var Extra[]
-     * @ORM\OneToMany(targetEntity="Seegurke\PageModule\Entity\Extra", mappedBy="page")
-     */
-    private $extras;
-
-    /**
-     * @var boolean
-     * @ORM\Column(type="boolean")
-     */
-    private bool $dynamic;
-
     public function __construct()
     {
         $this->children = new ArrayCollection();
-        $this->content = new ArrayCollection();
-        $this->extras = new ArrayCollection();
 
         $this->name = 'Neue Seite';
-        $this->dynamic = false;
-        $this->data = [];
     }
 
     public function getId(): ?int
@@ -84,38 +57,6 @@ class Page
         $this->name = $name;
 
         return $this;
-    }
-
-    /**
-     * @return array
-     */
-    public function getData(): array
-    {
-        return $this->data;
-    }
-
-    /**
-     * @param array $data
-     */
-    public function setData(array $data): void
-    {
-        $this->data = $data;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isDynamic(): bool
-    {
-        return $this->dynamic;
-    }
-
-    /**
-     * @param bool $dynamic
-     */
-    public function setDynamic(bool $dynamic): void
-    {
-        $this->dynamic = $dynamic;
     }
 
     public function getChildren()
