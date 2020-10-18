@@ -1,0 +1,11 @@
+<div>
+  <div *ngFor="let module of filter(modules)" (click)="onModuleSelect(module)">
+    <div>
+      <img [src]="module.img" [alt]="module.name"/>
+    </div>
+
+    <div>
+      {{ module.name }}
+    </div>
+  </div>
+</div>

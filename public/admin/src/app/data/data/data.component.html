@@ -1,0 +1,13 @@
+<div fxLayout="row">
+  <div>
+    <button (click)="onNewListing()">Neu</button>
+    <mat-action-list>
+      <button mat-list-item (click)="onSelectListing(1)">Listing 1</button>
+      <button mat-list-item (click)="onSelectListing(2)">Listing 2</button>
+    </mat-action-list>
+  </div>
+
+  <div>
+    <app-listing [listing]="listing"></app-listing>
+  </div>
+</div>

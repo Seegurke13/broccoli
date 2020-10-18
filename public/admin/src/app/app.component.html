@@ -1,0 +1,27 @@
+<div>
+  <header>
+      <mat-toolbar color="primary">
+        <mat-toolbar-row>
+<!--          <button mat-icon-button>-->
+<!--            <mat-icon>menu</mat-icon>-->
+<!--          </button>-->
+
+          <h1>EasyCMS Admin</h1>
+
+          <span class="menu-spacer"></span>
+
+          <div>
+            <a routerLink="/pages" mat-button>Seiten</a>
+            <a routerLink="/data" mat-button>Daten</a>
+            <a mat-button>Benutzer</a>
+            <a mat-button>Rechte</a>
+            <a mat-button>Einstellungen</a>
+          </div>
+        </mat-toolbar-row>
+      </mat-toolbar>
+  </header>
+
+  <section>
+    <router-outlet></router-outlet>
+  </section>
+</div>

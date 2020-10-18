@@ -1,0 +1,24 @@
+<div fxLayout="row">
+  <div style="min-width: 200px; width: 30%;">
+    <p-tree [value]="data" selectionMode="single" [(selection)]="selectedPage" (onNodeSelect)="onSelectPage($event)">
+      <ng-template let-node pTemplate="default">
+        <div (mouseenter)="onShowNew(node)" (mouseout)="onHideNew(node)">
+          {{ node.label }}
+
+          <i class="pi pi-plus-circle" style="font-size: 1em; margin-left: 10px;" (click)="onAddPage(node)"></i>
+          <i class="pi pi-minus-circle" style="font-size: 1em; margin-left: 10px;" (click)="onDeletePage(node)"></i>
+          <i class="pi pi-arrow-up" style="font-size: 1em; margin-left: 10px;" (click)="onMoveTop(node)"></i>
+          <i class="pi pi-arrow-down" style="font-size: 1em; margin-left: 10px;" (click)="onMoveDown(node)"></i>
+        </div>
+      </ng-template>
+
+      <ng-template pTemplate="add">
+        <i class="pi pi-plus-circle" style="font-size: 1em; margin-left: 10px;" (click)="onAddPage(null)"></i>
+      </ng-template>
+    </p-tree>
+  </div>
+
+  <div style="flex-grow: 1; max-width: 65%; margin-left: 15px;">
+    <app-page-view [pageId]="pageId"></app-page-view>
+  </div>
+</div>

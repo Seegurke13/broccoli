@@ -1,0 +1,23 @@
+<div style="display: flex;" class="layout"
+     [ngClass]="{'column': properties.direction === 'column', 'row': properties.direction === 'row'}"
+      [ngStyle]="{'justify-content: space-between': true}">
+  <div *ngFor="let el of content; let i = index" class="layout-section">
+    <app-element [type]="el.type" [content]="el.content" (delete)="onDelete(i)"
+                 [properties]="el.properties"></app-element>
+  </div>
+</div>
+
+<ng-template #toolbar>
+  <button mat-button>
+    <mat-icon (click)="onAdd()">note_add</mat-icon>
+  </button>
+</ng-template>
+
+<ng-template #settings>
+  <div>
+    <mat-radio-group [(ngModel)]="properties.direction">
+      <mat-radio-button value="row">Row</mat-radio-button>
+      <mat-radio-button value="column">Column</mat-radio-button>
+    </mat-radio-group>
+  </div>
+</ng-template>

@@ -1,0 +1,19 @@
+<div *ngIf="listing">
+  <h2>{{ listing.name }}</h2>
+
+  <div class="spinner-container" *ngIf="isLoading">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <ng-container [matColumnDef]="field.name" *ngFor="let field of listing.fields">
+      <th mat-header-cell *matHeaderCellDef>{{ field.name }}</th>
+      <td mat-cell *matCellDef="let data">{{ data[field.name] }}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="getCols()"></tr>
+    <tr mat-row *matRowDef="let row; columns: getCols();"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" [pageSize]="10" [length]="count" showFirstLastButtons></mat-paginator>
+</div>

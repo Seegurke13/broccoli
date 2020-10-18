@@ -1,0 +1,22 @@
+<div>
+  <div class="toolbar">
+    Toolbar
+
+    <div>
+      <button (click)="elements.push({})">
+        Add
+      </button>
+      <button (click)="onSave()">
+        Save
+      </button>
+    </div>
+  </div>
+
+  <div class="elements">
+<!--    <app-element [content]="elements"></app-element>-->
+
+    <ng-container *ngFor="let el of elements">
+      <app-element [content]="el.content" [type]="el.type" [properties]="el.properties"></app-element>
+    </ng-container>
+  </div>
+</div>

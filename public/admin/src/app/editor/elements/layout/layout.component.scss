@@ -1,0 +1,13 @@
+.layout-section {
+  flex-grow: 1;
+}
+
+.layout {
+  &.row {
+    flex-direction: row;
+  }
+
+  &.column {
+    flex-direction: column;
+  }
+}

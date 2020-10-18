@@ -1,0 +1,30 @@
+<div>
+  <mat-form-field>
+    <mat-label>Name</mat-label>
+    <input type="text" matInput>
+  </mat-form-field>
+
+  <div>
+      <div *ngFor="let field of fields; let i = index">
+        <mat-form-field>
+          <mat-label>Name</mat-label>
+          <input matInput type="text">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Datentyp</mat-label>
+          <mat-select>
+            <mat-option *ngFor="let type of types" [value]="type">{{type}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <button mat-icon-button>
+          <mat-icon (click)="onDeleteField(i)">delete</mat-icon>
+        </button>
+      </div>
+
+    <button (click)="onNewField()">Neues Feld</button>
+  </div>
+
+  <button (click)="onSave()">Speichern</button>
+</div>

@@ -1,0 +1,15 @@
+controllers:
+    resource: ../../src/Controller/
+    type: annotation
+
+page_module:
+    resource: ../../Seegurke/PageModule/src/Controller/
+    type: annotation
+
+data_module:
+    resource: ../../Seegurke/DataModule/src/Controller/
+    type: annotation
+
+kernel:
+    resource: ../../src/Kernel.php
+    type: annotation
