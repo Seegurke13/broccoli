@@ -11,6 +11,8 @@ import {HttpClientModule} from "@angular/common/http";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
+import {TreeModule} from 'primeng/tree';
+import {FileModule} from "./file/file.module";
 
 const EXTRA_BREAKPOINTS = [{
   alias: 'xs.landscape',
@@ -30,6 +32,7 @@ const EXTRA_BREAKPOINTS = [{
     BrowserAnimationsModule,
     DataModule,
     PageModule,
+    FileModule,
     FlexLayoutModule,
     HttpClientModule,
     MatToolbarModule,

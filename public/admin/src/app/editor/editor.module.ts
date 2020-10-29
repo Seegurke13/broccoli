@@ -19,6 +19,9 @@ import {MatRadioModule} from "@angular/material/radio";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import {MatChipsModule} from "@angular/material/chips";
 import {MatInputModule} from "@angular/material/input";
+import { TextareaComponent } from './ui/textarea/textarea.component';
+import { FileComponent } from './ui/file/file.component';
+import { InputComponent } from './ui/input/input.component';
 
 
 
@@ -33,7 +36,10 @@ import {MatInputModule} from "@angular/material/input";
       SliderComponent,
       ImageComponent,
       CustomComponent,
-      DataProviderComponent
+      DataProviderComponent,
+      TextareaComponent,
+      FileComponent,
+      InputComponent
     ],
     exports: [
         ViewComponent

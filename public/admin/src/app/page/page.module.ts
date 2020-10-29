@@ -20,10 +20,11 @@ import {MatCardModule} from "@angular/material/card";
 import {TreeModule} from "primeng";
 import {MatRadioModule} from "@angular/material/radio";
 import {EditorModule} from "../editor/editor.module";
+import { PageContentComponent } from './page-content/page-content.component';
 
 
 @NgModule({
-  declarations: [PageComponent, PageViewComponent, PageComponentComponent, PageCustomComponent, ShowModulesComponent],
+  declarations: [PageComponent, PageViewComponent, PageComponentComponent, PageCustomComponent, ShowModulesComponent, PageContentComponent],
     imports: [
         CommonModule,
         FlexLayoutModule,

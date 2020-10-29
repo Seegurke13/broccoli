@@ -30,16 +30,6 @@ export class LayoutComponent implements OnInit, EditorElementComponent{
     }
   }
 
-  public getToolbar() {
-    return [
-      {
-        name: 'test',
-        icon: '',
-        action: 'addSection'
-      }
-    ];
-  }
-
   public addSection() {
     if (Array.isArray(this.content) === false) {
       this.content = [];
