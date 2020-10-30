@@ -10,11 +10,13 @@
       <mat-form-field>
         <mat-label>Typ</mat-label>
         <mat-select [(ngModel)]="type" (selectionChange)="onChangeType($event)">
-          <mat-option value="slider">Slider</mat-option>
+<!--          <mat-option value="slider">Slider</mat-option>-->
           <mat-option value="layout">Layout</mat-option>
           <mat-option value="text">Text</mat-option>
           <mat-option value="image">Image</mat-option>
-          <mat-option value="provider">Provider</mat-option>
+<!--          <mat-option value="provider">Provider</mat-option>-->
+          <mat-option value="code">Code</mat-option>
+          <mat-option value="template">Template</mat-option>
         </mat-select>
       </mat-form-field>
     </div>

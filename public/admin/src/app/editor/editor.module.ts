@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ViewComponent } from './view/view.component';
+import {EditorComponent} from './editor/editor.component';
 import { ElementComponent } from './element/element.component';
 import { ElementHostDirective } from './element-host.directive';
 import { LayoutComponent } from './elements/layout/layout.component';
@@ -19,12 +19,14 @@ import {MatRadioModule} from "@angular/material/radio";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import {MatChipsModule} from "@angular/material/chips";
 import {MatInputModule} from "@angular/material/input";
+import { TemplateComponent } from './elements/template/template.component';
+import { CodeComponent } from './elements/code/code.component';
 
 
 
 @NgModule({
     declarations: [
-      ViewComponent,
+      EditorComponent,
       ElementComponent,
       ElementHostDirective,
       LayoutComponent,
@@ -33,10 +35,12 @@ import {MatInputModule} from "@angular/material/input";
       SliderComponent,
       ImageComponent,
       CustomComponent,
-      DataProviderComponent
+      DataProviderComponent,
+      TemplateComponent,
+      CodeComponent
     ],
     exports: [
-        ViewComponent
+        EditorComponent
     ],
   imports: [
     CommonModule,

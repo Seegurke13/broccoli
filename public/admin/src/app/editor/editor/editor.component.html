@@ -15,8 +15,8 @@
   <div class="elements">
 <!--    <app-element [content]="elements"></app-element>-->
 
-    <ng-container *ngFor="let el of elements">
-      <app-element [content]="el.content" [type]="el.type" [properties]="el.properties"></app-element>
+    <ng-container *ngFor="let el of elements; let i = index">
+      <app-element [content]="el.content" [type]="el.type" [properties]="el.properties" (delete)="removeElement(i)"></app-element>
     </ng-container>
   </div>
 </div>

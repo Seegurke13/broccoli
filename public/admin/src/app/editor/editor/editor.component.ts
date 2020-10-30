@@ -6,10 +6,10 @@ import {
 
 @Component({
   selector: 'app-view',
-  templateUrl: './view.component.html',
-  styleUrls: ['./view.component.scss']
+  templateUrl: './editor.component.html',
+  styleUrls: ['./editor.component.scss']
 })
-export class ViewComponent implements OnInit {
+export class EditorComponent implements OnInit {
   public elements: any = [
     {
       name: '',
@@ -36,8 +36,7 @@ export class ViewComponent implements OnInit {
     }
   ];
 
-  constructor(
-  ) {
+  constructor() {
   }
 
   ngOnInit(): void {
@@ -45,5 +44,9 @@ export class ViewComponent implements OnInit {
 
   public onSave() {
     console.log(this.elements);
+  }
+
+  public removeElement(i: number) {
+    this.elements.splice(i, 1);
   }
 }

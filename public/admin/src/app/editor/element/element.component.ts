@@ -17,6 +17,8 @@ import {ImageComponent} from "../elements/image/image.component";
 import {DataProviderComponent} from "../data-provider/data-provider.component";
 import {MatChipInputEvent} from "@angular/material/chips";
 import {COMMA, ENTER} from "@angular/cdk/keycodes";
+import {TemplateComponent} from "../elements/template/template.component";
+import {CodeComponent} from "../elements/code/code.component";
 
 @Component({
   selector: 'app-element',
@@ -53,6 +55,8 @@ export class ElementComponent implements OnInit {
       default: new ElementModel(DefaultComponent, [], []),
       provider: new ElementModel(DataProviderComponent, [], []),
       image: new ElementModel(ImageComponent, [], []),
+      template: new ElementModel(TemplateComponent, [], []),
+      code: new ElementModel(CodeComponent, [], [])
     };
 
     this.delete = new EventEmitter<any>();
