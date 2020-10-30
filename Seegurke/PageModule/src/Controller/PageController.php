@@ -14,6 +14,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 use Symfony\Component\Serializer\SerializerInterface;
 use Twig\Environment;
 
@@ -62,7 +63,7 @@ class PageController
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
      *
-     * @Route("/create")
+     * @Route("/page/create")
      */
     public function create(Request $request): Response
     {
@@ -73,9 +74,21 @@ class PageController
         }
         $this->pageRepository->persist($page);
 
-        return new JsonResponse([
-            'status' => 'ok'
-        ]);
+        return new JsonResponse(
+            $this->serializer->serialize(
+                [
+                    'status' => 'ok',
+                    'data' => $page,
+                ],
+                'json', [
+                    AbstractNormalizer::CIRCULAR_REFERENCE_HANDLER => function ($object, $format, $context) {
+                        return $object->getId();
+                    },
+            ]),
+            200,
+            [],
+            true
+        );
     }
 
     public function update(): Response
@@ -89,7 +102,7 @@ class PageController
      * @param Page $page
      * @return Response
      *
-     * @Route("/{page}/delete")
+     * @Route("/page/{page}/delete")
      */
     public function delete(Page $page): Response
     {
@@ -106,7 +119,7 @@ class PageController
     }
 
     /**
-     * @Route("/list")
+     * @Route("/tree")
      */
     public function getAllPages()
     {
@@ -136,73 +149,9 @@ class PageController
     }
 
     /**
-     * @param Page $page
-     *
-     * @Route("/{page}/extra/create")
-     * @return JsonResponse
-     */
-    public function createExtra(Page $page)
-    {
-        $content = new Extra();
-        $content->setPage($page);
-
-        $this->entityManager->persist($content);
-        $this->entityManager->flush();
-
-        return new JsonResponse([
-            'status' => 'ok',
-            'data' => [
-                'id' => $content->getId()
-            ]
-        ]);
-    }
-
-    /**
-     * @param Extra $extra
-     * @Route("/extra/{extre}/delete")
-     */
-    public function deleteExtra(Extra $extra)
-    {
-        $this->entityManager->remove($extra);
-        $this->entityManager->flush();
-    }
-
-    /**
-     * @param Page $page
-     *
-     * @Route("/{page}/content/create")
-     */
-    public function createContent(Page $page)
-    {
-        $content = new Content();
-        $content->setPage($page);
-
-        $this->entityManager->persist($content);
-        $this->entityManager->flush();
-
-        return new JsonResponse([
-            'status' => 'ok',
-            'data' => [
-                'id' => $content->getId()
-            ]
-        ]);
-    }
-
-    /**
-     * @param Content $content
-     *
-     * @Route("/content/{content}/delete")
-     */
-    public function deleteContent(Content $content)
-    {
-        $this->entityManager->remove($content);
-        $this->entityManager->flush();
-    }
-
-    /**
      * @return Response
      *
-     * @Route("/{page}")
+     * @Route("/page/{page}")
      */
     public function index(Page $page): Response
     {
@@ -215,17 +164,5 @@ class PageController
                 }
             ]
         ));
-    }
-
-    /**
-     * @return Response
-     * @Route("/api/page/getPlaceholder")
-     */
-    public function getPlaceholder(Page $page): Response
-    {
-        return new JsonResponse([
-            "main",
-            "footer"
-        ]);
     }
 }

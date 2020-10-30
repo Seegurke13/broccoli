@@ -1,5 +1,5 @@
 import {
-  AfterViewInit, ChangeDetectorRef,
+  ChangeDetectorRef,
   Component,
   ComponentFactoryResolver,
   ComponentRef, EventEmitter,
@@ -92,10 +92,6 @@ export class ElementComponent implements OnInit {
     if (this.componentRef.instance.settings) {
       this.settings = this.componentRef.instance.settings;
     }
-  }
-
-  public onAction(action: string, params = []) {
-    this.componentRef.instance[action](...params);
   }
 
   public onChangeType($event: MatSelectChange) {

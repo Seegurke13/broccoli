@@ -27,7 +27,7 @@ class Page
      * @var Page|null
      * @ORM\ManyToOne(targetEntity="Page", inversedBy="children")
      */
-    private ?Page $parent;
+    private ?Page $parent = null;
 
     /**
      * @var Page[]

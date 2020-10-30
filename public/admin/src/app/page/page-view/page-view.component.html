@@ -1,182 +1,29 @@
-<div>
-  <button mat-button>Speichern</button>
-  <button mat-button>Loeschen</button>
-</div>
+<div *ngIf="page">
+  <div>
+    <button mat-button>Speichern</button>
+    <button mat-button>Loeschen</button>
+  </div>
 
-<div>
-  <mat-tab-group>
-    <mat-tab label="Einstellungen">
-      <!--      <ng-container *matTabContent>-->
-      <div *matTabContent>
-        <div>
-          <mat-form-field>
-            <mat-label>Name</mat-label>
-            <input [(ngModel)]="page.name" matInput>
-          </mat-form-field>
-        </div>
+  <div>
+    <div>
+      <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input [(ngModel)]="page.name" matInput>
+      </mat-form-field>
+    </div>
 
-        <div>
-          <mat-checkbox [(ngModel)]="page.isDynamic">Dynamische Seite</mat-checkbox>
-        </div>
-        <div>
-          <mat-form-field *ngIf="!page.isDynamic">
-            <mat-label>Alternativer Name (URL)</mat-label>
-            <input matInput [(ngModel)]="page.url">
-          </mat-form-field>
-
-          <mat-form-field *ngIf="page.isDynamic">
-            <mat-label>Provider</mat-label>
-            <mat-select (ngModelChange)="onProviderChange($event)" [(ngModel)]="page.provider">
-              <mat-option *ngFor="let provider of dataProviders"
-                          [value]="provider.value">{{ provider.name }}</mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-
-        <div>
-          <div>
-            <mat-radio-group>
-              <mat-radio-button #templateRadio value="template">Template</mat-radio-button>
-              <mat-radio-button #designerRadio value="hmm">Designer</mat-radio-button>
-            </mat-radio-group>
-          </div>
-
-          <div>
-            <mat-form-field *ngIf="templateRadio.checked">
-              <mat-label>Template</mat-label>
-              <mat-select (ngModelChange)="onChangeTemplate($event)" [(ngModel)]="page.template">
-                <mat-option value="produkt">Produkt</mat-option>
-              </mat-select>
-            </mat-form-field>
-
-            <mat-form-field *ngIf="designerRadio.checked">
-              <mat-label>Designer</mat-label>
-              <mat-select>
-
-              </mat-select>
-            </mat-form-field>
-          </div>
-        </div>
-
-        <div>
-          <div *ngFor="let block of page.extra; let i = index">
-            <div fxLayout="row" fxLayoutAlign="space-between">
-              <div>
-
-              </div>
-
-              <button mat-icon-button (click)="onDeleteExtra(block)">
-                <i class="pi pi-minus-circle"></i>
-              </button>
-            </div>
-
-            <ng-container [ngSwitch]="true">
-              <ng-container *ngSwitchCase="block.type === 'custom'">
-                <app-page-custom [name]="block.name" [data]="block.data"></app-page-custom>
-              </ng-container>
-
-              <ng-container *ngSwitchCase="isFormFieldType(block.type)">
-                <mat-form-field>
-                  <mat-label>{{ block.label }}</mat-label>
-                  <input matInput [type]="block.type" [(ngModel)]="block.data">
-                </mat-form-field>
-              </ng-container>
-
-              <ng-container *ngSwitchCase="block.type === 'text'">
-                <quill-editor [(ngModel)]="block.data"></quill-editor>
-              </ng-container>
-
-              <ng-container *ngSwitchCase="isComponent(block.type)">
-                <app-page-component [type]="block.type" [data]="block.data" [(ngModel)]="block.data"></app-page-component>
-              </ng-container>
-
-              <ng-container *ngSwitchDefault>
-                No Admin UI Widget
-              </ng-container>
-            </ng-container>
-          </div>
-
-          <div>
-            <button mat-icon-button (click)="onAddExtra()">
-              <i class="pi pi-plus-circle"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-      <!--      </ng-container>-->
-    </mat-tab>
-
-    <mat-tab label="Inhalt">
-      <ng-template matTabContent>
-        <ng-container *ngIf="true">
+    <mat-tab-group>
+      <mat-tab label="Inhalt">
+        <ng-template matTabContent>
           <app-view></app-view>
-        </ng-container>
+        </ng-template>
+      </mat-tab>
 
-        <ng-container *ngIf="false">
-          <ng-container *ngFor="let placeholder of placeholders">
-            <div>
-              <div>
-                {{ placeholder }}
-              </div>
+      <mat-tab label="Vorschau">
+        <ng-template matTabContent>
 
-              <div>
-                <div *ngFor="let block of sortBy(filterBy(page.content, placeholder)); let bI = index">
-                  <div fxLayout="row" fxLayoutAlign="space-between">
-                    <div>
-                      {{ block.type }}
-                    </div>
-
-                    <button mat-icon-button (click)="onDeleteBlock(block)">
-                      <i class="pi pi-minus-circle"></i>
-                    </button>
-                  </div>
-
-                  <ng-container [ngSwitch]="true">
-                    <ng-container *ngSwitchCase="block.type === 'custom'">
-                      <app-page-custom [name]="block.name" [data]="block.data"></app-page-custom>
-                    </ng-container>
-
-                    <ng-container *ngSwitchCase="isFormFieldType(block.type)">
-                      <mat-form-field>
-                        <mat-label>{{ block.label }}</mat-label>
-                        <input matInput [type]="block.type">
-                      </mat-form-field>
-                    </ng-container>
-
-                    <ng-container *ngSwitchCase="block.type === 'text'">
-                      <quill-editor></quill-editor>
-                    </ng-container>
-
-                    <ng-container *ngSwitchCase="isComponent(block.type)">
-                      <app-page-component [type]="block.type" [data]="block.data"></app-page-component>
-                    </ng-container>
-
-                    <ng-container *ngSwitchDefault>
-                      No Admin UI Widget
-                    </ng-container>
-                  </ng-container>
-                </div>
-
-                <div *ngIf="filterBy(page.content, placeholder).length === 0">
-                  Keine Elemente
-                </div>
-              </div>
-
-              <div>
-                <button mat-icon-button (click)="onAddBlock(placeholder)">
-                  <i class="pi pi-plus-circle"></i>
-                </button>
-              </div>
-            </div>
-          </ng-container>
-        </ng-container>
-      </ng-template>
-    </mat-tab>
-
-    <mat-tab label="Vorschau">
-      <ng-template matTabContent>
-
-      </ng-template>
-    </mat-tab>
-  </mat-tab-group>
+        </ng-template>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
 </div>

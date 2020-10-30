@@ -2,8 +2,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {DataComponent} from "./data/data/data.component";
 import {PageComponent} from "./page/page/page.component";
-import {FileComponent} from "./editor/ui/file/file.component";
-import {FilesComponent} from "./file/files/files.component";
 
 
 const routes: Routes = [
@@ -15,10 +13,6 @@ const routes: Routes = [
     path: 'pages',
     component: PageComponent
   },
-  {
-    path: 'files',
-    component: FilesComponent
-  }
 ];
 
 @NgModule({
