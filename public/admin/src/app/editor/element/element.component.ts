@@ -8,17 +8,10 @@ import {
   ViewChild
 } from '@angular/core';
 import {ElementHostDirective} from "../element-host.directive";
-import {ElementModel} from "../element.model";
-import {LayoutComponent} from "../elements/layout/layout.component";
-import {TextComponent} from "../elements/text/text.component";
 import {MatSelectChange} from "@angular/material/select";
-import {DefaultComponent} from "../elements/default/default.component";
-import {ImageComponent} from "../elements/image/image.component";
-import {DataProviderComponent} from "../data-provider/data-provider.component";
 import {MatChipInputEvent} from "@angular/material/chips";
 import {COMMA, ENTER} from "@angular/cdk/keycodes";
-import {TemplateComponent} from "../elements/template/template.component";
-import {CodeComponent} from "../elements/code/code.component";
+import {ElementService} from "../element.service";
 
 @Component({
   selector: 'app-element',
@@ -28,6 +21,8 @@ import {CodeComponent} from "../elements/code/code.component";
 export class ElementComponent implements OnInit {
   @Input()
   public type: string;
+  @Output()
+  public typeChange: EventEmitter<string>;
   @Input()
   public properties: any;
   @Input()
@@ -47,19 +42,12 @@ export class ElementComponent implements OnInit {
   public showSettings: boolean = false;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
 
-  constructor(private componentFactoryResolver: ComponentFactoryResolver, cdr: ChangeDetectorRef) {
+  constructor(private componentFactoryResolver: ComponentFactoryResolver, cdr: ChangeDetectorRef, elementService: ElementService) {
     this.cdr = cdr;
-    this.elements = {
-      text: new ElementModel(TextComponent, [], []),
-      layout: new ElementModel(LayoutComponent, [], []),
-      default: new ElementModel(DefaultComponent, [], []),
-      provider: new ElementModel(DataProviderComponent, [], []),
-      image: new ElementModel(ImageComponent, [], []),
-      template: new ElementModel(TemplateComponent, [], []),
-      code: new ElementModel(CodeComponent, [], [])
-    };
+    this.elements = elementService.getPlugins();
 
     this.delete = new EventEmitter<any>();
+    this.typeChange = new EventEmitter<string>();
   }
 
   ngOnInit(): void {
@@ -86,7 +74,9 @@ export class ElementComponent implements OnInit {
     const componentRef = viewContainerRef.createComponent<any>(componentFactory);
 
     componentRef.instance.content = this.content;
-    componentRef.instance.properties = this.properties;
+    if (componentRef.instance.properties) {
+      componentRef.instance.properties = this.properties;
+    }
 
     this.componentRef = componentRef;
     this.cdr.detectChanges();
@@ -99,6 +89,7 @@ export class ElementComponent implements OnInit {
   }
 
   public onChangeType($event: MatSelectChange) {
+    this.typeChange.emit($event.value);
     this.type = $event.value;
     this.loadElement();
   }

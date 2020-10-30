@@ -10,7 +10,7 @@ export class LayoutComponent implements OnInit, EditorElementComponent{
   @Input()
   public content: any[] = [];
   @Input()
-  public properties: any;
+  public properties: any = {};
   public type: string;
   @ViewChild('toolbar')
   public toolbar;
