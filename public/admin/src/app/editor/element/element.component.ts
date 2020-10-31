@@ -12,6 +12,7 @@ import {MatSelectChange} from "@angular/material/select";
 import {MatChipInputEvent} from "@angular/material/chips";
 import {COMMA, ENTER} from "@angular/cdk/keycodes";
 import {ElementService} from "../element.service";
+import {ElementInterface} from "../element.interface";
 
 @Component({
   selector: 'app-element',
@@ -26,7 +27,7 @@ export class ElementComponent implements OnInit {
   @Input()
   public properties: any;
   @Input()
-  public content: any[];
+  public content: any;
   @ViewChild(ElementHostDirective, {static: true})
   public element: ElementHostDirective;
 
@@ -71,7 +72,8 @@ export class ElementComponent implements OnInit {
     const viewContainerRef = this.element.viewContainerRef;
     viewContainerRef.clear();
 
-    const componentRef = viewContainerRef.createComponent<any>(componentFactory);
+    // @ts-ignore
+    const componentRef = viewContainerRef.createComponent<ElementInterface>(componentFactory);
 
     componentRef.instance.content = this.content;
     if (componentRef.instance.properties) {
@@ -89,7 +91,6 @@ export class ElementComponent implements OnInit {
   }
 
   public onChangeType($event: MatSelectChange) {
-    this.typeChange.emit($event.value);
     this.type = $event.value;
     this.loadElement();
   }
