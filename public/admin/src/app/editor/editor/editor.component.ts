@@ -12,27 +12,11 @@ import {
 export class EditorComponent implements OnInit {
   public elements: any = [
     {
-      name: '',
-      type: 'layout',
-      properties: [],
-      content: [
-        {
-          type: 'text',
-          content: {
-            value: 'test'
-          },
-          properties: {
-          }
-        },
-        {
-          type: 'image',
-          content: {
-            src: '',
-            alt: 'hmmmmm'
-          },
-          properties: {}
-        }
-      ]
+      type: 'text',
+      content: {
+        value: 'test'
+      },
+      properties: {}
     }
   ];
 

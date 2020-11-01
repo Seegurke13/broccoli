@@ -1,12 +1,12 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {EditorElementComponent} from "../../editorElementComponent";
+import {ElementInterface} from "../../element.interface";
 
 @Component({
   selector: 'app-image',
   templateUrl: './image.component.html',
   styleUrls: ['./image.component.scss']
 })
-export class ImageComponent implements OnInit, EditorElementComponent{
+export class ImageComponent implements OnInit, ElementInterface{
   @Input()
   public content: any = {src: '', alt: ''};
   @Input()

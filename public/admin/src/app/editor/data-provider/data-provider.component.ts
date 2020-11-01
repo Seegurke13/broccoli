@@ -1,12 +1,12 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {EditorElementComponent} from "../editorElementComponent";
+import {ElementInterface} from "../element.interface";
 
 @Component({
   selector: 'app-data-provider',
   templateUrl: './data-provider.component.html',
   styleUrls: ['./data-provider.component.scss']
 })
-export class DataProviderComponent implements OnInit, EditorElementComponent {
+export class DataProviderComponent implements OnInit, ElementInterface {
   @Input()
   public content: any;
   @Input()

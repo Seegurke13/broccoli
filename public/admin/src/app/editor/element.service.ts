@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {ElementModel} from "./element.model";
+import {PluginModel} from "./plugin.model";
 import {TextComponent} from "./elements/text/text.component";
 import {LayoutComponent} from "./elements/layout/layout.component";
 import {DefaultComponent} from "./elements/default/default.component";
@@ -16,13 +16,13 @@ export class ElementService {
 
   constructor() {
     this.plugins = {
-      text: new ElementModel(TextComponent, [], []),
-      layout: new ElementModel(LayoutComponent, [], []),
-      default: new ElementModel(DefaultComponent, [], []),
-      provider: new ElementModel(DataProviderComponent, [], []),
-      image: new ElementModel(ImageComponent, [], []),
-      template: new ElementModel(TemplateComponent, [], []),
-      code: new ElementModel(CodeComponent, [], [])
+      text: new PluginModel(TextComponent, [], []),
+      layout: new PluginModel(LayoutComponent, [], []),
+      default: new PluginModel(DefaultComponent, [], []),
+      provider: new PluginModel(DataProviderComponent, [], []),
+      image: new PluginModel(ImageComponent, [], []),
+      template: new PluginModel(TemplateComponent, [], []),
+      code: new PluginModel(CodeComponent, [], [])
     };
   }
 

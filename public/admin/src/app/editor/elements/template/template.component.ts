@@ -1,12 +1,12 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {EditorElementComponent} from "../../editorElementComponent";
+import {ElementInterface} from "../../element.interface";
 
 @Component({
   selector: 'app-template',
   templateUrl: './template.component.html',
   styleUrls: ['./template.component.scss']
 })
-export class TemplateComponent implements OnInit, EditorElementComponent {
+export class TemplateComponent implements OnInit, ElementInterface {
   @Input()
   public content: any;
 

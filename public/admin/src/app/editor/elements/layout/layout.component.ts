@@ -1,17 +1,15 @@
 import {AfterViewInit, Component, Input, OnInit, ViewChild} from '@angular/core';
-import {EditorElementComponent} from "../../editorElementComponent";
+import {ElementInterface} from "../../element.interface";
 
 @Component({
   selector: 'app-layout',
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.scss']
 })
-export class LayoutComponent implements OnInit, EditorElementComponent{
+export class LayoutComponent implements OnInit, ElementInterface{
   @Input()
-  public content: any[] = [];
-  @Input()
-  public properties: any = {};
-  public type: string;
+  public content: any;
+
   @ViewChild('toolbar')
   public toolbar;
   @ViewChild('settings')
@@ -20,28 +18,20 @@ export class LayoutComponent implements OnInit, EditorElementComponent{
   constructor() { }
 
   ngOnInit(): void {
-    if (Array.isArray(this.content) === false) {
-      this.content = [];
-    }
-    this.content.length < 1 ? this.content.push({}) : '';
-
-    if (this.properties.direction === undefined) {
-      this.properties.direction = 'row';
+    if (!this.content.children) {
+      this.content.children = [];
     }
   }
 
   public addSection() {
-    if (Array.isArray(this.content) === false) {
-      this.content = [];
-    }
-    this.content.push({});
+    this.content.children.push({});
   }
 
   public onDelete(el: number) {
-    this.content.splice(el, 1);
+    this.content.children.splice(el, 1);
   }
 
   public onAdd() {
-    this.content.push({});
+    this.content.children.push({});
   }
 }

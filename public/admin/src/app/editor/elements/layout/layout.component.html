@@ -1,8 +1,8 @@
-<div style="display: flex;" class="layout"
-     [ngClass]="{'column': properties.direction === 'column', 'row': properties.direction === 'row'}"
+<div style="display: flex;" class="layout" *ngIf="content.children"
+     [ngClass]="{'column': content.direction === 'column', 'row': content.direction === 'row'}"
       [ngStyle]="{'justify-content: space-between': true}">
-  <div *ngFor="let el of content; let i = index" class="layout-section">
-    <app-element [type]="el.type" [content]="el.content" (delete)="onDelete(i)"
+  <div *ngFor="let el of content.children; let i = index" class="layout-section">
+    <app-element [(type)]="content.children[i].type" [(content)]="content.children[i]" (delete)="onDelete(i)"
                  [properties]="el.properties"></app-element>
   </div>
 </div>
@@ -15,7 +15,7 @@
 
 <ng-template #settings>
   <div>
-    <mat-radio-group [(ngModel)]="properties.direction">
+    <mat-radio-group [(ngModel)]="content.direction">
       <mat-radio-button value="row">Row</mat-radio-button>
       <mat-radio-button value="column">Column</mat-radio-button>
     </mat-radio-group>

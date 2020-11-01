@@ -3,8 +3,8 @@ import {
   Component,
   ComponentFactoryResolver,
   ComponentRef, EventEmitter,
-  Input,
-  OnInit, Output, TemplateRef,
+  Input, OnChanges,
+  OnInit, Output, SimpleChanges, TemplateRef,
   ViewChild
 } from '@angular/core';
 import {ElementHostDirective} from "../element-host.directive";
@@ -13,13 +13,14 @@ import {MatChipInputEvent} from "@angular/material/chips";
 import {COMMA, ENTER} from "@angular/cdk/keycodes";
 import {ElementService} from "../element.service";
 import {ElementInterface} from "../element.interface";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-element',
   templateUrl: './element.component.html',
   styleUrls: ['./element.component.scss']
 })
-export class ElementComponent implements OnInit {
+export class ElementComponent implements OnInit, OnChanges {
   @Input()
   public type: string;
   @Output()
@@ -28,19 +29,22 @@ export class ElementComponent implements OnInit {
   public properties: any;
   @Input()
   public content: any;
+  @Output()
+  public contentChange: EventEmitter<any>;
+
   @ViewChild(ElementHostDirective, {static: true})
   public element: ElementHostDirective;
 
+  public showSettings: boolean = false;
   public toolbar: TemplateRef<any>;
   public settings: TemplateRef<any>;
+
   @Output()
   public delete: EventEmitter<any>;
 
   private componentRef: ComponentRef<any>;
-
   private elements: any = {};
   private cdr: ChangeDetectorRef;
-  public showSettings: boolean = false;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
 
   constructor(private componentFactoryResolver: ComponentFactoryResolver, cdr: ChangeDetectorRef, elementService: ElementService) {
@@ -49,6 +53,7 @@ export class ElementComponent implements OnInit {
 
     this.delete = new EventEmitter<any>();
     this.typeChange = new EventEmitter<string>();
+    this.contentChange = new EventEmitter<any>();
   }
 
   ngOnInit(): void {
@@ -76,9 +81,7 @@ export class ElementComponent implements OnInit {
     const componentRef = viewContainerRef.createComponent<ElementInterface>(componentFactory);
 
     componentRef.instance.content = this.content;
-    if (componentRef.instance.properties) {
-      componentRef.instance.properties = this.properties;
-    }
+    componentRef.changeDetectorRef.markForCheck();
 
     this.componentRef = componentRef;
     this.cdr.detectChanges();
@@ -92,6 +95,9 @@ export class ElementComponent implements OnInit {
 
   public onChangeType($event: MatSelectChange) {
     this.type = $event.value;
+    this.content = {};
+    this.typeChange.emit(this.type);
+    // this.contentChange.emit({});
     this.loadElement();
   }
 
@@ -125,5 +131,9 @@ export class ElementComponent implements OnInit {
     if (index >= 0) {
       this.properties.classes.splice(index, 1);
     }
+  }
+
+  public ngOnChanges(changes: SimpleChanges): void {
+    console.log(changes);
   }
 }

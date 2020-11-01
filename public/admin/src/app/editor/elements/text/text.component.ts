@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 
 @Component({
   selector: 'app-text',
@@ -7,17 +7,12 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class TextComponent implements OnInit {
   @Input()
-  public content: any = {
-    value: ''
-  };
+  public content: any;
 
   constructor() { }
 
   ngOnInit(): void {
-    if (this.content === undefined) {
-      this.content = {};
-    }
-    if (this.content.value === undefined) {
+    if (!this.content.value) {
       this.content.value = '';
     }
   }

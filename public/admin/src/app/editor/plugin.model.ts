@@ -1,6 +1,6 @@
 import {Type} from "@angular/core";
 
-export class ElementModel {
+export class PluginModel {
   private component: Type<any>;
   private content: any[];
   private properties: any;

@@ -1,3 +1,3 @@
 export interface ElementInterface {
-  content: any|any[];
+  content: any;
 }
