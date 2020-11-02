@@ -9,14 +9,14 @@
 
       <mat-form-field>
         <mat-label>Typ</mat-label>
-        <mat-select [(ngModel)]="type" (selectionChange)="onChangeType($event)">
+        <mat-select [value]="element.type" (selectionChange)="onChangeType($event)">
+          <mat-option [value]="plugin.type" *ngFor="let plugin of getPlugins()">{{ plugin.name }}</mat-option>
 <!--          <mat-option value="slider">Slider</mat-option>-->
-          <mat-option value="layout">Layout</mat-option>
-          <mat-option value="text">Text</mat-option>
-          <mat-option value="image">Image</mat-option>
-<!--          <mat-option value="provider">Provider</mat-option>-->
-          <mat-option value="code">Code</mat-option>
-          <mat-option value="template">Template</mat-option>
+<!--          <mat-option value="layout">Layout</mat-option>-->
+<!--          <mat-option value="text">Text</mat-option>-->
+<!--          <mat-option value="image">Image</mat-option>-->
+<!--          <mat-option value="code">Code</mat-option>-->
+<!--          <mat-option value="template">Template</mat-option>-->
         </mat-select>
       </mat-form-field>
     </div>
@@ -36,7 +36,7 @@
   </div>
 
   <div class="element-content" style="padding: 1em;" [ngClass]="{'hidden': showSettings}">
-    <ng-template elementHost [type]="type" [content]="content">
+    <ng-template elementHost [content]="element.content">
 
     </ng-template>
   </div>
@@ -46,7 +46,7 @@
       <div>
         <mat-form-field>
           <mat-label>ID</mat-label>
-          <input matInput [(ngModel)]="properties.id">
+          <input matInput [(ngModel)]="element.properties.id">
         </mat-form-field>
       </div>
 
@@ -54,7 +54,7 @@
         <mat-form-field class="example-chip-list">
           <mat-label id="classes-label">Classes</mat-label>
           <mat-chip-list #chipList aria-label="Fruit selection">
-            <mat-chip *ngFor="let className of properties.classes" [selectable]="false"
+            <mat-chip *ngFor="let className of element.properties.classes" [selectable]="false"
                       [removable]="true" (removed)="remove(className)">
               {{ className }}
               <mat-icon matChipRemove *ngIf="true">cancel</mat-icon>

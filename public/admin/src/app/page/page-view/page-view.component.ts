@@ -1,6 +1,7 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {PageInterface} from "../page.interface";
 import {HttpClient} from "@angular/common/http";
+import {EditorComponent} from "../../editor/editor/editor.component";
 
 @Component({
   selector: 'app-page-view',
@@ -9,15 +10,19 @@ import {HttpClient} from "@angular/common/http";
 })
 export class PageViewComponent implements OnInit {
   @Input()
-  public page: PageInterface = {
-    id: 1,
-    name: 'test'
-  };
+  public page: PageInterface;
+
+  @Output()
+  public onSave: EventEmitter<PageInterface>;
+
+  @ViewChild(EditorComponent)
+  public editor;
 
   private http: HttpClient;
 
   constructor(http: HttpClient) {
     this.http = http;
+    this.onSave = new EventEmitter<PageInterface>();
   }
 
   ngOnInit(): void {
@@ -29,5 +34,9 @@ export class PageViewComponent implements OnInit {
 
   public isComponent(type: string): boolean {
     return customElements.get(type) !== undefined;
+  }
+
+  public save() {
+    this.onSave.emit(this.page);
   }
 }

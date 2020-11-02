@@ -4,20 +4,20 @@
 
 <p-tree [value]="data">
   <ng-template let-node pTemplate="default">
-    <div>
-      <span style="display: inline-block; width: 20px;" *ngIf="!hasChild(node.id, node)"></span>
-      <span (click)="select(node.id)">{{ node.label }}</span>
+    <span style="display: inline-block; width: 20px;" *ngIf="!hasChild(node.id, node)"></span>
+    <span style="display: inline-block;" class="tree-node" [ngClass]="{'selected': node.id === selection}">
+      <span class="tree-label" (click)="onSelectPage(node.id)">{{ node.label }}</span>
 
-      <button (click)="onAddPage(node.id)" mat-button>
-        <i class="pi pi-plus-circle" style="font-size: 1em; margin-left: 10px;"></i>
+      <button mat-icon-button (click)="onAddPage(node.id)" mat-button>
+        <i class="pi pi-plus-circle" style="font-size: 1em;"></i>
       </button>
 
-      <button (click)="onDeletePage(node.id)" mat-button>
-        <i class="pi pi-minus-circle" style="font-size: 1em; margin-left: 10px;"></i>
+      <button mat-icon-button (click)="onDeletePage(node.id)" mat-button>
+        <i class="pi pi-minus-circle" style="font-size: 1em;"></i>
       </button>
 <!--      <i class="pi pi-arrow-up" style="font-size: 1em; margin-left: 10px;" (click)="onMoveTop(node)"></i>-->
 <!--      <i class="pi pi-arrow-down" style="font-size: 1em; margin-left: 10px;" (click)="onMoveDown(node)"></i>-->
-    </div>
+    </span>
   </ng-template>
 </p-tree>
 

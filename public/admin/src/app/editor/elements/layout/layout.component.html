@@ -2,8 +2,7 @@
      [ngClass]="{'column': content.direction === 'column', 'row': content.direction === 'row'}"
       [ngStyle]="{'justify-content: space-between': true}">
   <div *ngFor="let el of content.children; let i = index" class="layout-section">
-    <app-element [(type)]="content.children[i].type" [(content)]="content.children[i]" (delete)="onDelete(i)"
-                 [properties]="el.properties"></app-element>
+    <app-element [element]="content.children[i]" (delete)="onDelete(i)"></app-element>
   </div>
 </div>
 

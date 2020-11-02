@@ -1,24 +1,20 @@
 import {
-  Component,
+  Component, Input, OnChanges,
   OnInit,
-  Renderer2
+  Renderer2, SimpleChanges
 } from '@angular/core';
 
 @Component({
-  selector: 'app-view',
+  selector: 'app-editor',
   templateUrl: './editor.component.html',
   styleUrls: ['./editor.component.scss']
 })
 export class EditorComponent implements OnInit {
-  public elements: any = [
-    {
-      type: 'text',
-      content: {
-        value: 'test'
-      },
-      properties: {}
-    }
-  ];
+  @Input()
+  public elements: any|any[];
+
+  @Input()
+  public multi: boolean = false;
 
   constructor() {
   }
@@ -27,7 +23,8 @@ export class EditorComponent implements OnInit {
   }
 
   public onSave() {
-    console.log(this.elements);
+    let test = Object.assign({}, this.elements);
+    console.log(JSON.stringify(test));
   }
 
   public removeElement(i: number) {

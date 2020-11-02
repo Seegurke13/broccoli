@@ -1,22 +1,19 @@
 <div>
   <div class="toolbar">
-    Toolbar
-
-    <div>
-      <button (click)="elements.push({})">
-        Add
-      </button>
-      <button (click)="onSave()">
-        Save
-      </button>
-    </div>
+    <button mat-icon-button (click)="elements.push({})" *ngIf="multi">
+      <mat-icon>plus</mat-icon>
+    </button>
   </div>
 
-  <div class="elements">
-<!--    <app-element [content]="elements"></app-element>-->
+  <div class="content">
+    <ng-container *ngIf="multi === false">
+      <app-element [element]="elements" [container]="'page'"></app-element>
+    </ng-container>
 
-    <ng-container *ngFor="let el of elements; let i = index">
-      <app-element [(content)]="elements[i].content" [(type)]="elements[i].type" [properties]="el.properties" (delete)="removeElement(i)"></app-element>
+    <ng-container *ngIf="multi === true">
+      <ng-container *ngFor="let el of elements; let i = index">
+        <app-element [element]="el" (delete)="removeElement(i)" [container]="'page'"></app-element>
+      </ng-container>
     </ng-container>
   </div>
 </div>

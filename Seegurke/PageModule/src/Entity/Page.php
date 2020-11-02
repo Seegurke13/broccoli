@@ -35,11 +35,18 @@ class Page
      */
     private $children;
 
+    /**
+     * @var array
+     * @ORM\Column(type="json")
+     */
+    private array $content;
+
     public function __construct()
     {
         $this->children = new ArrayCollection();
 
         $this->name = 'Neue Seite';
+        $this->content = [];
     }
 
     public function getId(): ?int
@@ -72,5 +79,21 @@ class Page
     public function setParent(?Page $page)
     {
         $this->parent = $page;
+    }
+
+    /**
+     * @return array
+     */
+    public function getContent(): array
+    {
+        return $this->content;
+    }
+
+    /**
+     * @param array $content
+     */
+    public function setContent(array $content): void
+    {
+        $this->content = $content;
     }
 }

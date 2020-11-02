@@ -91,8 +91,22 @@ class PageController
         );
     }
 
-    public function update(): Response
+    /**
+     * @param Page $page
+     * @param Request $request
+     * @return Response
+     * @Route("/page/{page}/update")
+     */
+    public function update(Page $page, Request $request): Response
     {
+        $this->serializer->deserialize($request->getContent(), Page::class, 'json', [
+            AbstractNormalizer::OBJECT_TO_POPULATE => $page
+        ]);
+//        die(var_dump($page));
+
+        $this->entityManager->flush();
+
+
         return new JsonResponse([
             'status' => 'ok'
         ]);

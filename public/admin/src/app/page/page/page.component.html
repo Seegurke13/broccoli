@@ -4,6 +4,6 @@
   </div>
 
   <div style="flex-grow: 1; max-width: 65%; margin-left: 15px;">
-    <app-page-view [page]="page"></app-page-view>
+    <app-page-view [page]="page" (onSave)="onSavePage($event)"></app-page-view>
   </div>
 </div>

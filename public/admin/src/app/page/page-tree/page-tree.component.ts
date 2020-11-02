@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {PageNode} from "../page-node";
 
 @Component({
@@ -9,6 +9,8 @@ import {PageNode} from "../page-node";
 export class PageTreeComponent implements OnInit {
   @Input()
   public data: PageNode[];
+
+  public selection: number;
 
   @Output()
   public onSelect: EventEmitter<any>;
@@ -32,6 +34,7 @@ export class PageTreeComponent implements OnInit {
 
   public onSelectPage(id: number) {
     this.onSelect.emit(id);
+    this.selection = id;
   }
 
   public onAddPage(id: any) {
@@ -45,6 +48,7 @@ export class PageTreeComponent implements OnInit {
   }
 
   public select(id) {
-    this.onSelectPage(id);
+      console.log('select id: '+ id);
+      this.selection = id;
   }
 }

@@ -1,0 +1,13 @@
+.tree-node {
+  &:hover {
+    .tree-label {
+      color: gray;
+    }
+  }
+
+  &.selected {
+    .tree-label {
+      color: blue;
+    }
+  }
+}

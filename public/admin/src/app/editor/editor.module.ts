@@ -12,7 +12,6 @@ import { DefaultComponent } from './elements/default/default.component';
 import { SliderComponent } from './elements/slider/slider.component';
 import { ImageComponent } from './elements/image/image.component';
 import { CustomComponent } from './elements/custom/custom.component';
-import { DataProviderComponent } from './data-provider/data-provider.component';
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import {MatRadioModule} from "@angular/material/radio";
@@ -35,7 +34,6 @@ import { CodeComponent } from './elements/code/code.component';
       SliderComponent,
       ImageComponent,
       CustomComponent,
-      DataProviderComponent,
       TemplateComponent,
       CodeComponent
     ],

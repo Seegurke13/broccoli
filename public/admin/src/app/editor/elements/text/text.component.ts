@@ -7,13 +7,15 @@ import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core'
 })
 export class TextComponent implements OnInit {
   @Input()
-  public content: any;
+  public content: any = {};
 
-  constructor() { }
-
-  ngOnInit(): void {
-    if (!this.content.value) {
+  constructor() {
+    if (this.content.value === undefined) {
       this.content.value = '';
     }
+  }
+
+  ngOnInit(): void {
+
   }
 }

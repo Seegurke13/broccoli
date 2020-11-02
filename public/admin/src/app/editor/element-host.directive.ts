@@ -5,11 +5,7 @@ import {Directive, Input, ViewContainerRef} from '@angular/core';
 })
 export class ElementHostDirective {
   @Input()
-  public type: string;
-  @Input()
   public content: any;
-  @Input()
-  public properties: any;
 
   constructor(public viewContainerRef: ViewContainerRef) {
   }

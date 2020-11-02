@@ -1,6 +1,6 @@
 <div *ngIf="page">
   <div>
-    <button mat-button>Speichern</button>
+    <button mat-icon-button (click)="save()">save</button>
     <button mat-button>Loeschen</button>
   </div>
 
@@ -15,7 +15,7 @@
     <mat-tab-group>
       <mat-tab label="Inhalt">
         <ng-template matTabContent>
-          <app-view></app-view>
+          <app-editor [elements]="page.content"></app-editor>
         </ng-template>
       </mat-tab>
 

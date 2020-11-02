@@ -23,15 +23,15 @@ export class LayoutComponent implements OnInit, ElementInterface{
     }
   }
 
-  public addSection() {
-    this.content.children.push({});
-  }
-
   public onDelete(el: number) {
     this.content.children.splice(el, 1);
   }
 
   public onAdd() {
-    this.content.children.push({});
+    this.content.children.push({
+      type: 'default',
+      content: {},
+      properties: {}
+    });
   }
 }
