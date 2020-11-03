@@ -20,6 +20,7 @@ import {MatChipsModule} from "@angular/material/chips";
 import {MatInputModule} from "@angular/material/input";
 import { TemplateComponent } from './elements/template/template.component';
 import { CodeComponent } from './elements/code/code.component';
+import {SafePipe} from "./safe.pipe";
 
 
 
@@ -35,11 +36,13 @@ import { CodeComponent } from './elements/code/code.component';
       ImageComponent,
       CustomComponent,
       TemplateComponent,
-      CodeComponent
+      CodeComponent,
+      SafePipe
     ],
-    exports: [
-        EditorComponent
-    ],
+  exports: [
+    EditorComponent,
+    SafePipe
+  ],
   imports: [
     CommonModule,
     MatFormFieldModule,

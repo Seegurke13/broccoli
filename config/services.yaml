@@ -24,8 +24,18 @@ services:
         tags: ['controller.service_arguments']
 
     Seegurke\PageModule\:
+        autoconfigure: true
+        autowire: true
         resource: '../Seegurke/PageModule/src/*'
-        exclude: '../Seegurke/PageModule/src/{DependencyInjection,Entity,Migrations,Tests,Kernel.php}'
+        exclude: '../Seegurke/PageModule/src/{DependencyInjection,Entity,Migrations,Tests,Kernel.php,Model}'
+
+    Seegurke\PageModule\ArgumentResolver\ElementArgumentResolver:
+        tags:
+            - { name: controller.argument_value_resolver, priority: 10 }
+
+    Seegurke\PageModule\ArgumentResolver\ScriptManagerResolver:
+        tags:
+            - { name: controller.argument_value_resolver, priority: 20 }
 
     Seegurke\PageModule\Controller\:
         resource: '../Seegurke/PageModule/src/Controller'
@@ -45,6 +55,13 @@ services:
         autoconfigure: true
         tags:
             - { name: serializer.normalizer }
+
+    Seegurke\PageModule\Service\ElementService:
+        arguments:
+            - '@event_dispatcher'
+            - '@http_kernel'
+            - '@controller_resolver'
+            - '@argument_resolver'
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

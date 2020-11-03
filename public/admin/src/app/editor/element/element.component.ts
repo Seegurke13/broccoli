@@ -73,9 +73,11 @@ export class ElementComponent implements OnInit, OnChanges {
 
     this.componentRef = componentRef;
     this.cdr.detectChanges();
+    this.toolbar = undefined;
     if (this.componentRef.instance.toolbar) {
       this.toolbar = this.componentRef.instance.toolbar;
     }
+    this.settings = undefined;
     if (this.componentRef.instance.settings) {
       this.settings = this.componentRef.instance.settings;
     }
@@ -139,7 +141,7 @@ export class ElementComponent implements OnInit, OnChanges {
         this.element.content = {};
       }
 
-      if (this.element.properties === undefined) {
+      if (!(this.element.properties instanceof Object)) {
         this.element.properties = {};
       }
 

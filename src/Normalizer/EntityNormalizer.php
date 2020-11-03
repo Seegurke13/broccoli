@@ -45,7 +45,8 @@ class EntityNormalizer extends ObjectNormalizer
      */
     public function supportsDenormalization($data, $type, $format = null)
     {
-        return $this->em->getMetadataFactory()->hasMetadataFor($type) === 0 && (is_numeric($data) || is_string($data));
+//        die(var_dump('test'));
+        return $this->em->getMetadataFactory()->hasMetadataFor($type) && (is_numeric($data) || is_string($data));
     }
 
     /**

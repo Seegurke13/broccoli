@@ -6,10 +6,9 @@ namespace Seegurke\PageModule\Controller;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Psr\Log\LoggerInterface;
-use Seegurke\PageModule\Entity\Content;
-use Seegurke\PageModule\Entity\Extra;
 use Seegurke\PageModule\Entity\Page;
 use Seegurke\PageModule\Repository\PageRepository;
+use Seegurke\PageModule\Service\ElementService;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -24,23 +23,34 @@ class PageController
      * @var Environment
      */
     private Environment $environment;
+    /**
+     * @var PageRepository
+     */
     private PageRepository $pageRepository;
     /**
      * @var SerializerInterface
      */
     private SerializerInterface $serializer;
+    /**
+     * @var EntityManagerInterface
+     */
     private EntityManagerInterface $entityManager;
     /**
      * @var LoggerInterface
      */
     private LoggerInterface $logger;
+    /**
+     * @var ElementService
+     */
+    private ElementService $pageService;
 
     public function __construct(
         Environment $environment,
         PageRepository $pageRepository,
         SerializerInterface $serializer,
         EntityManagerInterface $entityManager,
-        LoggerInterface $logger
+        LoggerInterface $logger,
+        ElementService $pageService
     )
     {
         $this->environment = $environment;
@@ -48,13 +58,20 @@ class PageController
         $this->serializer = $serializer;
         $this->entityManager = $entityManager;
         $this->logger = $logger;
+        $this->pageService = $pageService;
     }
 
-    public function __invoke(Request $request)
+    /**
+     * @param Request $request
+     * @param Page $page
+     * @return Response
+     * @Route("/page/{page}/render")
+     */
+    public function __invoke(Request $request, Page $page)
     {
-        $pageModel = [];
+        $content = $this->pageService->parse($page->getContent(), $request);
 
-        return new Response($this->environment->render($pageModel['template'], $pageModel));
+        return new Response($content);
     }
 
     /**
@@ -102,7 +119,6 @@ class PageController
         $this->serializer->deserialize($request->getContent(), Page::class, 'json', [
             AbstractNormalizer::OBJECT_TO_POPULATE => $page
         ]);
-//        die(var_dump($page));
 
         $this->entityManager->flush();
 

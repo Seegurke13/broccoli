@@ -6,3 +6,24 @@
     </mat-select>
   </mat-form-field>
 </div>
+
+<div>
+  <button mat-icon-button (click)="addPlaceholder()">
+    <mat-icon>add</mat-icon>
+  </button>
+
+  <div *ngFor="let placeholder of content.placeholder; let i = index">
+    <button mat-icon-button (click)="delete(i)">
+      <mat-icon>delete</mat-icon>
+    </button>
+
+    <mat-form-field>
+      <mat-label>Platzhalter</mat-label>
+      <input matInput type="text" [(ngModel)]="content.placeholder[i].name">
+    </mat-form-field>
+
+    <div>
+      <app-element [element]="content.placeholder[i].content" (delete)="onDelete(i)" container='content'></app-element>
+    </div>
+  </div>
+</div>

@@ -28,6 +28,12 @@ export class ElementService {
         container: ['content']
       },
       {
+        name: 'Image',
+        type: 'image',
+        component: ImageComponent,
+        container: ['content']
+      },
+      {
         name: 'Template',
         type: 'template',
         component: TemplateComponent,

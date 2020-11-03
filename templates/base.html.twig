@@ -3,10 +3,19 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        {% block stylesheets %}
+            {% for style in styles %}
+                {{ style|raw }}
+            {% endfor %}
+        {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        {% block body %}
+        {% endblock %}
+        {% block javascripts %}
+            {% for script in scripts %}
+                {{ script|raw }}
+            {% endfor %}
+        {% endblock %}
     </body>
 </html>

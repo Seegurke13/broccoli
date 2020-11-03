@@ -13,11 +13,29 @@ export class TemplateComponent implements OnInit, ElementInterface {
   constructor() { }
 
   ngOnInit(): void {
-      if (!this.content) {
-        this.content = {};
-      }
-      if (!(this.content.template)) {
-        this.content.template = '';
-      }
+  }
+
+  public addPlaceholder() {
+    if (this.content.placeholder === undefined) {
+      this.content.placeholder = [];
+    }
+
+    if (this.content.placeholder.find((el) => {return el.name === 'New';})) {
+      return;
+    }
+
+    this.content.placeholder.push({
+      name: 'New',
+      content: {}
+    });
+  }
+
+  public delete(i: number) {
+    this.content.placeholder.splice(i, 1);
+  }
+
+  public onDelete(i: number) {
+    this.content.placeholder[i].type = '';
+    this.content.placeholder[i].content = {};
   }
 }

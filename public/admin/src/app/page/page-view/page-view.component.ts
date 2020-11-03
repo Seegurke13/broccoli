@@ -18,7 +18,11 @@ export class PageViewComponent implements OnInit {
   @ViewChild(EditorComponent)
   public editor;
 
+  @ViewChild('iframe')
+  public iframe;
+
   private http: HttpClient;
+  public preview: string = '';
 
   constructor(http: HttpClient) {
     this.http = http;
@@ -38,5 +42,9 @@ export class PageViewComponent implements OnInit {
 
   public save() {
     this.onSave.emit(this.page);
+  }
+
+  public loadPreview() {
+    console.log('test!!!!!!');
   }
 }
