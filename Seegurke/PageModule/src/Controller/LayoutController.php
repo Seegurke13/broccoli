@@ -25,12 +25,14 @@ class LayoutController
         $this->elementService = $elementService;
     }
 
-    public function __invoke(Request $request, array $children, StyleManager $styleManager)
+    public function __invoke(Request $request, array $children, StyleManager $styleManager, string $direction = 'row')
     {
         $styleManager->addInline('.layout { display: flex; justify-content: space-between;}');
+        $styleManager->addInline('.layout.row { flex-direction: row;}');
+        $styleManager->addInline('.layout.column { flex-direction: column;}');
         $styleManager->addInline('.layout-item { flex-grow: 1;}');
 
-        $data = '<div class="layout">';
+        $data = '<div class="layout '.$direction.'">';
         foreach ($children as $child) {
             $data .= '<div class="layout-item">'.$this->elementService->parse($child, $request).'</div>';
         }

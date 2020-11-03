@@ -55,11 +55,12 @@ class ElementService
 
         $request = $request->duplicate();
         $request->attributes->set('_controller', $tmp);
-        $content = [];
-        foreach ($pageData['content'] as $key => $value) {
-            $content[$key] = $value;
-        }
-        $request->attributes->set('content', $content);
+//        $content = [];
+//        foreach ($pageData['content'] as $key => $value) {
+//            $content[$key] = $value;
+//        }
+        $request->attributes->set('content', $pageData['content']);
+        $request->attributes->set('properties', $pageData['properties']);
 
         $event = new RequestEvent($this->httpKernel, $request, HttpKernelInterface::SUB_REQUEST);
         $this->eventDispatcher->dispatch($event, KernelEvents::REQUEST);

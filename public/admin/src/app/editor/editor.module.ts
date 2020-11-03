@@ -21,6 +21,9 @@ import {MatInputModule} from "@angular/material/input";
 import { TemplateComponent } from './elements/template/template.component';
 import { CodeComponent } from './elements/code/code.component';
 import {SafePipe} from "./safe.pipe";
+import { HtmlelementComponent } from './elements/htmlelement/htmlelement.component';
+import { TableComponent } from './elements/table/table.component';
+import { FileComponent } from './inputs/file/file.component';
 
 
 
@@ -37,7 +40,10 @@ import {SafePipe} from "./safe.pipe";
       CustomComponent,
       TemplateComponent,
       CodeComponent,
-      SafePipe
+      SafePipe,
+      HtmlelementComponent,
+      TableComponent,
+      FileComponent
     ],
   exports: [
     EditorComponent,
