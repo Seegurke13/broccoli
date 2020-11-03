@@ -71,7 +71,7 @@ export class PageComponent implements OnInit {
     this.page.children = this.page.children.map((el) => {
       return el.id;
     });
-    console.log(this.page);
+
     this.http.put('http://localhost/module/pagemodule/page/' + page.id + '/update', this.page).subscribe(() => {
       console.log('saved');
     });

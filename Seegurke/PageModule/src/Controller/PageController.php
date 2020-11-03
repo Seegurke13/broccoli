@@ -65,7 +65,7 @@ class PageController
      * @param Request $request
      * @param Page $page
      * @return Response
-     * @Route("/page/{page}/render")
+     * @Route("/page/{id}/render", requirements={"id":"\d+"})
      */
     public function __invoke(Request $request, Page $page)
     {

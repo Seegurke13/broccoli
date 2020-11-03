@@ -1,5 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ElementInterface} from "../../element.interface";
+import {HttpClient} from "@angular/common/http";
+import {MatSelectChange} from "@angular/material/select";
 
 @Component({
   selector: 'app-template',
@@ -9,8 +11,11 @@ import {ElementInterface} from "../../element.interface";
 export class TemplateComponent implements OnInit, ElementInterface {
   @Input()
   public content: any;
+  private http: HttpClient;
 
-  constructor() { }
+  constructor(http: HttpClient) {
+    this.http = http;
+  }
 
   ngOnInit(): void {
   }
@@ -37,5 +42,19 @@ export class TemplateComponent implements OnInit, ElementInterface {
   public onDelete(i: number) {
     this.content.placeholder[i].type = '';
     this.content.placeholder[i].content = {};
+  }
+
+  public onTemplateChange($event: MatSelectChange) {
+    this.content.placeholder = [];
+    this.http.get('http://localhost/module/pagemodule/template/getPlaceholder/'+$event.value).subscribe((placeholders: string[]) => {
+      placeholders.forEach((el) => {
+        if (this.content.placeholder.find((tmp) => {return el === tmp.name}) === undefined) {
+          this.content.placeholder.push({
+            name: el,
+            content: {}
+          });
+        }
+      });
+    });
   }
 }
