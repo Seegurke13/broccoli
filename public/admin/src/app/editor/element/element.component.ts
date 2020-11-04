@@ -86,6 +86,26 @@ export class ElementComponent implements OnInit, OnChanges {
   public onChangeType($event: MatSelectChange) {
     this.element.type = $event.value;
     this.element.content = {};
+
+    if (this.element.type === undefined) {
+      this.element.type = 'default';
+    }
+
+    if (this.element.content === undefined) {
+      this.element.content = {};
+    }
+
+    if (!(this.element.properties instanceof Object)) {
+      this.element.properties = {};
+    }
+
+    if (this.element.properties.id === undefined) {
+      this.element.properties.id = '';
+    }
+
+    if (this.element.properties.classes ===undefined) {
+      this.element.properties.classes = [];
+    }
     this.loadElement();
   }
 

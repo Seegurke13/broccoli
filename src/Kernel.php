@@ -31,7 +31,7 @@ class Kernel extends BaseKernel
         foreach ($this->bundles as $key => $value) {
             if ($value instanceof ExtensionModule) {
                 $tmp = $routes->import($value->getPath() . '/Controller/', 'annotation');
-                $tmp->prefix('/module/'.mb_strtolower($key));
+                $tmp->prefix('/'.mb_strtolower($key));
             }
         }
 

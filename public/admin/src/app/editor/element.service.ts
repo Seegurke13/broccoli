@@ -6,6 +6,7 @@ import {DefaultComponent} from "./elements/default/default.component";
 import {ImageComponent} from "./elements/image/image.component";
 import {TemplateComponent} from "./elements/template/template.component";
 import {CodeComponent} from "./elements/code/code.component";
+import {HtmlelementComponent} from "./elements/htmlelement/htmlelement.component";
 
 @Injectable({
   providedIn: 'root'
@@ -38,6 +39,12 @@ export class ElementService {
         type: 'template',
         component: TemplateComponent,
         container: ['page']
+      },
+      {
+        name: 'HTML Element',
+        type: 'htmlelement',
+        component: HtmlelementComponent,
+        container: ['content']
       }
     ];
   }

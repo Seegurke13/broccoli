@@ -2,10 +2,11 @@
 <module type="WEB_MODULE" version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/Seegurke/DataModule/src" isTestSource="false" packagePrefix="Seegurke\DataModule\" />
       <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" packagePrefix="App\" />
       <sourceFolder url="file://$MODULE_DIR$/Seegurke/PageModule/src" isTestSource="false" packagePrefix="Seegurke\PageModule\" />
+      <sourceFolder url="file://$MODULE_DIR$/Seegurke/FileModule/src" isTestSource="false" packagePrefix="Seegurke\FileModule\" />
+      <sourceFolder url="file://$MODULE_DIR$/Seegurke/DataModule/src" isTestSource="false" packagePrefix="Seegurke\DataModule\" />
       <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/doctrine/annotations" />

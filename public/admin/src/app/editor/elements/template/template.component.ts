@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {ElementInterface} from "../../element.interface";
 import {HttpClient} from "@angular/common/http";
 import {MatSelectChange} from "@angular/material/select";
@@ -11,6 +11,11 @@ import {MatSelectChange} from "@angular/material/select";
 export class TemplateComponent implements OnInit, ElementInterface {
   @Input()
   public content: any;
+  @ViewChild('toolbar')
+  public toolbar;
+  @ViewChild('settings')
+  public settings;
+
   private http: HttpClient;
 
   constructor(http: HttpClient) {

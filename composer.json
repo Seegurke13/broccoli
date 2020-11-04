@@ -20,7 +20,8 @@
         "psr-4": {
             "App\\": "src/",
             "Seegurke\\PageModule\\": "Seegurke/PageModule/src",
-            "Seegurke\\DataModule\\": "Seegurke/DataModule/src"
+            "Seegurke\\DataModule\\": "Seegurke/DataModule/src",
+            "Seegurke\\FileModule\\": "Seegurke/FileModule/src"
         }
     },
     "scripts": {
@@ -35,6 +36,7 @@
         }
     },
     "require-dev": {
-        "symfony/maker-bundle": "^1.19"
+        "symfony/maker-bundle": "^1.19",
+        "symfony/var-dumper": "^5.1"
     }
 }

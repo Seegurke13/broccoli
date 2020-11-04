@@ -28,7 +28,7 @@ export class PageComponent implements OnInit {
   }
 
   public onSelectPage(id: number) {
-    this.http.get('http://localhost:80/module/pagemodule/page/' + id).subscribe((page: PageInterface) => {
+    this.http.get('http://localhost:80/pagemodule/page/' + id).subscribe((page: PageInterface) => {
       // console.log(page);
       if (page.content === undefined) {
         page.content = {
@@ -65,14 +65,14 @@ export class PageComponent implements OnInit {
   public onSavePage(page: PageInterface) {
     let test = Object.assign({}, this.page.content);
     this.page.content = test;
-    if (this.page.parent) {
-      this.page.parent = this.page.parent.id;
-    }
-    this.page.children = this.page.children.map((el) => {
-      return el.id;
-    });
+    // if (this.page.parent) {
+    //   this.page.parent = this.page.parent.id;
+    // }
+    // this.page.children = this.page.children.map((el) => {
+    //   return el.id;
+    // });
 
-    this.http.put('http://localhost/module/pagemodule/page/' + page.id + '/update', this.page).subscribe(() => {
+    this.http.put('http://localhost/pagemodule/page/' + page.id + '/update', this.page).subscribe(() => {
       console.log('saved');
     });
   }
@@ -83,7 +83,7 @@ export class PageComponent implements OnInit {
       expanded.push(id);
     }
 
-    this.http.get('http://localhost:80/module/pagemodule/tree').subscribe((pages: any) => {
+    this.http.get('http://localhost:80/pagemodule/tree').subscribe((pages: any) => {
       this.tree = pages;
       this.expandAll(expanded);
     });

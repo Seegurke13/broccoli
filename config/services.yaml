@@ -29,7 +29,11 @@ services:
         resource: '../Seegurke/PageModule/src/*'
         exclude: '../Seegurke/PageModule/src/{DependencyInjection,Entity,Migrations,Tests,Kernel.php,Model}'
 
-    Seegurke\PageModule\ArgumentResolver\ElementArgumentResolver:
+    Seegurke\PageModule\ArgumentResolver\ContentArgumentResolver:
+        tags:
+            - { name: controller.argument_value_resolver, priority: 10 }
+
+    Seegurke\PageModule\ArgumentResolver\PropertyArgumentResolver:
         tags:
             - { name: controller.argument_value_resolver, priority: 10 }
 
@@ -62,6 +66,14 @@ services:
             - '@http_kernel'
             - '@controller_resolver'
             - '@argument_resolver'
+
+    Seegurke\FileModule\:
+        resource: '../Seegurke/FileModule/src/*'
+        exclude: '../Seegurke/FileModule/src/{DependencyInjection,Entity,Migrations,Tests,Kernel.php}'
+
+    Seegurke\FileModule\Controller\:
+        resource: '../Seegurke/FileModule/src/Controller'
+        tags: [ 'controller.service_arguments' ]
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

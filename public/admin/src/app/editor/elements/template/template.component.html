@@ -1,17 +1,4 @@
 <div>
-  <mat-form-field>
-    <mat-label>Template</mat-label>
-    <mat-select [(ngModel)]="content.template" (selectionChange)="onTemplateChange($event)">
-      <mat-option value="default">Default</mat-option>
-    </mat-select>
-  </mat-form-field>
-</div>
-
-<div>
-  <button mat-icon-button (click)="addPlaceholder()">
-    <mat-icon>add</mat-icon>
-  </button>
-
   <div *ngFor="let placeholder of content.placeholder; let i = index">
     <button mat-icon-button (click)="delete(i)">
       <mat-icon>delete</mat-icon>
@@ -27,3 +14,20 @@
     </div>
   </div>
 </div>
+
+<ng-template #toolbar>
+  <button mat-icon-button (click)="addPlaceholder()">
+    <mat-icon>add</mat-icon>
+  </button>
+</ng-template>
+
+<ng-template #settings>
+  <div>
+    <mat-form-field>
+      <mat-label>Template</mat-label>
+      <mat-select [(ngModel)]="content.template" (selectionChange)="onTemplateChange($event)">
+        <mat-option value="default">Default</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</ng-template>

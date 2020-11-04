@@ -4,10 +4,21 @@
 namespace Seegurke\PageModule\Controller;
 
 
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
+
 class ImageController
 {
-    public function __invoke(string $src, string $alt)
+    /**
+     * @var ParameterBagInterface
+     */
+    private ParameterBagInterface $parameterBag;
+
+    public function __construct()
     {
-        return '<img src="'.$src.'" alt="'.$alt.'"/>';
+    }
+
+    public function __invoke(string $src, string $alt = '', string $title = '')
+    {
+        return '<img src="'.$src.'" alt="'.$alt.'" title="'.$title.'"/>';
     }
 }

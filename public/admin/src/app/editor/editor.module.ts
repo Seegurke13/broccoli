@@ -23,7 +23,6 @@ import { CodeComponent } from './elements/code/code.component';
 import {SafePipe} from "./safe.pipe";
 import { HtmlelementComponent } from './elements/htmlelement/htmlelement.component';
 import { TableComponent } from './elements/table/table.component';
-import { FileComponent } from './inputs/file/file.component';
 
 
 
@@ -42,8 +41,7 @@ import { FileComponent } from './inputs/file/file.component';
       CodeComponent,
       SafePipe,
       HtmlelementComponent,
-      TableComponent,
-      FileComponent
+      TableComponent
     ],
   exports: [
     EditorComponent,

@@ -1,22 +1,10 @@
 <div class="element">
   <div class="element-toolbar" style="display: flex; flex-direction: row; justify-content: space-between">
-    <div style="display: flex; flex-direction: row">
-      <div>
-        <button mat-icon-button (click)="onDelete()">
-          <mat-icon>delete</mat-icon>
-        </button>
-      </div>
-
-      <mat-form-field>
+    <div>
+      <mat-form-field style="width: 100px;">
         <mat-label>Typ</mat-label>
         <mat-select [value]="element.type" (selectionChange)="onChangeType($event)">
           <mat-option [value]="plugin.type" *ngFor="let plugin of getPlugins()">{{ plugin.name }}</mat-option>
-<!--          <mat-option value="slider">Slider</mat-option>-->
-<!--          <mat-option value="layout">Layout</mat-option>-->
-<!--          <mat-option value="text">Text</mat-option>-->
-<!--          <mat-option value="image">Image</mat-option>-->
-<!--          <mat-option value="code">Code</mat-option>-->
-<!--          <mat-option value="template">Template</mat-option>-->
         </mat-select>
       </mat-form-field>
     </div>
@@ -28,8 +16,11 @@
         </ng-container>
       </ng-container>
 
-      <mat-button-toggle value="true" [checked]="showSettings"
-                         (change)="onToggleSettings($event.source.checked)">
+      <button mat-icon-button (click)="onDelete()">
+        <mat-icon>delete</mat-icon>
+      </button>
+
+      <mat-button-toggle value="true" [checked]="showSettings" (change)="onToggleSettings($event.source.checked)">
         <mat-icon>settings</mat-icon>
       </mat-button-toggle>
     </div>

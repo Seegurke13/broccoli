@@ -9,6 +9,7 @@ return [
     Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle::class => ['dev' => true, 'test' => true],
     Seegurke\PageModule\PageModule::class => ['dev' => true, 'test' => true],
     Seegurke\DataModule\DataModule::class => ['dev' => true, 'test' => true],
+    Seegurke\FileModule\FileModule::class => ['dev' => true, 'test' => true],
     Symfony\Bundle\TwigBundle\TwigBundle::class => ['all' => true],
     Symfony\Bundle\WebProfilerBundle\WebProfilerBundle::class => ['dev' => true, 'test' => true],
     Symfony\Bundle\MonologBundle\MonologBundle::class => ['all' => true],
