@@ -1,3 +1,5 @@
-<textarea [contentEditable]="true" style="width: 100%; resize: vertical;" [(ngModel)]="content.value">
+<!--<textarea [contentEditable]="true" style="width: 100%; resize: vertical;">-->
 
-</textarea>
+<!--</textarea>-->
+
+<ckeditor [editor]="Editor" [config]="{toolbar: [ 'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote' ]}" [(ngModel)]="content.value"></ckeditor>

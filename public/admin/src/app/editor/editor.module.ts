@@ -21,8 +21,9 @@ import {MatInputModule} from "@angular/material/input";
 import { TemplateComponent } from './elements/template/template.component';
 import { CodeComponent } from './elements/code/code.component';
 import {SafePipe} from "./safe.pipe";
-import { HtmlelementComponent } from './elements/htmlelement/htmlelement.component';
 import { TableComponent } from './elements/table/table.component';
+import { ElementListComponent } from './element-list/element-list.component';
+import {CKEditorModule} from "@ckeditor/ckeditor5-angular";
 
 
 
@@ -40,8 +41,8 @@ import { TableComponent } from './elements/table/table.component';
       TemplateComponent,
       CodeComponent,
       SafePipe,
-      HtmlelementComponent,
-      TableComponent
+      TableComponent,
+      ElementListComponent
     ],
   exports: [
     EditorComponent,
@@ -57,7 +58,9 @@ import { TableComponent } from './elements/table/table.component';
     MatRadioModule,
     MatButtonToggleModule,
     MatChipsModule,
-    MatInputModule
+    MatInputModule,
+    CKEditorModule,
+    CKEditorModule
   ]
 })
 export class EditorModule { }

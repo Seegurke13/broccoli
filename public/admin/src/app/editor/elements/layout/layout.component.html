@@ -1,6 +1,6 @@
 <div style="display: flex;" class="layout" *ngIf="content.children"
      [ngClass]="{'column': content.direction === 'column', 'row': content.direction === 'row'}"
-      [ngStyle]="{'justify-content: space-between': true}">
+     [ngStyle]="{'justify-content: space-between': true}">
   <div *ngFor="let el of content.children; let i = index" class="layout-section">
     <app-element [element]="content.children[i]" (delete)="onDelete(i)"></app-element>
   </div>
@@ -14,6 +14,17 @@
 
 <ng-template #settings>
   <div>
+    <mat-form-field>
+      <mat-label>Element</mat-label>
+      <mat-select [(ngModel)]="content.type" (selectionChange)="selectElement($event)">
+        <mat-option value="div">Div</mat-option>
+        <mat-option value="section">Section</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-label>Display Type</mat-label>
     <mat-radio-group [(ngModel)]="content.direction">
       <mat-radio-button value="row">Row</mat-radio-button>
       <mat-radio-button value="column">Column</mat-radio-button>

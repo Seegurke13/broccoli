@@ -17,8 +17,8 @@ class ImageController
     {
     }
 
-    public function __invoke(string $src, string $alt = '', string $title = '')
+    public function __invoke(string $src = '', string $alt = '', string $title = '', array $classes = [])
     {
-        return '<img src="'.$src.'" alt="'.$alt.'" title="'.$title.'"/>';
+        return '<img src="'.$src.'" alt="'.$alt.'" title="'.$title.'" class="'.implode(' ', $classes).'"/>';
     }
 }

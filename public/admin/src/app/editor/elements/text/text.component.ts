@@ -1,4 +1,5 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 @Component({
   selector: 'app-text',
@@ -8,6 +9,7 @@ import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core'
 export class TextComponent implements OnInit {
   @Input()
   public content: any = {};
+  public Editor = ClassicEditor;
 
   constructor() {
     if (this.content.value === undefined) {

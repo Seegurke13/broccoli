@@ -1,5 +1,6 @@
 import {AfterViewInit, Component, Input, OnInit, ViewChild} from '@angular/core';
 import {ElementInterface} from "../../element.interface";
+import {MatSelectChange} from "@angular/material/select";
 
 @Component({
   selector: 'app-layout',
@@ -21,6 +22,10 @@ export class LayoutComponent implements OnInit, ElementInterface{
     if (!this.content.children) {
       this.content.children = [];
     }
+
+    if (this.content.type === undefined) {
+      this.content.type = '';
+    }
   }
 
   public onDelete(el: number) {
@@ -33,5 +38,9 @@ export class LayoutComponent implements OnInit, ElementInterface{
       content: {},
       properties: {}
     });
+  }
+
+  public selectElement($event: MatSelectChange) {
+    this.content.type = $event.value;
   }
 }

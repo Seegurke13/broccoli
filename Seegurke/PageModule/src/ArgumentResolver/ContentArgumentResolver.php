@@ -13,7 +13,8 @@ class ContentArgumentResolver implements ArgumentValueResolverInterface
     public function supports(Request $request, ArgumentMetadata $argument)
     {
         return $request->attributes->has('content')
-            && array_key_exists($argument->getName(), $request->attributes->get('content'));
+            && array_key_exists($argument->getName(), $request->attributes->get('content'))
+            && !($argument->getType() === 'string' && empty($request->attributes->get('content')[$argument->getName()]));
     }
 
     public function resolve(Request $request, ArgumentMetadata $argument)
