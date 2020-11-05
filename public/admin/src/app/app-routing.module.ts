@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {DataComponent} from "./data/data/data.component";
 import {PageComponent} from "./page/page/page.component";
+import {Editor2Component} from "./editor2/editor2/editor2.component";
 
 
 const routes: Routes = [
@@ -13,6 +14,10 @@ const routes: Routes = [
     path: 'pages',
     component: PageComponent
   },
+  {
+    path: 'editor',
+    component: Editor2Component
+  }
 ];
 
 @NgModule({

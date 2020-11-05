@@ -51,7 +51,7 @@ export class TemplateComponent implements OnInit, ElementInterface {
 
   public onTemplateChange($event: MatSelectChange) {
     this.content.placeholder = [];
-    this.http.get('http://localhost/module/pagemodule/template/getPlaceholder/'+$event.value).subscribe((placeholders: string[]) => {
+    this.http.get('http://localhost/pagemodule/template/getPlaceholder/'+$event.value).subscribe((placeholders: string[]) => {
       placeholders.forEach((el) => {
         if (this.content.placeholder.find((tmp) => {return el === tmp.name}) === undefined) {
           this.content.placeholder.push({

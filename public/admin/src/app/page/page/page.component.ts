@@ -48,7 +48,7 @@ export class PageComponent implements OnInit {
     if (parentNode) {
       body['parent'] = parentNode;
     }
-    this.http.post('http://localhost/module/pagemodule/page/create', body).subscribe((response: any) => {
+    this.http.post('http://localhost/pagemodule/page/create', body).subscribe((response: any) => {
       console.log(body);
       this.refreshTree(parentNode);
       this.treeComp.select(response.data.id);
@@ -57,7 +57,7 @@ export class PageComponent implements OnInit {
   }
 
   public onDeletePage(id) {
-    this.http.delete('http://localhost/module/pagemodule/page/' + id + '/delete').subscribe(() => {
+    this.http.delete('http://localhost/pagemodule/page/' + id + '/delete').subscribe(() => {
       this.refreshTree();
     });
   }

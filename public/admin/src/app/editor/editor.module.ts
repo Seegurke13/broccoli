@@ -42,11 +42,12 @@ import {CKEditorModule} from "@ckeditor/ckeditor5-angular";
       CodeComponent,
       SafePipe,
       TableComponent,
-      ElementListComponent
+      ElementListComponent,
     ],
   exports: [
     EditorComponent,
-    SafePipe
+    SafePipe,
+    ElementComponent
   ],
   imports: [
     CommonModule,

@@ -1,7 +1,6 @@
 import {
-  Component, Input, OnChanges,
-  OnInit,
-  Renderer2, SimpleChanges
+  Component, Input,
+  OnInit
 } from '@angular/core';
 
 @Component({
