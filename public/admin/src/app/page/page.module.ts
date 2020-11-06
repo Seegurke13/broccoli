@@ -18,28 +18,30 @@ import {TreeModule} from "primeng";
 import {MatRadioModule} from "@angular/material/radio";
 import {EditorModule} from "../editor/editor.module";
 import { PageTreeComponent } from './page-tree/page-tree.component';
+import {Editor2Module} from "../editor2/editor2.module";
 
 
 @NgModule({
   declarations: [PageComponent, PageViewComponent, PageTreeComponent],
-  imports: [
-    CommonModule,
-    FlexLayoutModule,
-    MatTreeModule,
-    MatButtonModule,
-    MatIconModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatSelectModule,
-    MatCheckboxModule,
-    FormsModule,
-    MatTabsModule,
-    QuillModule.forRoot({}),
-    MatCardModule,
-    TreeModule,
-    MatRadioModule,
-    EditorModule
-  ]
+    imports: [
+        CommonModule,
+        FlexLayoutModule,
+        MatTreeModule,
+        MatButtonModule,
+        MatIconModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatSelectModule,
+        MatCheckboxModule,
+        FormsModule,
+        MatTabsModule,
+        QuillModule.forRoot({}),
+        MatCardModule,
+        TreeModule,
+        MatRadioModule,
+        EditorModule,
+        Editor2Module
+    ]
 })
 export class PageModule {
 }

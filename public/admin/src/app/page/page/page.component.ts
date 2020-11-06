@@ -17,7 +17,13 @@ export class PageComponent implements OnInit {
   public treeComp;
 
   public tree: any;
-  public page: any;
+  public page: any = {
+    content: {
+      type: '',
+      settings: {}
+    },
+    name: ''
+  };
 
   constructor(http: HttpClient) {
     this.http = http;
@@ -29,12 +35,11 @@ export class PageComponent implements OnInit {
 
   public onSelectPage(id: number) {
     this.http.get('http://localhost:80/pagemodule/page/' + id).subscribe((page: PageInterface) => {
-      // console.log(page);
+      console.log(page);
       if (page.content === undefined) {
         page.content = {
-          type: 'default',
-          content: {},
-          properties: {}
+          type: '',
+          settings: {}
         };
       }
       this.page = page;
@@ -49,7 +54,6 @@ export class PageComponent implements OnInit {
       body['parent'] = parentNode;
     }
     this.http.post('http://localhost/pagemodule/page/create', body).subscribe((response: any) => {
-      console.log(body);
       this.refreshTree(parentNode);
       this.treeComp.select(response.data.id);
       this.onSelectPage(response.data.id);

@@ -1,7 +1,12 @@
 <div *ngIf="page">
   <div>
-    <button mat-icon-button (click)="save()">save</button>
-    <button mat-button>Loeschen</button>
+    <button mat-icon-button (click)="save()">
+      <mat-icon>save</mat-icon>
+    </button>
+
+    <button mat-icon-button>
+      <mat-icon>delete</mat-icon>
+    </button>
   </div>
 
   <div>
@@ -12,18 +17,6 @@
       </mat-form-field>
     </div>
 
-    <mat-tab-group>
-      <mat-tab label="Inhalt">
-        <ng-template matTabContent>
-          <app-editor [elements]="page.content" (change)="loadPreview()"></app-editor>
-        </ng-template>
-      </mat-tab>
-
-      <mat-tab label="Vorschau">
-        <ng-template matTabContent>
-          <iframe [src]="'http://localhost/module/pagemodule/page/'+page.id+'/render' | safe"></iframe>
-        </ng-template>
-      </mat-tab>
-    </mat-tab-group>
+    <app-editor2 [content]="page.content"></app-editor2>
   </div>
 </div>
