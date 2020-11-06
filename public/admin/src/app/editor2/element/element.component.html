@@ -1,0 +1,43 @@
+<div class="admin-element">
+  <ng-container *ngIf="element">
+    <app-toolbar [type]="element.type"
+                 [direction]="element.settings.direction"
+                 [open]="isOpen"
+                 [enableAdd]="enableChildren"
+                 [toolbarRef]="toolbar"
+                 (onDelete)="onDelete.emit($event)"
+                 (onAddChildren)="addChildren($event)"
+                 (onOpenSettings)="onToggleSettings($event)"
+                 (onDirectionChange)="changeDirection($event)"
+                 (onTypeChange)="changeType($event)"
+                 (onOpenToggle)="toggleOpen()">
+    </app-toolbar>
+
+    <div [@openClose]="isOpen ? 'open' : 'closed'" class="admin-element-content">
+      <ng-container *ngIf="showSettings">
+        <app-settings [values]="element.settings"
+                      [settingsRef]="settings">
+<!--                      [ngStyle]="{'display': showSettings ? 'block' : 'none'}">-->
+        </app-settings>
+      </ng-container>
+
+      <div>
+        <div [ngStyle]="{'display': !showSettings && ((element.children && element.children.length === 0) || !element.children) ? 'block' : 'none'}">
+          <!--        [ngStyle]="{'display': !showSettings && ((element.children && element.children.length === 0) || !element.children) ? 'block' : 'none'}">-->
+          <template #content>
+
+          </template>
+        </div>
+
+        <ng-container *ngIf="enableChildren">
+          <app-children [children]="element.children"
+                        [direction]="element.settings.direction"
+                        (onDeleteChild)="removeChildren($event)">
+            <!--                    [ngStyle]="{'display': !showSettings && element.children && element.children.length > 0 ? 'block' : 'none'}"-->
+
+          </app-children>
+        </ng-container>
+      </div>
+    </div>
+  </ng-container>
+</div>

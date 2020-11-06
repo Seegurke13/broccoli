@@ -1,0 +1,35 @@
+<div>
+  <div>
+    <mat-form-field>
+      <mat-label>ID</mat-label>
+      <input matInput [(ngModel)]="values.id">
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field class="example-chip-list">
+      <mat-label id="classes-label">Classes</mat-label>
+      <mat-chip-list #chipList aria-label="Fruit selection">
+        <mat-chip *ngFor="let className of values.classes"
+                  [selectable]="false"
+                  [removable]="true"
+                  (removed)="removeClass(className)"
+        >
+          {{ className }}
+          <mat-icon matChipRemove *ngIf="true">cancel</mat-icon>
+        </mat-chip>
+        <input matInput placeholder="Classes"
+               [matChipInputFor]="chipList"
+               [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+               [matChipInputAddOnBlur]="true"
+               (matChipInputTokenEnd)="addClass($event)">
+      </mat-chip-list>
+    </mat-form-field>
+  </div>
+
+  <div *ngIf="settingsRef">
+    <ng-container *ngTemplateOutlet="settingsRef">
+
+    </ng-container>
+  </div>
+</div>
