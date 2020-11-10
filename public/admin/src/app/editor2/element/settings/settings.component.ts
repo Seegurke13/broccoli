@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {MatChipInputEvent} from "@angular/material/chips";
 import {COMMA, ENTER} from "@angular/cdk/keycodes";
-import {CssService} from "../css.service";
+import {CssService} from "../../css.service";
 
 @Component({
   selector: 'app-settings',

@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {PluginService} from "../plugin.service";
+import {PluginService} from "../../plugin.service";
 
 @Component({
   selector: 'app-toolbar',

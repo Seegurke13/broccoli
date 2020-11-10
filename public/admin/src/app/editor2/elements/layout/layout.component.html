@@ -23,6 +23,10 @@
   <!--    </button>-->
 </ng-template>
 
+<ng-template #settings>
+  <app-html [values]="values"></app-html>
+</ng-template>
+
 <app-children [children]="values.children"
               (onDeleteChild)="removeChildren($event)">
 </app-children>
