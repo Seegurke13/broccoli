@@ -14,7 +14,8 @@
         "nelmio/cors-bundle": "^2.0",
         "symfony/serializer-pack": "^1.0",
         "ext-json": "*",
-        "league/flysystem": "^1.1"
+        "league/flysystem": "^1.1",
+        "sabberworm/php-css-parser": "*"
     },
     "autoload": {
         "psr-4": {

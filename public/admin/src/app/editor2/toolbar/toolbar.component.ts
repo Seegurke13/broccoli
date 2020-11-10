@@ -14,15 +14,9 @@ export class ToolbarComponent implements OnInit {
   @Output()
   public onOpenSettings: EventEmitter<any>;
   @Output()
-  public onAddChildren: EventEmitter<any>;
-  @Output()
-  public onDirectionChange: EventEmitter<any>;
-  @Output()
   public onTypeChange: EventEmitter<any>;
   @Output()
   public onOpenToggle: EventEmitter<any>;
-  @Input()
-  public direction: any;
   @Input()
   public open: boolean;
   @Input()
@@ -32,16 +26,12 @@ export class ToolbarComponent implements OnInit {
 
   public toolbar;
   public pluginService: PluginService;
-  @Input()
-  public enableAdd: boolean = false;
 
   constructor(pluginService: PluginService) {
     this.pluginService = pluginService;
 
     this.onDelete = new EventEmitter<any>();
-    this.onAddChildren = new EventEmitter<any>();
     this.onOpenSettings = new EventEmitter<any>();
-    this.onDirectionChange = new EventEmitter<any>();
     this.onTypeChange = new EventEmitter<any>();
     this.onOpenToggle = new EventEmitter<any>();
   }

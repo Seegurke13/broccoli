@@ -51,19 +51,13 @@ class ElementService
 
     public function parse(array $pageData, Request $request)
     {
-//        dump($pageData);
-//        die();
-        $tmp = 'Seegurke\\PageModule\\Controller\\'.strtoupper(substr($pageData['type'], 0 ,1)).substr($pageData['type'], 1).'Controller';
+        $controller = strtoupper(substr($pageData['type'], 0 ,1)).substr($pageData['type'], 1);
+
+        $tmp = 'Seegurke\\PageModule\\Controller\\'.$controller.'Controller';
 
         $request = $request->duplicate();
         $request->attributes->set('_controller', $tmp);
-//        $content = [];
-//        foreach ($pageData['content'] as $key => $value) {
-//            $content[$key] = $value;
-//        }
-        $request->attributes->set('content', $pageData['content']);
-        $request->attributes->set('properties', $pageData['properties']);
-//        var_dump($pageData['properties']);
+        $request->attributes->set('settings', $pageData['settings']);
 
         $event = new RequestEvent($this->httpKernel, $request, HttpKernelInterface::SUB_REQUEST);
         $this->eventDispatcher->dispatch($event, KernelEvents::REQUEST);

@@ -13,25 +13,11 @@
   </div>
 
   <div style="display: flex; flex-direction: row;" *ngIf="type && type !== ''">
-<!--    <button mat-icon-button (click)="onDirectionChange.emit({})" *ngIf="direction !== undefined">-->
-<!--      <ng-container *ngIf="!direction">-->
-<!--        <mat-icon style="transform: rotate(90deg)">rotate_left</mat-icon>-->
-<!--      </ng-container>-->
-
-<!--      <ng-container *ngIf="direction">-->
-<!--        <mat-icon style="transform: rotate(180deg)">rotate_right</mat-icon>-->
-<!--      </ng-container>-->
-<!--    </button>-->
-
     <div *ngIf="toolbarRef">
       <ng-container *ngTemplateOutlet="toolbarRef">
 
       </ng-container>
     </div>
-
-    <button mat-icon-button (click)="onAddChildren.emit({})" *ngIf="enableAdd">
-      <mat-icon>add</mat-icon>
-    </button>
 
     <button mat-icon-button (click)="onOpenSettings.emit({})">
       <mat-icon>settings</mat-icon>

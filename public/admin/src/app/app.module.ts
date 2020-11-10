@@ -13,6 +13,7 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
 import {FileModule} from "./file/file.module";
 import {Editor2Module} from "./editor2/editor2.module";
+import {FormsModule} from "@angular/forms";
 
 const EXTRA_BREAKPOINTS = [{
   alias: 'xs.landscape',
@@ -30,6 +31,7 @@ const EXTRA_BREAKPOINTS = [{
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    FormsModule,
     DataModule,
     PageModule,
     FileModule,

@@ -7,4 +7,22 @@
         <mat-option value="section">Article</mat-option>
       </mat-select>
     </mat-form-field>
+
+  <button mat-icon-button (click)="addChildren()">
+    <mat-icon>add</mat-icon>
+  </button>
+
+  <!--    <button mat-icon-button (click)="onDirectionChange.emit({})" *ngIf="direction !== undefined">-->
+  <!--      <ng-container *ngIf="!direction">-->
+  <!--        <mat-icon style="transform: rotate(90deg)">rotate_left</mat-icon>-->
+  <!--      </ng-container>-->
+
+  <!--      <ng-container *ngIf="direction">-->
+  <!--        <mat-icon style="transform: rotate(180deg)">rotate_right</mat-icon>-->
+  <!--      </ng-container>-->
+  <!--    </button>-->
 </ng-template>
+
+<app-children [children]="values.children"
+              (onDeleteChild)="removeChildren($event)">
+</app-children>

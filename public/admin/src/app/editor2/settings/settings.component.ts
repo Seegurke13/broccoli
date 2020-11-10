@@ -1,6 +1,7 @@
-import {Component, Input, OnInit, Output} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {MatChipInputEvent} from "@angular/material/chips";
 import {COMMA, ENTER} from "@angular/cdk/keycodes";
+import {CssService} from "../css.service";
 
 @Component({
   selector: 'app-settings',
@@ -14,11 +15,18 @@ export class SettingsComponent implements OnInit {
   @Input()
   public settingsRef: any;
 
-  readonly separatorKeysCodes: number[] = [ENTER, COMMA];
+  public cClass = '';
+  options: string[] = ['One', 'Two', 'Three'];
 
-  constructor() { }
+  readonly separatorKeysCodes: number[] = [ENTER, COMMA];
+  private cssService: CssService;
+
+  constructor(cssService: CssService) {
+    this.cssService = cssService;
+  }
 
   ngOnInit(): void {
+
   }
 
   public addClass($event: MatChipInputEvent)
@@ -41,5 +49,15 @@ export class SettingsComponent implements OnInit {
     if (index >= 0) {
       this.values.classes.splice(index, 1);
     }
+  }
+
+  public getFiltered() {
+    return this.cssService.getClasses().filter((el) => {
+      return el.toLowerCase().includes(this.cClass.toLowerCase());
+    });
+  }
+
+  public addClassOption(value: any) {
+    console.log(value);
   }
 }

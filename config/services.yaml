@@ -29,11 +29,7 @@ services:
         resource: '../Seegurke/PageModule/src/*'
         exclude: '../Seegurke/PageModule/src/{DependencyInjection,Entity,Migrations,Tests,Kernel.php,Model}'
 
-    Seegurke\PageModule\ArgumentResolver\ContentArgumentResolver:
-        tags:
-            - { name: controller.argument_value_resolver, priority: 10 }
-
-    Seegurke\PageModule\ArgumentResolver\PropertyArgumentResolver:
+    Seegurke\PageModule\ArgumentResolver\SettingsArgumentResolver:
         tags:
             - { name: controller.argument_value_resolver, priority: 10 }
 

@@ -63,42 +63,8 @@ export class ElementComponent implements AfterViewInit {
     this.onDelete = new EventEmitter<any>();
   }
 
-  public addChildren($event: any) {
-    if (!this.enableChildren) {
-      if (this.enableAdd) {
-        this.componentRef.instance.add();
-      }
-
-      return;
-    }
-
-    if (!this.element.children) {
-      this.element.children = [];
-    }
-
-    this.element.children.push({
-      type: '',
-      settings: {},
-      children: []
-    });
-
-    if (this.element.settings.direction === undefined) {
-      this.element.settings.direction = true;
-    }
-
-    this.isOpen = true;
-  }
-
-  public removeChildren(i: number) {
-    this.element.children.splice(i, 1);
-  }
-
-  public onToggleSettings($event) {
+  public onToggleSettings() {
     this.showSettings = !this.showSettings;
-  }
-
-  public changeDirection($event: boolean) {
-      this.element.settings.direction =  !this.element.settings.direction;
   }
 
   public changeType($event: string) {
@@ -118,7 +84,6 @@ export class ElementComponent implements AfterViewInit {
     }
 
     if (changes.element && (changes.element.isFirstChange() || changes.element.previousValue.type === '') && changes.element.currentValue.type !== '') {
-      console.log('test');
       this.loadElement();
     }
   }
@@ -152,13 +117,11 @@ export class ElementComponent implements AfterViewInit {
 
   public reset() {
     this.element.settings = {};
-    this.element.children = [];
+    // this.element.children = [];
     this.element.type = '';
     this.content.clear();
     this.toolbar = null;
     this.settings = null;
-    this.enableChildren = false;
-    this.enableAdd = false;
   }
 
   ngAfterViewInit(): void {

@@ -6,8 +6,12 @@ namespace Seegurke\PageModule\Controller;
 
 class TextController
 {
-    public function __invoke(string $value)
+    public function __invoke(string $text, string $element = null)
     {
-        return $value;
+        if (!$element) {
+            return $text;
+        }
+
+        return '<'.$element.'>'.$text.'</'.$element.'>';
     }
 }

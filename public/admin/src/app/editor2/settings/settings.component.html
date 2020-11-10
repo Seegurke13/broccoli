@@ -21,8 +21,17 @@
         <input matInput placeholder="Classes"
                [matChipInputFor]="chipList"
                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-               [matChipInputAddOnBlur]="true"
+               [matChipInputAddOnBlur]="false"
+               [matAutocomplete]="auto"
+               [(ngModel)]="cClass"
                (matChipInputTokenEnd)="addClass($event)">
+
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="addClassOption($event)">
+          <mat-option *ngFor="let option of getFiltered()" [value]="option">
+<!--          <mat-option *ngFor="let option of getFiltered(cClass)" [value]="option">-->
+            {{option}}
+          </mat-option>
+        </mat-autocomplete>
       </mat-chip-list>
     </mat-form-field>
   </div>

@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {PageInterface} from "../page.interface";
 import {HttpClient} from "@angular/common/http";
-import {EditorComponent} from "../../editor/editor/editor.component";
+import {Editor2Component} from "../../../editor2/editor2/editor2.component";
 
 @Component({
   selector: 'app-page-view',
@@ -15,11 +15,8 @@ export class PageViewComponent implements OnInit {
   @Output()
   public onSave: EventEmitter<PageInterface>;
 
-  @ViewChild(EditorComponent)
+  @ViewChild(Editor2Component)
   public editor;
-
-  @ViewChild('iframe')
-  public iframe;
 
   private http: HttpClient;
   public preview: string = '';
@@ -32,19 +29,7 @@ export class PageViewComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  public isFormFieldType(type: string) {
-    return type === 'string' || type === 'number';
-  }
-
-  public isComponent(type: string): boolean {
-    return customElements.get(type) !== undefined;
-  }
-
   public save() {
     this.onSave.emit(this.page);
-  }
-
-  public loadPreview() {
-    console.log('test!!!!!!');
   }
 }

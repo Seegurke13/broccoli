@@ -19,4 +19,23 @@ export class LayoutComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  public addChildren() {
+    if (!this.values.children) {
+      this.values.children = [];
+    }
+
+    this.values.children.push({
+      type: '',
+      settings: {},
+    });
+  }
+
+  public removeChildren(i: number) {
+    this.values.children.splice(i, 1);
+  }
+
+  public changeDirection($event: boolean) {
+    this.values.direction =  !this.values.direction;
+  }
 }

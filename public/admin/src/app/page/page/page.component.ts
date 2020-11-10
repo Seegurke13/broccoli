@@ -1,8 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {PageNode} from "../page-node";
-import {PageTreeComponent} from "../page-tree/page-tree.component";
-import {PageInterface} from "../page.interface";
+import {PageTreeComponent} from "./page-tree/page-tree.component";
+import {PageInterface} from "./page.interface";
 
 
 @Component({

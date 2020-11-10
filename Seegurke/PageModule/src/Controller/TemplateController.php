@@ -37,7 +37,7 @@ class TemplateController
 
         $model = [];
         foreach ($placeholder as $key => $value) {
-            $model[$value['name']] = $this->elementService->parse($value['content'], $request);
+            $model[$value['name']] = $this->elementService->parse($value['element'], $request);
         }
 
         $model['scripts'] = $request->attributes->get(ScriptManager::class)->getAll();
