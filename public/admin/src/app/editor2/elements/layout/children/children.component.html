@@ -1,5 +1,5 @@
-<div class="admin-element-children" style="display: flex; margin-top: 10px;" [ngStyle]="{'flex-direction': !direction ? 'row' : 'column'}">
-  <div class="admin-element-child  mat-card" *ngFor="let child of children; let i = index" [@simpleFadeAnimation]="'in'">
+<div class="admin-element-children" style="display: flex; margin-top: 10px;" [ngStyle]="{'flex-direction': direction ? 'row' : 'column'}">
+  <div class="admin-element-child  mat-card" style="margin-top: 10px;" *ngFor="let child of children; let i = index" [@simpleFadeAnimation]="'in'">
     <app-element [element]="child" (onDelete)="onDeleteChild.emit(i)"></app-element>
   </div>
 </div>
