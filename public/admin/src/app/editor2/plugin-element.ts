@@ -1,7 +1,8 @@
-import {EventEmitter, HostBinding, HostListener, Input, Output, TemplateRef, ViewChild} from "@angular/core";
+import { EventEmitter, HostBinding, HostListener, Input, Output, TemplateRef, ViewChild, Directive } from "@angular/core";
 import {SettingsService} from "./settings.service";
 import {SelectionService} from "./selection.service";
 
+@Directive()
 export abstract class PluginElement<T> {
   @Input()
   public values;
