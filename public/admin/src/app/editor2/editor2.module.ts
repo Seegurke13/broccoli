@@ -25,7 +25,6 @@ import { SafePipe } from './safe.pipe';
 import {MatMenuModule} from "@angular/material/menu";
 import { ClasslistComponent } from './classlist/classlist.component';
 import { PlainComponent } from './elements/plain/plain.component';
-import {AngularMonacoEditorModule} from "angular-monaco-editor";
 
 
 @NgModule({
@@ -61,8 +60,7 @@ import {AngularMonacoEditorModule} from "angular-monaco-editor";
     MatAutocompleteModule,
     ReactiveFormsModule,
     MatSidenavModule,
-    MatMenuModule,
-    AngularMonacoEditorModule.forRoot()
+    MatMenuModule
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
