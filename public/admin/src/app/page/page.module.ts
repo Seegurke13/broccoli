@@ -11,15 +11,13 @@ import {MatInputModule} from "@angular/material/input";
 import {MatSelectModule} from "@angular/material/select";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {FormsModule} from "@angular/forms";
-import {MatTabsModule} from "@angular/material/tabs";
-import {MatCardModule} from "@angular/material/card";
-import {TreeModule} from "primeng";
 import {MatRadioModule} from "@angular/material/radio";
 import { PageTreeComponent } from './page/page-tree/page-tree.component';
 import {Editor2Module} from "../editor2/editor2.module";
 import { StaticFieldsComponent } from './static-fields/static-fields.component';
 import {MatListModule} from "@angular/material/list";
 import {RouterModule} from "@angular/router";
+import {TreeModule} from "primeng/tree";
 
 
 @NgModule({
@@ -35,9 +33,7 @@ import {RouterModule} from "@angular/router";
     MatSelectModule,
     MatCheckboxModule,
     FormsModule,
-    MatTabsModule,
-    MatCardModule,
-    TreeModule,
+    // TreeModule,
     MatRadioModule,
     Editor2Module,
     MatListModule,
