@@ -66,6 +66,7 @@ export class ElementPluginDirective implements OnInit, OnChanges {
     try {
       comp = this.pluginService.getComponent(this.element.type);
       if (comp === undefined) {
+        console.error('component not found!', this.element.type)
         return;
       }
     } catch (e) {

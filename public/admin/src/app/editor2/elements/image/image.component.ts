@@ -1,4 +1,4 @@
-import {Component, HostBinding, HostListener, Input, OnInit, TemplateRef, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
 import {FileModalComponent} from "../../../file/file-modal/file-modal.component";
 import {DomSanitizer} from "@angular/platform-browser";
@@ -10,7 +10,7 @@ import {PluginElement} from "../../plugin-element";
   templateUrl: './image.component.html',
   styleUrls: ['./image.component.scss']
 })
-export class ImageComponent extends PluginElement<ImageComponent> implements OnInit{
+export class ImageComponent extends PluginElement<ImageComponent> implements OnInit {
   public preview: any = '';
 
   private dialog: MatDialog;
@@ -24,10 +24,14 @@ export class ImageComponent extends PluginElement<ImageComponent> implements OnI
   }
 
   ngOnInit(): void {
-        if (!this.values.src) {
-          this.values.src = '';
-        }
+    if (!this.values.src) {
+      this.values.src = '';
     }
+
+    if (!this.values.cClasses) {
+      this.values.cClasses = [];
+    }
+  }
 
   public selectImage() {
     const dialogRef = this.dialog.open(FileModalComponent, {

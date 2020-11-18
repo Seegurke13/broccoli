@@ -4,7 +4,7 @@ import {ImageComponent} from "./elements/image/image.component";
 import {LayoutComponent} from "./elements/layout/layout.component";
 import {TextComponent} from "./elements/text/text.component";
 import {TemplateComponent} from "./elements/template/template.component";
-import {DefaultComponent} from "./elements/default/default.component";
+import {PlainComponent} from "./elements/plain/plain.component";
 
 @Injectable({
   providedIn: 'root'
@@ -34,9 +34,9 @@ export class PluginService {
       component: ImageComponent
     },
     {
-      name: 'Default',
-      type: 'default',
-      component: DefaultComponent
+      name: 'HTML',
+      type: 'html',
+      component: PlainComponent
     }
   ];
 

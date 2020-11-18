@@ -1,0 +1,17 @@
+<ng-template #settings>
+  <div>
+    <button mat-icon-button (click)="onDelete.emit({})">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
+
+  <app-html [values]="values"></app-html>
+</ng-template>
+
+<div [innerHTML]="values.html | safe" *ngIf="!isSelected">
+
+</div>
+
+<ng-container *ngIf="isSelected">
+  <textarea matInput [(ngModel)]="values.html"></textarea>
+</ng-container>

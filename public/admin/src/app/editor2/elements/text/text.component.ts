@@ -13,4 +13,10 @@ export class TextComponent extends PluginElement<TextComponent>{
   constructor() {
     super();
   }
+
+  ngOnInit(): void {
+    if (!this.values.classes) {
+      this.values.classes = [];
+    }
+  }
 }

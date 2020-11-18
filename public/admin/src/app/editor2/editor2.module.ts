@@ -19,12 +19,12 @@ import {TemplateComponent} from "./elements/template/template.component";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import { HtmlComponent } from './html/html.component';
 import {MatSidenavModule} from "@angular/material/sidenav";
-import { ContainerComponent } from './elements/container/container.component';
 import { ElementPluginDirective } from './element-plugin.directive';
-import { DefaultComponent } from './elements/default/default.component';
 import { ElementSelectionModalComponent } from './element-selection-modal/element-selection-modal.component';
 import { SafePipe } from './safe.pipe';
 import {MatMenuModule} from "@angular/material/menu";
+import { ClasslistComponent } from './classlist/classlist.component';
+import { PlainComponent } from './elements/plain/plain.component';
 
 
 @NgModule({
@@ -35,11 +35,11 @@ import {MatMenuModule} from "@angular/material/menu";
     TextComponent,
     TemplateComponent,
     HtmlComponent,
-    ContainerComponent,
     ElementPluginDirective,
-    DefaultComponent,
     ElementSelectionModalComponent,
-    SafePipe
+    SafePipe,
+    ClasslistComponent,
+    PlainComponent
   ],
   exports: [
     Editor2Component
@@ -62,6 +62,6 @@ import {MatMenuModule} from "@angular/material/menu";
     MatSidenavModule,
     MatMenuModule
   ],
-  schemas: [ CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
 export class Editor2Module { }

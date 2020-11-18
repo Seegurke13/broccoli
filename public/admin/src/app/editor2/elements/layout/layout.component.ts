@@ -15,23 +15,24 @@ import {MatMenuTrigger} from "@angular/material/menu";
   styleUrls: ['./layout.component.scss']
 })
 export class LayoutComponent extends PluginElement<LayoutComponent> implements OnInit {
-  public update;
   public settingsService: SettingsService;
   private dialog: MatDialog;
+
   @ViewChild('[appElementPlugin]')
   public children;
   @ViewChild(MatMenuTrigger)
   public trigger: MatMenuTrigger;
-  @HostListener('document:keydown.a', ['$event'])
-  public hotkeyAdd($event) {
+
+  @HostListener('document:keydown.control.a', ['$event'])
+  public hotkeyAdd() {
     if (!this.isSelected) {
       return;
     }
     this.addChildren();
   }
 
-  @HostListener('document:keydown.d', ['$event'])
-  public hotkeyDelete($event) {
+  @HostListener('document:keydown.control.d', ['$event'])
+  public hotkeyDelete() {
     if (!this.isSelected) {
       return;
     }
@@ -72,12 +73,12 @@ export class LayoutComponent extends PluginElement<LayoutComponent> implements O
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
-      this.values.children.push({
-        type: result.type,
-        settings: result.settings,
-      });
-      console.log(this.values.children);
+      if (result) {
+        this.values.children.push(JSON.parse(JSON.stringify({
+          type: result.type,
+          settings: result.settings,
+        })));
+      }
     });
   }
 

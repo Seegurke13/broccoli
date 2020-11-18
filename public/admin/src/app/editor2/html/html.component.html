@@ -6,33 +6,5 @@
 </div>
 
 <div>
-  <mat-form-field>
-    <mat-chip-list #chipList>
-      <mat-chip
-        *ngFor="let className of values.classes"
-        [selectable]="selectable"
-        [removable]="removable"
-        (removed)="remove(className)">
-        {{ className }}
-        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-      </mat-chip>
-
-      <input
-        placeholder="New Class..."
-        #classInput
-        [formControl]="classCtrl"
-        [matAutocomplete]="auto"
-        [matChipInputFor]="chipList"
-        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-        [matChipInputAddOnBlur]="addOnBlur"
-        (matChipInputTokenEnd)="add($event)"
-      />
-    </mat-chip-list>
-
-    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-      <mat-option *ngFor="let className of filteredClasses | async" [value]="className">
-        {{ className }}
-      </mat-option>
-    </mat-autocomplete>
-  </mat-form-field>
+  <app-classlist [classes]="values.classes" label="Classes"></app-classlist>
 </div>

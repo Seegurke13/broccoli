@@ -10,7 +10,17 @@
 </div>
 
 <ng-template #settings>
+  <div>
+    <button mat-icon-button (click)="onDelete.emit({})">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
+
   <app-html [values]="values"></app-html>
+
+  <div>
+    <app-classlist [classes]="values.cClasses" label="Container Classes"></app-classlist>
+  </div>
 
   <div>
     <mat-form-field>
