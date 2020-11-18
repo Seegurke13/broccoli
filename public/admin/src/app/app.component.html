@@ -1,34 +1,46 @@
-<div>
-  <header>
-      <mat-toolbar color="primary">
-        <mat-toolbar-row>
-<!--          <button mat-icon-button>-->
-<!--            <mat-icon>menu</mat-icon>-->
-<!--          </button>-->
+<mat-sidenav-container fullscreen>
+  <mat-sidenav mode="side" #toolbarEl position="end">
+    <div *ngIf="toolbar">
+      <ng-container *ngTemplateOutlet="toolbar">
 
-          <h1>EasyCMS Admin</h1>
+      </ng-container>
+    </div>
+  </mat-sidenav>
 
-          <span class="menu-spacer"></span>
+  <mat-sidenav-content>
+    <div>
+      <header>
+        <mat-toolbar color="primary">
+          <mat-toolbar-row>
+            <!--          <button mat-icon-button>-->
+            <!--            <mat-icon>menu</mat-icon>-->
+            <!--          </button>-->
 
-          <div>
-            <a routerLink="/content" mat-button>Content</a>
-            <a routerLink="/data" mat-button>Data</a>
-          </div>
-        </mat-toolbar-row>
+            <h1>EasyCMS Admin</h1>
 
-        <mat-toolbar-row>
-          <div>
-            <a routerLink="/content" mat-button>Pages</a>
-            <a routerLink="/content/static-fields" mat-button>Static Fields</a>
-            <a mat-button href="#">Forms</a>
-            <a mat-button href="#">Modals</a>
-            <a mat-button href="#">Templates</a>
-          </div>
-        </mat-toolbar-row>
-      </mat-toolbar>
-  </header>
+            <span class="menu-spacer"></span>
 
-  <section>
-    <router-outlet></router-outlet>
-  </section>
-</div>
+            <div>
+              <a routerLink="/content" mat-button>Content</a>
+              <a routerLink="/data" mat-button>Data</a>
+            </div>
+          </mat-toolbar-row>
+
+          <mat-toolbar-row>
+            <div>
+              <a routerLink="/content" mat-button>Pages</a>
+              <a routerLink="/content/static-fields" mat-button>Static Fields</a>
+              <a mat-button href="#">Forms</a>
+              <a mat-button href="#">Modals</a>
+              <a mat-button href="#">Templates</a>
+            </div>
+          </mat-toolbar-row>
+        </mat-toolbar>
+      </header>
+
+      <section>
+        <router-outlet></router-outlet>
+      </section>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

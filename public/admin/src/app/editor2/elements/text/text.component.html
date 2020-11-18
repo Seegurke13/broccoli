@@ -1,5 +1,11 @@
-<!--<textarea [contentEditable]="true" style="width: 100%; resize: vertical;">-->
+<ng-template #settings>
+  <app-html [values]="values"></app-html>
+</ng-template>
 
-<!--</textarea>-->
+<ng-container *ngIf="!isSelected">
+  <div [innerHTML]="values.text | safe"></div>
+</ng-container>
 
-<ckeditor [editor]="Editor" [config]="{toolbar: [ 'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote' ]}" [(ngModel)]="values.text"></ckeditor>
+<ng-container *ngIf="isSelected">
+  <ckeditor [editor]="Editor" [config]="{toolbar: [ 'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote' ]}" [(ngModel)]="values.text"></ckeditor>
+</ng-container>

@@ -4,6 +4,7 @@ import {ImageComponent} from "./elements/image/image.component";
 import {LayoutComponent} from "./elements/layout/layout.component";
 import {TextComponent} from "./elements/text/text.component";
 import {TemplateComponent} from "./elements/template/template.component";
+import {DefaultComponent} from "./elements/default/default.component";
 
 @Injectable({
   providedIn: 'root'
@@ -23,14 +24,19 @@ export class PluginService {
       component: TemplateComponent
     },
     {
-      name: 'Element',
-      type: 'element',
+      name: 'layout',
+      type: 'layout',
       component: LayoutComponent
     },
     {
       name: 'Image',
       type: 'image',
       component: ImageComponent
+    },
+    {
+      name: 'Default',
+      type: 'default',
+      component: DefaultComponent
     }
   ];
 
@@ -48,9 +54,9 @@ export class PluginService {
   }
 
   public getComponent(type: string): any {
-    console.log(type);
+    // console.log(type);
     return this.$types.find((el) => {
       return el.type === type;
-    }).component;
+    })?.component;
   }
 }

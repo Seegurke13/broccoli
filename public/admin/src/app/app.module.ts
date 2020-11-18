@@ -14,6 +14,7 @@ import {MatButtonModule} from "@angular/material/button";
 import {FileModule} from "./file/file.module";
 import {Editor2Module} from "./editor2/editor2.module";
 import {FormsModule} from "@angular/forms";
+import {MatSidenavModule} from "@angular/material/sidenav";
 
 const EXTRA_BREAKPOINTS = [{
   alias: 'xs.landscape',
@@ -25,23 +26,24 @@ const EXTRA_BREAKPOINTS = [{
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    FormsModule,
-    DataModule,
-    PageModule,
-    FileModule,
-    Editor2Module,
-    FlexLayoutModule,
-    HttpClientModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatButtonModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        FormsModule,
+        DataModule,
+        PageModule,
+        FileModule,
+        Editor2Module,
+        FlexLayoutModule,
+        HttpClientModule,
+        MatToolbarModule,
+        MatIconModule,
+        MatButtonModule,
+        MatSidenavModule
+    ],
   providers: [
     {
       provide: BREAKPOINTS,

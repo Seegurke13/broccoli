@@ -7,6 +7,8 @@ namespace Seegurke\PageModule\Controller;
 use Doctrine\ORM\EntityManagerInterface;
 use Psr\Log\LoggerInterface;
 use Seegurke\PageModule\Entity\Page;
+use Seegurke\PageModule\Model\ScriptManager;
+use Seegurke\PageModule\Model\StyleManager;
 use Seegurke\PageModule\Repository\PageRepository;
 use Seegurke\PageModule\Service\ElementService;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -69,7 +71,16 @@ class PageController
      */
     public function __invoke(Request $request, Page $page)
     {
-        $content = $this->pageService->parse($page->getContent(), $request);
+        $request->attributes->set(ScriptManager::class, new ScriptManager());
+        $request->attributes->set(StyleManager::class, new StyleManager());
+
+        $model = [];
+
+        $model['scripts'] = $request->attributes->get(ScriptManager::class)->getAll();
+        $model['styles'] = $request->attributes->get(StyleManager::class)->getAll();
+
+        $model['content'] = $this->pageService->parse($page->getContent(), $request);
+        $content = $this->environment->render('default.html.twig', $model);
 
         return new Response($content);
     }

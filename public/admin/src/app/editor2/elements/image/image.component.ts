@@ -1,32 +1,33 @@
-import {Component, Input, TemplateRef, ViewChild} from '@angular/core';
+import {Component, HostBinding, HostListener, Input, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
 import {FileModalComponent} from "../../../file/file-modal/file-modal.component";
 import {DomSanitizer} from "@angular/platform-browser";
-import {ToolbarPlugin} from "../../toolbar-plugin";
-import {SettingsPlugin} from "../../settings-plugin";
+import {SettingsService} from "../../settings.service";
+import {PluginElement} from "../../plugin-element";
 
 @Component({
-  selector: 'app-image',
+  selector: 'div[img]',
   templateUrl: './image.component.html',
   styleUrls: ['./image.component.scss']
 })
-export class ImageComponent implements ToolbarPlugin, SettingsPlugin {
-  @ViewChild('toolbar')
-  public toolbar: TemplateRef<any>;
-  @ViewChild('settings')
-  public settings: TemplateRef<any>;
-  @Input()
-  public values;
-
+export class ImageComponent extends PluginElement<ImageComponent> implements OnInit{
   public preview: any = '';
 
   private dialog: MatDialog;
   public sanitizer: DomSanitizer;
 
-  constructor(dialog: MatDialog, sanitizer: DomSanitizer) {
+  constructor(dialog: MatDialog, sanitizer: DomSanitizer, settingsService: SettingsService) {
+    super();
     this.dialog = dialog;
     this.sanitizer = sanitizer;
+    this.settingsService = settingsService;
   }
+
+  ngOnInit(): void {
+        if (!this.values.src) {
+          this.values.src = '';
+        }
+    }
 
   public selectImage() {
     const dialogRef = this.dialog.open(FileModalComponent, {

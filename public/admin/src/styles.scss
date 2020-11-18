@@ -33,3 +33,24 @@ body .ui-tree .ui-tree-container .ui-treenode .ui-treenode-content:focus {
   outline-offset: 0;
   box-shadow: none!important;
 }
+
+.admin-element {
+  position: relative;
+
+  &.admin-element--selected {
+    outline: 1px solid blue;
+    background-color: cornflowerblue;
+  }
+
+  &:hover {
+    outline: 1px dotted blue;
+
+    &[layout] {
+      padding: 10px;
+    }
+  }
+
+  &.admin-element--hover {
+    background-color: lightskyblue!important;
+  }
+}

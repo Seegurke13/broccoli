@@ -1,6 +1,7 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, TemplateRef, ViewChildren} from '@angular/core';
 import {ElementModel} from "../element.model";
 import {HttpClient} from "@angular/common/http";
+import {SettingsService} from "../settings.service";
 
 @Component({
   selector: 'app-editor2',
@@ -13,10 +14,17 @@ export class Editor2Component implements OnInit {
     type: 'template',
     settings: {}
   };
-  private http: HttpClient;
 
-  constructor(http: HttpClient) {
+  @ViewChildren('appElementPlugin')
+  public children;
+
+  private http: HttpClient;
+  public settings: TemplateRef<any>;
+  private settingsService: SettingsService;
+
+  constructor(http: HttpClient, settingsService: SettingsService) {
     this.http = http;
+    this.settingsService = settingsService;
   }
 
   ngOnInit(): void {

@@ -1,3 +1,7 @@
 body .ui-tree {
   width: 100%;
 }
+
+:host {
+  display: block;
+}

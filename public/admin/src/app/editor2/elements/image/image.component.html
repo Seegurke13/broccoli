@@ -1,32 +1,38 @@
-<div style="max-width: 100px; max-height: 100px;" *ngIf="values.src">
+<ng-container *ngIf="values.src">
   <img
-    style="width: 100%;"
     [src]="sanitizer.bypassSecurityTrustUrl((values.src.indexOf('http') > -1 || values.src.indexOf('https') > -1 ? '' : 'http://localhost:80') + values.src)"
-    [alt]="values.alt">
-</div>
+    [alt]="values.alt"
+    style="width: 100%;">
+</ng-container>
 
 <div *ngIf="!values.src">
   Kein Bild ausgewaehlt
 </div>
 
-
-<ng-template #toolbar>
-  <button mat-icon-button>
-    <mat-icon>backup</mat-icon>
-  </button>
-
-  <button mat-icon-button (click)="selectImage()">
-    <mat-icon>photo</mat-icon>
-  </button>
-</ng-template>
-
 <ng-template #settings>
+  <app-html [values]="values"></app-html>
+
+  <div>
+    <mat-form-field>
+      <mat-label>Src</mat-label>
+      <input matInput [(ngModel)]="values.src">
+    </mat-form-field>
+  </div>
+
+  <div>
+    <button mat-button>
+      Select
+    </button>
+
+    <button mat-button>
+      Upload
+    </button>
+  </div>
+
   <div>
     <mat-form-field>
       <mat-label>Alt</mat-label>
       <input matInput [(ngModel)]="values.alt">
     </mat-form-field>
   </div>
-
-  <app-html [values]="values"></app-html>
 </ng-template>

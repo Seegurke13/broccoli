@@ -9,7 +9,7 @@ use Seegurke\PageModule\Model\StyleManager;
 use Seegurke\PageModule\Service\ElementService;
 use Symfony\Component\HttpFoundation\Request;
 
-class ElementController
+class LayoutController
 {
     /**
      * @var ElementService
@@ -25,14 +25,24 @@ class ElementController
         $this->elementService = $elementService;
     }
 
-    public function __invoke(Request $request, array $children = [], array $classes = [], string $type = 'div')
+    public function __invoke(Request $request, array $children = [], array $classes = [], array $styles = [], string $type = 'div')
     {
-        $data = '<'.$type.' class="' .implode(' ', $classes).'">';
+        $data = '<' . $type . ' class="' . implode(' ', $classes) . '" style="' . implode(';', $this->getStyles($styles)) . '">';
         foreach ($children as $child) {
             $data .= $this->elementService->parse($child, $request);
         }
-        $data .= '</'.$type.'>';
+        $data .= '</' . $type . '>';
 
         return $data;
+    }
+
+    private function getStyles(array $styles)
+    {
+        $res = [];
+        foreach ($styles as $key=>$value) {
+            $res[] = $key.':'.$value;
+        }
+
+        return $res;
     }
 }

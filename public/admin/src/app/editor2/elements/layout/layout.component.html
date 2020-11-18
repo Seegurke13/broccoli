@@ -1,32 +1,33 @@
-<ng-template #toolbar>
-    <mat-form-field>
-      <mat-label>Element</mat-label>
-      <mat-select [(ngModel)]="values.type">
-        <mat-option value="div">Div</mat-option>
-        <mat-option value="section">Section</mat-option>
-        <mat-option value="section">Article</mat-option>
-      </mat-select>
-    </mat-form-field>
+<ng-template #settings>
+  <mat-form-field>
+    <mat-label>Element</mat-label>
+    <mat-select [(ngModel)]="values.type">
+      <mat-option value="div">Div</mat-option>
+      <mat-option value="section">Section</mat-option>
+      <mat-option value="section">Article</mat-option>
+    </mat-select>
+  </mat-form-field>
 
   <button mat-icon-button (click)="addChildren()">
     <mat-icon>add</mat-icon>
   </button>
 
-  <!--    <button mat-icon-button (click)="onDirectionChange.emit({})" *ngIf="direction !== undefined">-->
-  <!--      <ng-container *ngIf="!direction">-->
-  <!--        <mat-icon style="transform: rotate(90deg)">rotate_left</mat-icon>-->
-  <!--      </ng-container>-->
-
-  <!--      <ng-container *ngIf="direction">-->
-  <!--        <mat-icon style="transform: rotate(180deg)">rotate_right</mat-icon>-->
-  <!--      </ng-container>-->
-  <!--    </button>-->
-</ng-template>
-
-<ng-template #settings>
   <app-html [values]="values"></app-html>
 </ng-template>
 
-<app-children [children]="values.children"
-              (onDeleteChild)="removeChildren($event)">
-</app-children>
+<div *ngIf="values.children.length < 1" style="text-align: center;">
+  <div style=" padding: 10px;" (click)="addChildren()">Kein Inhaltselement</div>
+</div>
+
+<ng-container *ngFor="let child of values.children; let i = index">
+<!--  <div [matMenuTriggerFor]="menu" [matMenuTriggerData]="{i: i}"></div>-->
+<!--  <mat-menu #menu="matMenu">-->
+<!--    <ng-template matMenuContent let-index="index">-->
+<!--      <button mat-menu-item (click)="removeChildren(index)">Delete</button>-->
+<!--      <button mat-menu-item (click)="addChildren()">Add</button>-->
+<!--    </ng-template>-->
+<!--  </mat-menu>-->
+
+  <ng-template appElementPlugin [element]="child" (onDelete)="removeChildren(i)"></ng-template>
+</ng-container>
+
