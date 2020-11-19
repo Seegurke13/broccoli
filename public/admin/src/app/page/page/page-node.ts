@@ -1,7 +1,5 @@
-import {TreeNode} from "primeng";
-
-export interface PageNode extends TreeNode {
+export interface PageNode  {
   id?: number;
   // name: string;
-  // children?: PageNode[];
+  children?: PageNode[];
 }

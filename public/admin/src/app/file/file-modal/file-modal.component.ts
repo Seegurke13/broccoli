@@ -1,5 +1,4 @@
-import {Component, Inject, Injectable} from '@angular/core';
-import {TreeNode} from "primeng";
+import {Component, Inject} from '@angular/core';
 import {FileService} from "../file.service";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 
@@ -12,7 +11,7 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
   styleUrls: ['file-modal.component.scss']
 })
 export class FileModalComponent {
-  files: TreeNode[];
+  files: any[];
   private nodeService: FileService;
   private dialogRef: MatDialogRef<FileModalComponent>;
   @Inject(MAT_DIALOG_DATA) private data: any;

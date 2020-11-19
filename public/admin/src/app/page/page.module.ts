@@ -33,7 +33,7 @@ import {TreeModule} from "primeng/tree";
     MatSelectModule,
     MatCheckboxModule,
     FormsModule,
-    // TreeModule,
+    TreeModule,
     MatRadioModule,
     Editor2Module,
     MatListModule,

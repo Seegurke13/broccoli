@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import {TreeNode} from "primeng";
 import {HttpClient} from "@angular/common/http";
 
 @Injectable({
@@ -15,6 +14,6 @@ export class FileService {
   public getFiles(s: string) {
     return this.http.get<any>('http://localhost/filemodule/files'+s)
       .toPromise()
-      .then(res => <TreeNode[]>res);
+      .then(res => <any[]>res);
   }
 }
