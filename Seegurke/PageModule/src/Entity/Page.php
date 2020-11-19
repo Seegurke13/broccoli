@@ -41,12 +41,19 @@ class Page
      */
     private array $content;
 
+    /**
+     * @var string
+     * @ORM\Column(type="string")
+     */
+    private string $route;
+
     public function __construct()
     {
         $this->children = new ArrayCollection();
 
         $this->name = 'Neue Seite';
         $this->content = [];
+        $this->route = '';
     }
 
     public function getId(): ?int
@@ -95,5 +102,21 @@ class Page
     public function setContent(array $content): void
     {
         $this->content = $content;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRoute(): string
+    {
+        return $this->route;
+    }
+
+    /**
+     * @param string $route
+     */
+    public function setRoute(string $route): void
+    {
+        $this->route = $route;
     }
 }

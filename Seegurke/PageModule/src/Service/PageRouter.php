@@ -51,33 +51,17 @@ class PageRouter implements EventSubscriberInterface
             $parent = null;
             $page = null;
             for ($i = 0; $i < count($urlParts); $i++) {
+                $pageUrl = $urlParts[$i];
                 if ($parent === null && $i === 0) {
                     $page = $this->pageRepository->findOneBy([
-                        'name' => $urlParts[$i],
+                        'route' => $pageUrl,
                     ]);
                 } else {
                     $page = $this->pageRepository->findOneBy([
                         'parent' => $parent,
-                        'name' => $urlParts[$i],
+                        'route' => $pageUrl,
                         'dynamic' => false
                     ]);
-
-                    if ($page === null) {
-                        $dynamicChildren = $this->pageRepository->findBy([
-                            'parent' => $parent,
-                            'dynamic' => true,
-                        ]);
-                        foreach ($dynamicChildren as $dynamicChild) {
-                            $dataSourceEvent = new ProvideDataEvent();
-                            $dataSourceEvent->setSource($dynamicChild->getData()['provider']['source']);
-                            $this->eventDispatcher->dispatch($dataSourceEvent);
-                            $data = $dataSourceEvent->getDataProvider()->getData($urlParts[$i]);
-                            if ($data) {
-                                $request->attributes->set($dynamicChild->getName(), $data);
-                                $page = $dynamicChild;
-                            }
-                        }
-                    }
                 }
                 if ($page === null) {
                     break;
@@ -87,6 +71,7 @@ class PageRouter implements EventSubscriberInterface
             }
 
             if ($page) {
+                $request->attributes->set('page', $page);
                 $request->attributes->set('_controller', PageController::class);
             }
         }

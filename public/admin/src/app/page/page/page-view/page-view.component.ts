@@ -62,16 +62,27 @@ export class PageViewComponent implements OnInit {
   }
 
   public delete() {
-    this.http.delete('http://localhost/pagemodule/page/' + this.page + '/delete').subscribe(() => {
+    this.http.delete('http://localhost/pagemodule/page/' + this.page.id + '/delete').subscribe(() => {
       this.onDelete.emit(this.page);
+
+      this.create();
     });
   }
 
-  public create(parent: number| null) {
+  public create(parent: number| null = null) {
     this.page = {
       parent: parent,
       name: 'New Page',
-      content: {}
+      content: {
+        type: 'template',
+        settings: {}
+      },
+      route: 'new-page'
     }
+  }
+
+  public onNameChange($event: any) {
+    let re = /\s/gi;
+    this.page.route = $event.target.value.toLowerCase().replace(re, '-');
   }
 }

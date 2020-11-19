@@ -3,4 +3,5 @@ export interface PageInterface {
   name: string;
   parent?: null|number;
   content: any[]|any;
+  route: string;
 }
