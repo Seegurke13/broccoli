@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
 import {FileModalComponent} from "../../../file/file-modal/file-modal.component";
 import {DomSanitizer} from "@angular/platform-browser";
@@ -8,7 +8,8 @@ import {PluginElement} from "../../plugin-element";
 @Component({
   selector: 'div[img]',
   templateUrl: './image.component.html',
-  styleUrls: ['./image.component.scss']
+  styleUrls: ['./image.component.scss'],
+  encapsulation: ViewEncapsulation.ShadowDom
 })
 export class ImageComponent extends PluginElement<ImageComponent> implements OnInit {
   public preview: any = '';

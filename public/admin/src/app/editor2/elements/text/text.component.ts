@@ -1,4 +1,4 @@
-import {Component, HostBinding, HostListener, Input, OnInit} from '@angular/core';
+import {Component, HostBinding, HostListener, Input, OnInit, ViewEncapsulation} from '@angular/core';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import {PluginElement} from "../../plugin-element";
 
