@@ -7,10 +7,15 @@ import {PluginElement} from "../../plugin-element";
   styleUrls: ['./plain.component.scss']
 })
 export class PlainComponent extends PluginElement<PlainComponent> implements OnInit {
+  editorOptions = {theme: 'vs-dark', language: 'html'};
+
   constructor() {
     super();
   }
 
   ngOnInit(): void {
+    if (!this.values.html) {
+      this.values.html = '<p>Edit</p>';
+    }
   }
 }

@@ -15,6 +15,7 @@ import {FileModule} from "./file/file.module";
 import {Editor2Module} from "./editor2/editor2.module";
 import {FormsModule} from "@angular/forms";
 import {MatSidenavModule} from "@angular/material/sidenav";
+import {MonacoEditorModule, NgxMonacoEditorConfig} from "ngx-monaco-editor";
 
 const EXTRA_BREAKPOINTS = [{
   alias: 'xs.landscape',
@@ -42,7 +43,8 @@ const EXTRA_BREAKPOINTS = [{
         MatToolbarModule,
         MatIconModule,
         MatButtonModule,
-        MatSidenavModule
+        MatSidenavModule,
+      MonacoEditorModule.forRoot()
     ],
   providers: [
     {
