@@ -1,5 +1,6 @@
 export interface PageInterface {
-  id: number;
+  id?: number;
   name: string;
+  parent?: null|number;
   content: any[]|any;
 }

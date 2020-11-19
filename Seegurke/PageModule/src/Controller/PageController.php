@@ -96,10 +96,9 @@ class PageController
     public function create(Request $request): Response
     {
         $page = new Page();
-        $data = json_decode($request->getContent(), true);
-        if (array_key_exists('parent', $data)) {
-            $page->setParent($this->pageRepository->find($data['parent']));
-        }
+        $this->serializer->deserialize($request->getContent(), Page::class, 'json', [
+            AbstractNormalizer::OBJECT_TO_POPULATE => $page,
+        ]);
         $this->pageRepository->persist($page);
 
         return new JsonResponse(
@@ -196,7 +195,7 @@ class PageController
      */
     public function index(Page $page): Response
     {
-        return new Response($this->serializer->serialize(
+        $content = $this->serializer->serialize(
             $page,
             'json',
             [
@@ -204,6 +203,8 @@ class PageController
                     return $object->getId();
                 }
             ]
-        ));
+        );
+//        die();
+        return new Response($content);
     }
 }

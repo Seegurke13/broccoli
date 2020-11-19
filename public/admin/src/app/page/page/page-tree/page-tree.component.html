@@ -1,12 +1,12 @@
-<button (click)="onAddPage(null)" mat-icon-button>
+<button (click)="onAddPage()" mat-icon-button>
   <mat-icon>add</mat-icon>
 </button>
 
-<p-tree [value]="data">
+<p-tree [value]="tree">
   <ng-template let-node pTemplate="default">
     <span style="display: inline-block; width: 20px;" *ngIf="!hasChild(node.id, node)"></span>
     <span style="display: inline-block;" class="tree-node" [ngClass]="{'selected': node.id === selection}">
-      <span class="tree-label" (click)="onSelectPage(node.id)">{{ node.label }}</span>
+      <a class="tree-label" [routerLink]="'/page/' + node.id">{{ node.label }}</a>
 
       <button mat-icon-button (click)="onAddPage(node.id)">
         <mat-icon>add</mat-icon>

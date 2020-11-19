@@ -2,6 +2,8 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {PageTreeComponent} from "./page-tree/page-tree.component";
 import {PageInterface} from "./page.interface";
+import {ActivatedRoute} from "@angular/router";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 
 @Component({
@@ -23,52 +25,27 @@ export class PageComponent implements OnInit {
     },
     name: ''
   };
+  private route: ActivatedRoute;
+  private snackBar: MatSnackBar;
 
-  constructor(http: HttpClient) {
-    this.http = http;
+  constructor(route: ActivatedRoute, snackBar: MatSnackBar) {
+    this.route = route;
+    this.snackBar = snackBar;
+
+    this.route.params.subscribe((params) => {
+      if (params.id) {
+        this.page = params.id;
+      }
+    });
+  }
+
+  public openSnackbar(msg: string) {
+    this.snackBar.open(msg, null, {
+      duration: 2000,
+    });
   }
 
   public ngOnInit(): void {
-    this.refreshTree();
-  }
-
-  public onSelectPage(id: number) {
-    this.http.get('http://localhost:80/pagemodule/page/' + id).subscribe((page: PageInterface) => {
-      console.log(page);
-      if (page.content === undefined) {
-        page.content = {
-          type: '',
-          settings: {}
-        };
-      }
-      this.page = page;
-    });
-  }
-
-  public onAddPage(parentNode?: number) {
-    let body: any = {
-      name: 'Neue Seite'
-    };
-    if (parentNode) {
-      body['parent'] = parentNode;
-    }
-    this.http.post('http://localhost/pagemodule/page/create', body).subscribe((response: any) => {
-      this.refreshTree(parentNode);
-      this.treeComp.select(response.data.id);
-      this.onSelectPage(response.data.id);
-    });
-  }
-
-  public onDeletePage(id) {
-    this.http.delete('http://localhost/pagemodule/page/' + id + '/delete').subscribe(() => {
-      this.refreshTree();
-    });
-  }
-
-  public onSavePage(page: PageInterface) {
-    this.http.put('http://localhost/pagemodule/page/' + page.id + '/update', this.page).subscribe(() => {
-      console.log('saved');
-    });
   }
 
   private refreshTree(id?: number) {
@@ -77,10 +54,10 @@ export class PageComponent implements OnInit {
       expanded.push(id);
     }
 
-    this.http.get('http://localhost:80/pagemodule/tree').subscribe((pages: any) => {
-      this.tree = pages;
-      this.expandAll(expanded);
-    });
+    // this.http.get('http://localhost:80/pagemodule/tree').subscribe((pages: any) => {
+    //   this.tree = pages;
+    //   this.expandAll(expanded);
+    // });
   }
 
   private expandAll(ids: number[]) {

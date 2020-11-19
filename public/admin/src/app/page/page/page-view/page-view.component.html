@@ -1,22 +1,36 @@
 <div *ngIf="page">
-  <div>
+  <div class="page-toolbar">
     <button mat-icon-button (click)="save()">
       <mat-icon>save</mat-icon>
     </button>
 
-    <button mat-icon-button>
+    <button mat-icon-button (click)="delete()">
       <mat-icon>delete</mat-icon>
     </button>
   </div>
 
-  <div>
-    <div>
-      <mat-form-field>
-        <mat-label>Name</mat-label>
-        <input [(ngModel)]="page.name" matInput>
-      </mat-form-field>
+  <div class="page">
+    <div class="page-settings">
+      <div>
+        <mat-form-field>
+          <mat-label>Name</mat-label>
+          <input [(ngModel)]="page.name" matInput>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field>
+          <mat-label>Parent</mat-label>
+          <mat-select [(ngModel)]="page.parent" readonly>
+            <mat-option [value]="null">-</mat-option>
+            <mat-option [value]="68">Test Parent</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
     </div>
 
-    <app-editor2 [content]="page.content"></app-editor2>
+    <div class="page-content">
+      <app-editor2 [content]="page.content"></app-editor2>
+    </div>
   </div>
 </div>

@@ -1,9 +1,9 @@
 <div fxLayout="row">
   <div style="min-width: 200px; width: 30%;">
-    <app-page-tree [data]="tree" (onSelect)="onSelectPage($event)" (onDelete)="onDeletePage($event)" (onAdd)="onAddPage($event.parent)"></app-page-tree>
+    <app-page-tree (onSelect)="page = $event" (onAdd)="pageViewComponent.create($event.parent)"></app-page-tree>
   </div>
 
-  <div style="flex-grow: 1; max-width: 65%; margin-left: 15px;">
-    <app-page-view [page]="page" (onSave)="onSavePage($event)"></app-page-view>
+  <div style="flex-grow: 1; margin-left: 15px;">
+    <app-page-view #pageViewComponent [pageId]="page" (onSave)="openSnackbar('saved')" (onDelete)="openSnackbar('delete')"></app-page-view>
   </div>
 </div>
