@@ -15,6 +15,8 @@ export class Editor2Component implements OnInit {
     settings: {}
   };
 
+  public toolbar: TemplateRef<any>;
+
   @ViewChildren('appElementPlugin')
   public children;
 
@@ -25,6 +27,17 @@ export class Editor2Component implements OnInit {
   constructor(http: HttpClient, settingsService: SettingsService) {
     this.http = http;
     this.settingsService = settingsService;
+
+    settingsService.getObservable().subscribe((toolbar) => {
+      if (!this.toolbar
+        || toolbar !== undefined
+        && toolbar.elementRef !== this.toolbar.elementRef
+      ) {
+        // this.toolbarOpen = true;
+        // this.toolbarEL.open();
+      }
+      this.toolbar = toolbar;
+    });
   }
 
   ngOnInit(): void {

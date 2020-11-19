@@ -20,6 +20,7 @@ import {RouterModule} from "@angular/router";
 import {TreeModule} from "primeng/tree";
 import {PageRoutingModule} from "./page-routing.module";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
+import {MatSidenavModule} from "@angular/material/sidenav";
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
     MatListModule,
     RouterModule,
     PageRoutingModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatSidenavModule
   ]
 })
 export class PageModule {

@@ -7,15 +7,13 @@ import {ToolbarService} from "../toolbar.service";
 })
 export class SettingsService {
   private obserable: Subject<any>;
-  private toolbarService: ToolbarService;
 
-  constructor(toolbarService: ToolbarService) {
-    this.toolbarService = toolbarService;
+  constructor() {
     this.obserable = new Subject<any>();
   }
 
   public setSettings(settings) {
-    this.toolbarService.setToolbar(settings);
+    this.obserable.next(settings);
   }
 
   public getObservable() {

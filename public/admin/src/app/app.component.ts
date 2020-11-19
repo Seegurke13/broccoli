@@ -25,15 +25,15 @@ export class AppComponent {
       this.toolbarOpen = false;
     });
 
-    toolbarService.getObservable().subscribe((toolbar) => {
-      if (!this.toolbar
-        || toolbar !== undefined
-        && toolbar.elementRef !== this.toolbar.elementRef
-      ) {
-        this.toolbarOpen = true;
-        this.toolbarEL.open();
-      }
-      this.toolbar = toolbar;
-    });
+    // toolbarService.getObservable().subscribe((toolbar) => {
+    //   if (!this.toolbar
+    //     || toolbar !== undefined
+    //     && toolbar.elementRef !== this.toolbar.elementRef
+    //   ) {
+    //     this.toolbarOpen = true;
+    //     this.toolbarEL.open();
+    //   }
+    //   this.toolbar = toolbar;
+    // });
   }
 }

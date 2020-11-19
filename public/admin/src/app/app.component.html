@@ -1,46 +1,44 @@
-<mat-sidenav-container fullscreen>
-  <mat-sidenav mode="side" #toolbarEl position="end">
-    <div *ngIf="toolbar">
-      <ng-container *ngTemplateOutlet="toolbar">
+<!--<mat-sidenav-container fullscreen>-->
+<!--  <mat-sidenav mode="side" #toolbarEl position="end">-->
+<!--    <div *ngIf="toolbar">-->
+<!--      <ng-container *ngTemplateOutlet="toolbar">-->
 
-      </ng-container>
-    </div>
-  </mat-sidenav>
+<!--      </ng-container>-->
+<!--    </div>-->
+<!--  </mat-sidenav>-->
 
-  <mat-sidenav-content>
-    <div>
-      <header>
-        <mat-toolbar color="primary">
-          <mat-toolbar-row>
-            <!--          <button mat-icon-button>-->
-            <!--            <mat-icon>menu</mat-icon>-->
-            <!--          </button>-->
+<!--  <mat-sidenav-content>-->
+<header>
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <!--          <button mat-icon-button>-->
+      <!--            <mat-icon>menu</mat-icon>-->
+      <!--          </button>-->
 
-            <h1>EasyCMS Admin</h1>
+      <h1>EasyCMS Admin</h1>
 
-            <span class="menu-spacer"></span>
+      <span class="menu-spacer"></span>
 
-            <div>
-              <a routerLink="/content" mat-button>Content</a>
-<!--              <a routerLink="/data" mat-button>Data</a>-->
-            </div>
-          </mat-toolbar-row>
+      <div>
+        <a routerLink="/content" mat-button>Content</a>
+        <!--              <a routerLink="/data" mat-button>Data</a>-->
+      </div>
+    </mat-toolbar-row>
 
-          <mat-toolbar-row>
-            <div>
-<!--              <a routerLink="/page" mat-button>Pages</a>-->
-<!--              <a routerLink="/content/static-fields" mat-button>Static Fields</a>-->
-<!--              <a mat-button href="#">Forms</a>-->
-<!--              <a mat-button href="#">Modals</a>-->
-<!--              <a mat-button href="#">Templates</a>-->
-            </div>
-          </mat-toolbar-row>
-        </mat-toolbar>
-      </header>
+    <mat-toolbar-row>
+      <div>
+        <!--              <a routerLink="/page" mat-button>Pages</a>-->
+        <!--              <a routerLink="/content/static-fields" mat-button>Static Fields</a>-->
+        <!--              <a mat-button href="#">Forms</a>-->
+        <!--              <a mat-button href="#">Modals</a>-->
+        <!--              <a mat-button href="#">Templates</a>-->
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</header>
 
-      <section>
-        <router-outlet></router-outlet>
-      </section>
-    </div>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+<section style="flex-grow: 1;">
+  <router-outlet></router-outlet>
+</section>
+<!--  </mat-sidenav-content>-->
+<!--</mat-sidenav-container>-->

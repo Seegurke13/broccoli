@@ -1,6 +1,17 @@
-<button mat-button (click)="debug()">
-  DEBUG
-</button>
+<mat-sidenav-container>
+  <mat-sidenav mode="side" position="end" opened>
+    <div *ngIf="toolbar" style="padding: 15px;">
+      <ng-container *ngTemplateOutlet="toolbar">
 
-<div appElementPlugin [element]="content"></div>
+      </ng-container>
+    </div>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <div style="margin-right: 40px; margin-bottom: 200px;">
+      <div appElementPlugin [element]="content"></div>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
 

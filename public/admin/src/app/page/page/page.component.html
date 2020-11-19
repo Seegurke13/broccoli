@@ -1,9 +1,14 @@
-<div fxLayout="row">
-  <div style="min-width: 200px; width: 30%;">
-    <app-page-tree (onSelect)="page = $event" (onAdd)="pageViewComponent.create($event.parent)"></app-page-tree>
-  </div>
+<mat-drawer-container autosize>
+  <mat-drawer mode="side" opened>
+    <div>
+      <app-page-tree (onSelect)="page = $event" (onAdd)="pageViewComponent.create($event.parent)"></app-page-tree>
+    </div>
+  </mat-drawer>
 
-  <div style="flex-grow: 1; margin-left: 15px;">
-    <app-page-view #pageViewComponent [pageId]="page" (onSave)="openSnackbar('saved')" (onDelete)="openSnackbar('delete')"></app-page-view>
-  </div>
-</div>
+  <mat-drawer-content>
+    <div style="padding-left: 15px;">
+      <app-page-view #pageViewComponent [pageId]="page" (onSave)="openSnackbar('saved')"
+                     (onDelete)="openSnackbar('delete')"></app-page-view>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>
