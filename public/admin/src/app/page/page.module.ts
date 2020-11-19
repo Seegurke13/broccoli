@@ -18,6 +18,7 @@ import { StaticFieldsComponent } from './static-fields/static-fields.component';
 import {MatListModule} from "@angular/material/list";
 import {RouterModule} from "@angular/router";
 import {TreeModule} from "primeng/tree";
+import {PageRoutingModule} from "./page-routing.module";
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import {TreeModule} from "primeng/tree";
     MatRadioModule,
     Editor2Module,
     MatListModule,
-    RouterModule
+    RouterModule,
+    PageRoutingModule
   ]
 })
 export class PageModule {

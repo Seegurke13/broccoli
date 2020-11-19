@@ -8,7 +8,17 @@ export class SafePipe {
     this.sanitizer = sanitizer;
   }
 
-  transform(value: any, args?: any): any {
-    return this.sanitizer.bypassSecurityTrustHtml(value);
+  transform(value: any, type: string = 'html'): any {
+    switch (type)  {
+      case "html": {
+        return this.sanitizer.bypassSecurityTrustHtml(value);
+      }
+      case "css": {
+        return this.sanitizer.bypassSecurityTrustStyle(value);
+      }
+      case "url": {
+        return this.sanitizer.bypassSecurityTrustResourceUrl(value);
+      }
+    }
   }
 }

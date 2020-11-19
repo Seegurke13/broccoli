@@ -5,6 +5,7 @@ import {LayoutComponent} from "./elements/layout/layout.component";
 import {TextComponent} from "./elements/text/text.component";
 import {TemplateComponent} from "./elements/template/template.component";
 import {PlainComponent} from "./elements/plain/plain.component";
+import {IframeComponent} from "./elements/iframe/iframe.component";
 
 @Injectable({
   providedIn: 'root'
@@ -37,6 +38,11 @@ export class PluginService {
       name: 'HTML',
       type: 'html',
       component: PlainComponent
+    },
+    {
+      name: 'Iframe',
+      type: 'iframe',
+      component: IframeComponent
     }
   ];
 

@@ -66,15 +66,6 @@ export class PageComponent implements OnInit {
   }
 
   public onSavePage(page: PageInterface) {
-    let test = Object.assign({}, this.page.content);
-    this.page.content = test;
-    // if (this.page.parent) {
-    //   this.page.parent = this.page.parent.id;
-    // }
-    // this.page.children = this.page.children.map((el) => {
-    //   return el.id;
-    // });
-
     this.http.put('http://localhost/pagemodule/page/' + page.id + '/update', this.page).subscribe(() => {
       console.log('saved');
     });

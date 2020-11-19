@@ -1,22 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {DataComponent} from "./data/data/data.component";
-import {PageComponent} from "./page/page/page.component";
-import {StaticFieldsComponent} from "./page/static-fields/static-fields.component";
 
 
 const routes: Routes = [
   {
-    path: 'data',
-    component: DataComponent
-  },
-  {
     path: 'content',
-    component: PageComponent
+    loadChildren: () => import('./page/page.module').then(m => m.PageModule)
   },
   {
-    path: 'content/static-fields',
-    component: StaticFieldsComponent
+    path: '',
+    redirectTo: '',
+    pathMatch: 'full'
   }
 ];
 

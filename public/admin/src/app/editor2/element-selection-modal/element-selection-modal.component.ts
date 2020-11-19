@@ -41,6 +41,12 @@ const presets = [
     block: '',
     data: {html: ''},
     label: 'HTML'
+  },
+  {
+    type: 'iframe',
+    block: '',
+    data: {src: 'assets/iframe.html'},
+    label: 'IFrame'
   }
 ];
 

@@ -26,6 +26,10 @@ import {MatMenuModule} from "@angular/material/menu";
 import { ClasslistComponent } from './classlist/classlist.component';
 import { PlainComponent } from './elements/plain/plain.component';
 import {MonacoEditorModule} from "ngx-monaco-editor";
+import { TwigComponent } from './elements/twig/twig.component';
+import { IframeComponent } from './elements/iframe/iframe.component';
+import { LoopComponent } from './elements/loop/loop.component';
+import { CarouselComponent } from './elements/carousel/carousel.component';
 
 
 @NgModule({
@@ -40,7 +44,11 @@ import {MonacoEditorModule} from "ngx-monaco-editor";
     ElementSelectionModalComponent,
     SafePipe,
     ClasslistComponent,
-    PlainComponent
+    PlainComponent,
+    TwigComponent,
+    IframeComponent,
+    LoopComponent,
+    CarouselComponent
   ],
   exports: [
     Editor2Component
