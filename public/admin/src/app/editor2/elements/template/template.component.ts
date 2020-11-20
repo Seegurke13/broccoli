@@ -1,13 +1,14 @@
 import {Component, Input, OnChanges, SimpleChanges, ViewChild} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {MatSelectChange} from "@angular/material/select";
+import {PluginElement} from "../../plugin-element";
 
 @Component({
   selector: 'app-template',
   templateUrl: './template.component.html',
   styleUrls: ['./template.component.scss']
 })
-export class TemplateComponent {
+export class TemplateComponent extends PluginElement<TemplateComponent> {
   @Input()
   public values: any;
   @ViewChild('toolbar')
@@ -18,6 +19,7 @@ export class TemplateComponent {
   private http: HttpClient;
 
   constructor(http: HttpClient) {
+    super();
     this.http = http;
   }
 
@@ -51,11 +53,6 @@ export class TemplateComponent {
 
   public delete(i: number) {
     this.values.placeholder.splice(i, 1);
-  }
-
-  public onDelete(i: number) {
-    this.values.placeholder[i].type = '';
-    this.values.placeholder[i].settings = {};
   }
 
   public onTemplateChange($event: MatSelectChange) {

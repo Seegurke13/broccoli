@@ -9,8 +9,8 @@ import {HttpClient} from "@angular/common/http";
 })
 export class PageTreeComponent implements OnInit {
   public tree: PageNode[];
+  @Input()
   public selection: number;
-
   @Output()
   public onSelect: EventEmitter<any>;
   @Output()
@@ -47,6 +47,7 @@ export class PageTreeComponent implements OnInit {
 
   public onDeletePage(id: number) {
     this.onDelete.emit(id);
+    this.reload();
   }
 
   public select(id) {

@@ -59,8 +59,7 @@ class PageRouter implements EventSubscriberInterface
                 } else {
                     $page = $this->pageRepository->findOneBy([
                         'parent' => $parent,
-                        'route' => $pageUrl,
-                        'dynamic' => false
+                        'route' => $pageUrl
                     ]);
                 }
                 if ($page === null) {

@@ -11,20 +11,20 @@ import {Editor2Component} from "../../../editor2/editor2/editor2.component";
 export class PageViewComponent implements OnInit {
   @Input()
   set pageId(id: number) {
-    this.http.get('http://localhost:80/pagemodule/page/' + id).subscribe((page: PageInterface) => {
-      if (page.content.type === undefined) {
-        page.content = {
-          type: 'layout',
-          settings: {}
-        };
-      }
+    if (id) {
+      this.http.get('http://localhost:80/pagemodule/page/' + id).subscribe((page: PageInterface) => {
+        if (page.content.type === undefined) {
+          page.content = {
+            type: 'layout',
+            settings: {}
+          };
+        }
 
-      this.page = page;
-      console.log(page);
-    });
+        this.page = page;
+      });
+    }
   }
 
-  // public page: PageInterface = {"id":67,"name":"Neue Seite","content":{"type":"layout","settings":{"type":"section","styles":[],"classes":["container","mt-2"],"children":[{"type":"layout","settings":{"styles":[],"classes":["row"],"children":[{"type":"layout","settings":{"styles":[],"classes":["col-lg-5"],"children":[{"type":"text","settings":{"text":"<h2>Hello World<\/h2>","classes":[]}}]}},{"type":"layout","settings":{"styles":[],"classes":["col-lg-7"],"children":[{"type":"image","settings":{"alt":"","src":"https:\/\/www.haustier-news.de\/wp-content\/uploads\/2017\/02\/Katzenbilder-30-Stueck.jpg","cClasses":["img-fluid","image-container"]}}]}}]}},{"type":"layout","settings":{"styles":[],"classes":["row","mt-5"],"children":[{"type":"layout","settings":{"styles":[],"classes":["col"],"children":[{"type":"html","settings":{"html":"<p>It works<\/p>","classes":[""]}}]}}]}}]}}};
   public page: PageInterface;
 
   @Output()
@@ -54,8 +54,8 @@ export class PageViewComponent implements OnInit {
         this.onSave.emit(this.page);
       });
     } else {
-      this.http.post('http://localhost/pagemodule/page/create', this.page).subscribe((page: PageInterface) => {
-        this.page = page;
+      this.http.post('http://localhost/pagemodule/page/create', this.page).subscribe((page: any) => {
+        this.page = page.data;
         this.onSave.emit(this.page);
       });
     }
@@ -65,7 +65,7 @@ export class PageViewComponent implements OnInit {
     this.http.delete('http://localhost/pagemodule/page/' + this.page.id + '/delete').subscribe(() => {
       this.onDelete.emit(this.page);
 
-      this.create();
+      this.page = null;
     });
   }
 
