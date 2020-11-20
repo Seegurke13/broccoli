@@ -3,11 +3,12 @@
     No Template selected
   </ng-container>
 
-  <ng-container *ngIf="!values.placeholder || values.placeholder.length === 0">
+  <ng-container *ngIf="values.template && (!values.placeholder || values.placeholder.length === 0)">
     No Elements
   </ng-container>
 
-  <div *ngFor="let placeholder of values.placeholder; let i = index" style="display: flex; flex-direction: column; margin-top: 10px;">
+  <div *ngFor="let placeholder of values.placeholder; let i = index"
+       style="display: flex; flex-direction: column; margin-top: 10px;">
     <div>
       <button mat-icon-button (click)="delete(i)">
         <mat-icon>delete</mat-icon>
@@ -20,16 +21,18 @@
     </div>
 
     <div style="flex-grow: 1;">
-<!--      <app-element [element]="values.placeholder[i].element" (onDelete)=""></app-element>-->
+      <div *ngIf="values.placeholder[i].element">
+        <ng-template appElementPlugin [element]="values.placeholder[i].element"></ng-template>
+      </div>
+
+      <div *ngIf="!values.placeholder[i].element">
+        <button mat-icon-button>
+          <mat-icon (click)="onAddElement(values.placeholder[i])">add</mat-icon>
+        </button>
+      </div>
     </div>
   </div>
 </div>
-
-<ng-template #toolbar>
-  <button mat-icon-button (click)="addPlaceholder()">
-    <mat-icon>add</mat-icon>
-  </button>
-</ng-template>
 
 <ng-template #settings>
   <div>
@@ -39,5 +42,28 @@
         <mat-option value="default">Default</mat-option>
       </mat-select>
     </mat-form-field>
+  </div>
+
+  <div>
+    <mat-chip-list #chipList>
+      <mat-chip
+        *ngFor="let placeholder of values.placeholder"
+        [selectable]="selectable"
+        [removable]="removable"
+        (removed)="remove(placeholder.name)">
+        {{ placeholder.name }}
+        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+      </mat-chip>
+
+      <input
+        placeholder="New Placeholder"
+        #classInput
+        [formControl]="classCtrl"
+        [matChipInputFor]="chipList"
+        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+        [matChipInputAddOnBlur]="addOnBlur"
+        (matChipInputTokenEnd)="add($event)"
+      />
+    </mat-chip-list>
   </div>
 </ng-template>

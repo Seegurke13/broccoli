@@ -1,9 +1,10 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {PageTreeComponent} from "./page-tree/page-tree.component";
 import {ActivatedRoute} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {PageService} from "./page.service";
 import {PageViewComponent} from "./page-view/page-view.component";
+import {SettingsService} from "../../editor2/settings.service";
 
 
 @Component({
@@ -17,16 +18,20 @@ export class PageComponent implements OnInit {
   @ViewChild(PageTreeComponent)
   public treeComp;
 
+  public toolbar: TemplateRef<any>;
+
   public tree: any;
   public page: number;
   private route: ActivatedRoute;
   private snackBar: MatSnackBar;
   private pageService: PageService;
+  private settingsService: SettingsService;
 
-  constructor(route: ActivatedRoute, snackBar: MatSnackBar, pageService: PageService) {
+  constructor(route: ActivatedRoute, snackBar: MatSnackBar, pageService: PageService, settingsService: SettingsService) {
     this.route = route;
     this.snackBar = snackBar;
     this.pageService = pageService;
+    this.settingsService = settingsService;
 
     this.route.params.subscribe((params) => {
       if (params.id) {
@@ -49,6 +54,9 @@ export class PageComponent implements OnInit {
   }
 
   public ngOnInit(): void {
+    this.settingsService.getObservable().subscribe((toolbar) => {
+      this.toolbar = toolbar;
+    });
   }
 
   // private refreshTree(id?: number) {

@@ -1,15 +1,11 @@
-<mat-sidenav-container>
-  <mat-sidenav mode="side" position="end" opened>
-    <div *ngIf="toolbar" style="padding: 15px;">
-      <ng-container *ngTemplateOutlet="toolbar"></ng-container>
-    </div>
-  </mat-sidenav>
+<div>
+  <button mat-button (click)="debug()">
+    Debug
+  </button>
+</div>
 
-  <mat-sidenav-content>
-    <div style="margin-right: 40px; margin-bottom: 200px; border: 1px solid dodgerblue">
-      <div appElementPlugin [element]="content"></div>
-    </div>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+<div style="margin-right: 40px; margin-bottom: 200px; border: 1px solid dodgerblue">
+  <div appElementPlugin [element]="content"></div>
+</div>
 
 

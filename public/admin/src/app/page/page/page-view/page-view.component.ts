@@ -83,6 +83,6 @@ export class PageViewComponent implements OnInit {
 
   public onNameChange($event: any) {
     let re = /\s/gi;
-    this.page.route = $event.target.value.toLowerCase().replace(re, '-');
+    this.page.route = $event.toLowerCase().replace(re, '-');
   }
 }

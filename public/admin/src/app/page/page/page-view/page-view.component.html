@@ -23,25 +23,21 @@
         <div>
           <mat-form-field>
             <mat-label>Name</mat-label>
-            <input [(ngModel)]="page.name" (change)="onNameChange($event)" matInput>
+            <input [(ngModel)]="page.name" (ngModelChange)="onNameChange($event)" matInput>
           </mat-form-field>
         </div>
 
         <div>
           <mat-form-field>
             <mat-label>Page Url</mat-label>
-            <input [(ngModel)]="page.route" matInput disabled>
+            <input [(ngModel)]="page.route" matInput>
           </mat-form-field>
-
-          <mat-checkbox>
-            <mat-label>Dynamic</mat-label>
-          </mat-checkbox>
         </div>
 
         <div>
           <mat-form-field>
             <mat-label>Parent</mat-label>
-            <mat-select [(ngModel)]="page.parent" readonly>
+            <mat-select [(ngModel)]="page.parent">
               <mat-option [value]="null">-</mat-option>
               <mat-option [value]="68">Test Parent</mat-option>
             </mat-select>

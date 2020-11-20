@@ -8,8 +8,7 @@ import {PluginElement} from "../../plugin-element";
 @Component({
   selector: 'div[img]',
   templateUrl: './image.component.html',
-  styleUrls: ['./image.component.scss'],
-  encapsulation: ViewEncapsulation.ShadowDom
+  styleUrls: ['./image.component.scss']
 })
 export class ImageComponent extends PluginElement<ImageComponent> implements OnInit {
   public preview: any = '';

@@ -71,18 +71,7 @@ class PageController
      */
     public function __invoke(Request $request, Page $page)
     {
-        $request->attributes->set(ScriptManager::class, new ScriptManager());
-        $request->attributes->set(StyleManager::class, new StyleManager());
-
-        $model = [];
-
-        $model['scripts'] = $request->attributes->get(ScriptManager::class)->getAll();
-        $model['styles'] = $request->attributes->get(StyleManager::class)->getAll();
-
-        $model['content'] = $this->pageService->parse($page->getContent(), $request);
-        $content = $this->environment->render('default.html.twig', $model);
-
-        return new Response($content);
+        return new Response($this->pageService->parse($page->getContent(), $request));
     }
 
     /**
