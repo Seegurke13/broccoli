@@ -1,21 +1,20 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {DataModule} from "./data/data.module";
-import {PageModule} from "./page/page.module";
-import { FlexLayoutModule, BREAKPOINTS } from '@angular/flex-layout';
+import {BrowserModule} from '@angular/platform-browser';
+import {APP_INITIALIZER, NgModule} from '@angular/core';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {FlexLayoutModule, BREAKPOINTS} from '@angular/flex-layout';
 import {HttpClientModule} from "@angular/common/http";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
 import {FileModule} from "./file/file.module";
 import {Editor2Module} from "./editor2/editor2.module";
-import {FormsModule} from "@angular/forms";
 import {MatSidenavModule} from "@angular/material/sidenav";
-import {MonacoEditorModule, NgxMonacoEditorConfig} from "ngx-monaco-editor";
+import {MonacoEditorModule} from "ngx-monaco-editor";
+import {TestComponent} from './test/test.component';
+import {AppService} from "./app.service";
+import {CommonModule} from "@angular/common";
 
 const EXTRA_BREAKPOINTS = [{
   alias: 'xs.landscape',
@@ -25,32 +24,44 @@ const EXTRA_BREAKPOINTS = [{
   overlapping: false
 }];
 
+export function initializeApp(appInitService: AppService) {
+  return (): Promise<any> => {
+    return appInitService.init();
+  }
+}
+
 @NgModule({
   declarations: [
     AppComponent,
+    TestComponent,
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        FormsModule,
-        DataModule,
-        PageModule,
-        FileModule,
-        Editor2Module,
-        FlexLayoutModule,
-        HttpClientModule,
-        MatToolbarModule,
-        MatIconModule,
-        MatButtonModule,
-        MatSidenavModule,
-      MonacoEditorModule.forRoot()
-    ],
+  imports: [
+    // CommonModule,
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    FileModule,
+    Editor2Module,
+    FlexLayoutModule,
+    HttpClientModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MonacoEditorModule.forRoot()
+  ],
   providers: [
     {
       provide: BREAKPOINTS,
       useValue: EXTRA_BREAKPOINTS,
       multi: true
+    },
+    AppService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializeApp,
+      multi: true,
+      deps: [AppService]
     }
   ],
   bootstrap: [AppComponent]

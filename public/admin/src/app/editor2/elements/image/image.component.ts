@@ -43,4 +43,8 @@ export class ImageComponent extends PluginElement<ImageComponent> implements OnI
       this.values.src = result.filepath;
     });
   }
+
+  public uploadImage() {
+
+  }
 }

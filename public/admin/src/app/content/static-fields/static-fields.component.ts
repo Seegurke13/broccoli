@@ -6,11 +6,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./static-fields.component.scss']
 })
 export class StaticFieldsComponent implements OnInit {
-  public field: any = {};
+  public field: any = {
+    id: 1,
+    name: 'Test',
+    element: {
+      type: 'text',
+      settings: {}
+    }
+  };
   public fields = [
     {
+      id: 1,
       name: 'Test',
-      field: 1
+      element: {
+        type: 'text',
+        settings: {}
+      }
     }
   ]
 

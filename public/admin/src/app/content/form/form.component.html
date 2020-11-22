@@ -1,0 +1,40 @@
+<mat-sidenav-container style="flex-grow: 1;">
+  <mat-sidenav opened mode="side" style="width: 200px;">
+    <div>
+      <mat-list>
+        <mat-list-item>
+          <button mat-icon-button>
+            <mat-icon>add</mat-icon>
+          </button>
+        </mat-list-item>
+
+        <mat-divider></mat-divider>
+
+        <a mat-list-item [routerLink]="'../1'">Field 1</a>
+      </mat-list>
+    </div>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <div>
+      <div>
+        <button mat-icon-button>
+          <mat-icon>save</mat-icon>
+        </button>
+
+        <button mat-icon-button>
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+
+      <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input matInput>
+      </mat-form-field>
+
+      <div>
+        <app-editor2 [content]="form.definition"></app-editor2>
+      </div>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

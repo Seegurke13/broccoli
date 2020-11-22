@@ -1,34 +1,48 @@
 <div>
-  <ng-container *ngIf="!values.template || values.template === ''">
-    No Template selected
-  </ng-container>
-
-  <ng-container *ngIf="values.template && (!values.placeholder || values.placeholder.length === 0)">
-    No Elements
-  </ng-container>
-
-  <div *ngFor="let placeholder of values.placeholder; let i = index"
-       style="display: flex; flex-direction: column; margin-top: 10px;">
+  <div>
     <div>
-      <button mat-icon-button (click)="delete(i)">
-        <mat-icon>delete</mat-icon>
-      </button>
+      Settings
+    </div>
+  </div>
 
-      <mat-form-field>
-        <mat-label>Platzhalter</mat-label>
-        <input matInput type="text" [(ngModel)]="values.placeholder[i].name">
-      </mat-form-field>
+  <div>
+    <div>
+      Content
     </div>
 
-    <div style="flex-grow: 1;">
-      <div *ngIf="values.placeholder[i].element">
-        <ng-template appElementPlugin [element]="values.placeholder[i].element"></ng-template>
-      </div>
+    <div>
+      <ng-container *ngIf="!values.template || values.template === ''">
+        No Template selected
+      </ng-container>
 
-      <div *ngIf="!values.placeholder[i].element">
-        <button mat-icon-button>
-          <mat-icon (click)="onAddElement(values.placeholder[i])">add</mat-icon>
-        </button>
+      <ng-container *ngIf="values.template && (!values.placeholder || values.placeholder.length === 0)">
+        No Placeholder
+      </ng-container>
+
+      <div *ngFor="let placeholder of values.placeholder; let i = index"
+           style="display: flex; flex-direction: column; margin-top: 10px; border: 1px solid blue;">
+        <div>
+          <button mat-icon-button (click)="delete(i)">
+            <mat-icon>delete</mat-icon>
+          </button>
+
+          <mat-form-field>
+            <mat-label>Platzhalter</mat-label>
+            <input matInput type="text" [(ngModel)]="values.placeholder[i].name">
+          </mat-form-field>
+        </div>
+
+        <div style="flex-grow: 1;">
+          <div *ngIf="values.placeholder[i].element">
+            <ng-template appElementPlugin [element]="values.placeholder[i].element"></ng-template>
+          </div>
+
+          <div *ngIf="!values.placeholder[i].element">
+            <button mat-icon-button>
+              <mat-icon (click)="onAddElement(values.placeholder[i])">add</mat-icon>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>

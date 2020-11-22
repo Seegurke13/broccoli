@@ -10,7 +10,7 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatSelectModule} from "@angular/material/select";
 import {MatCheckboxModule} from "@angular/material/checkbox";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {FormsModule} from "@angular/forms";
 import {MatRadioModule} from "@angular/material/radio";
 import { PageTreeComponent } from './page/page-tree/page-tree.component';
 import {Editor2Module} from "../editor2/editor2.module";
@@ -18,14 +18,16 @@ import { StaticFieldsComponent } from './static-fields/static-fields.component';
 import {MatListModule} from "@angular/material/list";
 import {RouterModule} from "@angular/router";
 import {TreeModule} from "primeng/tree";
-import {PageRoutingModule} from "./page-routing.module";
+import {ContentRoutingModule} from "./content-routing.module";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatToolbarModule} from "@angular/material/toolbar";
+import { FormComponent } from './form/form.component';
+import { ThemeComponent } from './theme/theme.component';
 
 
 @NgModule({
-  declarations: [PageComponent, PageViewComponent, PageTreeComponent, StaticFieldsComponent],
+  declarations: [PageComponent, PageViewComponent, PageTreeComponent, StaticFieldsComponent, FormComponent, ThemeComponent],
   imports: [
     CommonModule,
     FlexLayoutModule,
@@ -42,11 +44,11 @@ import {MatToolbarModule} from "@angular/material/toolbar";
     Editor2Module,
     MatListModule,
     RouterModule,
-    PageRoutingModule,
+    ContentRoutingModule,
     MatSnackBarModule,
     MatSidenavModule,
     MatToolbarModule
   ]
 })
-export class PageModule {
+export class ContentModule {
 }

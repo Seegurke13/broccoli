@@ -6,14 +6,14 @@
   <ng-template let-node pTemplate="default">
     <span style="display: inline-block; width: 20px;" *ngIf="!hasChild(node.id, node)"></span>
     <span style="display: inline-block;" class="tree-node" [ngClass]="{'selected': node.id === selection}">
-      <a class="tree-label" [routerLink]="'/page/' + node.id">{{ node.label }}</a>
+      <a class="tree-label" [routerLink]="'../' + node.id">{{ node.label }}</a>
 
       <button mat-icon-button (click)="onAddPage(node.id)">
         <mat-icon>add</mat-icon>
       </button>
 
       <button mat-icon-button (click)="onDeletePage(node.id)">
-        <mat-icon>remove</mat-icon>
+        <mat-icon>delete</mat-icon>
       </button>
 <!--      <i class="pi pi-arrow-up" style="font-size: 1em; margin-left: 10px;" (click)="onMoveTop(node)"></i>-->
 <!--      <i class="pi pi-arrow-down" style="font-size: 1em; margin-left: 10px;" (click)="onMoveDown(node)"></i>-->
