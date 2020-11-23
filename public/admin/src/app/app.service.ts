@@ -20,6 +20,7 @@ export class AppService {
     return new Promise<void>((resolve, reject) => {
       this.http.get('http://localhost/admin/module').subscribe((data: any) => {
         const routes = this.router.config;
+
         data.forEach((module) => {
           this.router.config.push({
             path: module.name,
@@ -27,6 +28,7 @@ export class AppService {
           });
           this.router.resetConfig(routes);
         });
+
         resolve();
       });
     });

@@ -1,6 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {PageNode} from "../page-node";
 import {HttpClient} from "@angular/common/http";
+import {NestedTreeControl} from "@angular/cdk/tree";
+import {MatTreeNestedDataSource} from "@angular/material/tree";
 
 @Component({
   selector: 'app-page-tree',
@@ -8,7 +10,6 @@ import {HttpClient} from "@angular/common/http";
   styleUrls: ['./page-tree.component.scss']
 })
 export class PageTreeComponent implements OnInit {
-  public tree: PageNode[];
   @Input()
   public selection: number;
   @Output()
@@ -17,6 +18,9 @@ export class PageTreeComponent implements OnInit {
   public onAdd: EventEmitter<any>;
   @Output()
   public onDelete: EventEmitter<any>;
+
+  treeControl = new NestedTreeControl<any>(node => node.children);
+  dataSource = new MatTreeNestedDataSource<any>();
 
   private http: HttpClient;
 
@@ -56,7 +60,7 @@ export class PageTreeComponent implements OnInit {
 
   public reload() {
     this.http.get('http://localhost:80/pagemodule/tree').subscribe((pages: any) => {
-      this.tree = pages;
+      this.dataSource.data = pages;
     });
   }
 }

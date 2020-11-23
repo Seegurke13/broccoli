@@ -17,7 +17,6 @@ import {Editor2Module} from "../editor2/editor2.module";
 import { StaticFieldsComponent } from './static-fields/static-fields.component';
 import {MatListModule} from "@angular/material/list";
 import {RouterModule} from "@angular/router";
-import {TreeModule} from "primeng/tree";
 import {ContentRoutingModule} from "./content-routing.module";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {MatSidenavModule} from "@angular/material/sidenav";
@@ -39,7 +38,6 @@ import { ThemeComponent } from './theme/theme.component';
     MatSelectModule,
     MatCheckboxModule,
     FormsModule,
-    TreeModule,
     MatRadioModule,
     Editor2Module,
     MatListModule,
