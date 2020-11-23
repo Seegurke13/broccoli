@@ -17,12 +17,8 @@ class ModuleController
     public function index() {
         $response = [
             [
-                'name' => 'page',
-                'component' => '',
-            ],
-            [
-                'name' => 'data',
-                'component' => ''
+                'name' => 'user',
+                'file' => 'src/app/user/user.module#UserModule',
             ],
         ];
 

@@ -18,6 +18,7 @@
           "builder": "ngx-build-plus:build",
 //          "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "lazyModules": ["src/app/user/user.module"],
             "outputPath": "dist/admin",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -37,6 +38,7 @@
               "src/styles.scss"
             ],
             "scripts": [
+//              "./node_modules/systemjs/dist/system.js"
             ]
           },
           "configurations": {
