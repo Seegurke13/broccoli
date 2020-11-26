@@ -1,1 +1,96 @@
-<p>theme works!</p>
+<div>
+  <div>
+    Stylesheets
+  </div>
+
+  <div>
+    <div>
+      <mat-form-field>
+        <mat-label>Stylesheet</mat-label>
+        <input matInput #stylesheetInput>
+      </mat-form-field>
+
+      <button mat-icon-button (click)="addStylesheet(stylesheetInput.value)">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+
+    <mat-list>
+      <mat-list-item *ngFor="let stylesheet of stylesheets; let i = index">
+        <label>{{ stylesheet }}</label>
+        <button mat-icon-button (click)="deleteStylesheet(i)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-list-item>
+    </mat-list>
+  </div>
+</div>
+
+<div>
+  <div>
+    Scripts
+  </div>
+
+  <div>
+
+    <div>
+      <mat-form-field>
+        <mat-label>Stylesheet</mat-label>
+        <input matInput #scriptInput>
+      </mat-form-field>
+
+      <button mat-icon-button>
+        <mat-icon (click)="addScript(scriptInput.value)">add</mat-icon>
+      </button>
+    </div>
+
+    <mat-list>
+      <mat-list-item *ngFor="let script of scripts; let i = index">
+        <label>{{ script }}</label>
+        <button mat-icon-button (click)="deleteScript(i)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-list-item>
+    </mat-list>
+  </div>
+</div>
+
+<div>
+  <div>
+    Templates
+  </div>
+
+  <div>
+    <div>
+      <mat-form-field>
+        <mat-label>Template</mat-label>
+        <mat-select>
+          <mat-option>Default</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <button mat-icon-button>
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input matInput>
+      </mat-form-field>
+
+      <button (click)="saveTemplate()" mat-icon-button>
+        <mat-icon>save</mat-icon>
+      </button>
+
+      <button mat-icon-button>
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+
+    <div>
+      <app-editor2 [content]="{}"></app-editor2>
+    </div>
+  </div>
+</div>

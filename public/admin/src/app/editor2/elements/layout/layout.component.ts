@@ -8,6 +8,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {ElementSelectionModalComponent} from "../../element-selection-modal/element-selection-modal.component";
 import {PluginElement} from "../../plugin-element";
 import {MatMenuTrigger} from "@angular/material/menu";
+import {PluginService} from "../../plugin.service";
 
 @Component({
   selector: 'div[layout]',
@@ -22,6 +23,7 @@ export class LayoutComponent extends PluginElement<LayoutComponent> implements O
   public children;
   @ViewChild(MatMenuTrigger)
   public trigger: MatMenuTrigger;
+  private pluginService: PluginService;
 
   @HostListener('document:keydown.control.a', ['$event'])
   public hotkeyAdd() {
@@ -39,10 +41,11 @@ export class LayoutComponent extends PluginElement<LayoutComponent> implements O
     this.onDelete.emit({});
   }
 
-  constructor(settingsService: SettingsService, dialog: MatDialog) {
+  constructor(settingsService: SettingsService, dialog: MatDialog, pluginService: PluginService) {
     super();
     this.settingsService = settingsService;
     this.dialog = dialog;
+    this.pluginService = pluginService;
   }
 
   ngOnInit(): void {
@@ -68,7 +71,7 @@ export class LayoutComponent extends PluginElement<LayoutComponent> implements O
       height: '400px',
       width: '600px',
       data: {
-        block: 'row'
+        presets: this.pluginService.getPresets()
       }
     });
 

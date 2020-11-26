@@ -1,11 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {ImageComponent} from "./elements/image/image.component";
-import {LayoutComponent} from "./elements/layout/layout.component";
-import {TextComponent} from "./elements/text/text.component";
-import {TemplateComponent} from "./elements/template/template.component";
-import {PlainComponent} from "./elements/plain/plain.component";
-import {IframeComponent} from "./elements/iframe/iframe.component";
+import {PluginRepositoryService} from "./plugin-repository.service";
 
 @Injectable({
   providedIn: 'root'
@@ -13,56 +8,29 @@ import {IframeComponent} from "./elements/iframe/iframe.component";
 export class PluginService {
   private http: HttpClient;
 
-  private $types = [
-    {
-      name: 'Text',
-      type: 'text',
-      component: TextComponent
-    },
-    {
-      name: 'Template',
-      type: 'template',
-      component: TemplateComponent
-    },
-    {
-      name: 'layout',
-      type: 'layout',
-      component: LayoutComponent
-    },
-    {
-      name: 'Image',
-      type: 'image',
-      component: ImageComponent
-    },
-    {
-      name: 'HTML',
-      type: 'html',
-      component: PlainComponent
-    },
-    {
-      name: 'Iframe',
-      type: 'iframe',
-      component: IframeComponent
-    }
-  ];
+  public enabledTypes: string[] = [];
+  private pluginRepository: PluginRepositoryService;
 
-  constructor(http: HttpClient) {
+  constructor(http: HttpClient, pluginRepository: PluginRepositoryService) {
     this.http = http
+    this.pluginRepository = pluginRepository;
   }
 
-  public getTypes() {
-    return this.$types.map((el) => {
+  public getComponent(type: string): any {
+    // console.log(type);
+    return this.pluginRepository.getPlugins().find((el) => {
+      return el.type === type;
+    })?.component;
+  }
+
+  public getPresets(filter: string[] = null) {
+    return this.pluginRepository.getPlugins().filter((el) => {
+      return !filter ? true : filter.includes(el.type);
+    }).map((el) => {
       return {
         name: el.name,
         type: el.type
       };
     });
-  }
-
-  public getComponent(type: string): any {
-    // console.log(type);
-    return this.$types.find((el) => {
-      return el.type === type;
-    })?.component;
   }
 }

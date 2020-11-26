@@ -6,7 +6,7 @@
   <div>
     <div style="display: flex; flex-direction: row; flex-wrap: wrap">
       <div *ngFor="let preset of presets" (click)="select(preset.type, preset.data)" class="adminElementPresetSelection-preset">
-        {{ preset.label }}
+        {{ preset.name }}
       </div>
     </div>
   </div>

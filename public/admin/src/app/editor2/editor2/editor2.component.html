@@ -1,3 +1,14 @@
-<div appElementPlugin [element]="content"></div>
+<ng-container *ngIf="content.type && content.settings">
+  <div appElementPlugin [element]="content"></div>
+</ng-container>
 
+<ng-container *ngIf="!content || !content.type || !content.settings">
+  <div>
+    No Content
+
+    <button mat-icon-button (click)="addElement()">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+</ng-container>
 

@@ -14,7 +14,6 @@ import {MatSidenavModule} from "@angular/material/sidenav";
 import {MonacoEditorModule} from "ngx-monaco-editor";
 import {TestComponent} from './test/test.component';
 import {AppService} from "./app.service";
-import {CommonModule} from "@angular/common";
 
 const EXTRA_BREAKPOINTS = [{
   alias: 'xs.landscape',

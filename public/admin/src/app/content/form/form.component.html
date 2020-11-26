@@ -1,40 +1,63 @@
 <mat-sidenav-container style="flex-grow: 1;">
-  <mat-sidenav opened mode="side" style="width: 200px;">
-    <div>
+  <mat-sidenav [opened]="leftMenuOpen" mode="side" style="width: 200px;" #pageNav>
+    <div style="width: 200px;">
       <mat-list>
         <mat-list-item>
-          <button mat-icon-button>
+          <button mat-icon-button (click)="leftMenuOpen = false">
+            <mat-icon>keyboard_arrow_left</mat-icon>
+          </button>
+        </mat-list-item>
+
+        <mat-list-item>
+          <button mat-icon-button (click)="add()">
             <mat-icon>add</mat-icon>
           </button>
         </mat-list-item>
 
         <mat-divider></mat-divider>
 
-        <a mat-list-item [routerLink]="'../1'">Field 1</a>
+        <ng-container *ngFor="let f of forms">
+          <a mat-list-item [routerLink]="'../' + f.id">{{ f.name }}</a>
+          <mat-divider></mat-divider>
+        </ng-container>
       </mat-list>
     </div>
   </mat-sidenav>
 
   <mat-sidenav-content>
-    <div>
-      <div>
-        <button mat-icon-button>
-          <mat-icon>save</mat-icon>
-        </button>
-
-        <button mat-icon-button>
-          <mat-icon>delete</mat-icon>
+    <div style="position: relative;">
+      <div *ngIf="!leftMenuOpen">
+        <button mat-icon-button (click)="leftMenuOpen = true">
+          <mat-icon>keyboard_arrow_right</mat-icon>
         </button>
       </div>
 
-      <mat-form-field>
-        <mat-label>Name</mat-label>
-        <input matInput>
-      </mat-form-field>
+      <div *ngIf="form">
+        <div>
+          <button mat-icon-button (click)="save()">
+            <mat-icon>save</mat-icon>
+          </button>
 
-      <div>
-        <app-editor2 [content]="form.definition"></app-editor2>
+          <button mat-icon-button (click)="delete()" *ngIf="form.id">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+
+        <mat-form-field>
+          <mat-label>Name</mat-label>
+          <input matInput [(ngModel)]="form.name">
+        </mat-form-field>
+
+        <div>
+          <app-editor2 [content]="form.definition" [root]="'layout'"></app-editor2>
+        </div>
       </div>
     </div>
   </mat-sidenav-content>
+
+  <mat-sidenav position="end" mode="side" opened>
+    <div style="padding: 15px; position: relative; width: 200px;">
+      <ng-container *ngTemplateOutlet="toolbar"></ng-container>
+    </div>
+  </mat-sidenav>
 </mat-sidenav-container>
