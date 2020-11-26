@@ -9,7 +9,7 @@
       <!-- use a disabled button to provide padding for tree leaf -->
       <button mat-icon-button disabled></button>
 
-      <a class="tree-label" mat-list-item [routerLink]="'../' + node.id">{{ node.label }}</a>
+      <a class="tree-label" mat-list-item [routerLink]="'./' + node.id">{{ node.label }}</a>
 
       <button mat-icon-button (click)="onAddPage(node.id)">
         <mat-icon>add</mat-icon>
@@ -31,7 +31,7 @@
           </mat-icon>
         </button>
 
-        <a [routerLink]="'../' + node.id" mat-list-item>{{ node.label }}</a>
+        <a [routerLink]="'./' + node.id" mat-list-item>{{ node.label }}</a>
 
         <button mat-icon-button (click)="onAddPage(node.id)">
           <mat-icon>add</mat-icon>

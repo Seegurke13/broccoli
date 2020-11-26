@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angula
 import {PageInterface} from "../page.interface";
 import {HttpClient} from "@angular/common/http";
 import {Editor2Component} from "../../../editor2/editor2/editor2.component";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-page-view',
@@ -38,11 +39,14 @@ export class PageViewComponent implements OnInit {
 
   private http: HttpClient;
 
-  constructor(http: HttpClient) {
+  constructor(http: HttpClient, route: ActivatedRoute) {
     this.http = http;
 
     this.onSave = new EventEmitter<PageInterface>();
     this.onDelete = new EventEmitter<PageInterface>();
+    route.params.subscribe((params) => {
+      this.pageId = params.id;
+    });
   }
 
   ngOnInit(): void {

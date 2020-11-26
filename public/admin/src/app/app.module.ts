@@ -14,6 +14,7 @@ import {MatSidenavModule} from "@angular/material/sidenav";
 import {MonacoEditorModule} from "ngx-monaco-editor";
 import {TestComponent} from './test/test.component';
 import {AppService} from "./app.service";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 
 const EXTRA_BREAKPOINTS = [{
   alias: 'xs.landscape',
@@ -47,6 +48,7 @@ export function initializeApp(appInitService: AppService) {
     MatIconModule,
     MatButtonModule,
     MatSidenavModule,
+    MatSnackBarModule,
     MonacoEditorModule.forRoot()
   ],
   providers: [

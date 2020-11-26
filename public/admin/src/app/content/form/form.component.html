@@ -17,7 +17,7 @@
         <mat-divider></mat-divider>
 
         <ng-container *ngFor="let f of forms">
-          <a mat-list-item [routerLink]="'../' + f.id">{{ f.name }}</a>
+          <a mat-list-item [routerLink]="'./' + f.id">{{ f.name }}</a>
           <mat-divider></mat-divider>
         </ng-container>
       </mat-list>
