@@ -21,9 +21,9 @@ export class FormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.settingsService.getObservable().subscribe((settings) => {
-      this.toolbar = settings;
-    });
+    // this.settingsService.getObservable().subscribe((settings) => {
+    //   this.toolbar = settings;
+    // });
   }
 
   public delete() {

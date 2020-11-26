@@ -1,9 +1,10 @@
-import {Component, Input, TemplateRef, ViewChildren} from '@angular/core';
+import {Component, EventEmitter, Input, Output, TemplateRef, ViewChildren} from '@angular/core';
 import {ElementModel} from "../element.model";
 import {HttpClient} from "@angular/common/http";
 import {ElementSelectionModalComponent} from "../element-selection-modal/element-selection-modal.component";
 import {MatDialog} from "@angular/material/dialog";
 import {PluginService} from "../plugin.service";
+import {SettingsService} from "../settings.service";
 
 @Component({
   selector: 'app-editor2',
@@ -21,15 +22,24 @@ export class Editor2Component {
   @Input()
   public root = null;
 
+  @Output()
+  public settings: EventEmitter<TemplateRef<any>>;
+
   private http: HttpClient;
-  public settings: TemplateRef<any>;
   private dialog: MatDialog;
   private pluginService: PluginService;
+  private settingsService: SettingsService;
 
-  constructor(http: HttpClient, dialog: MatDialog, pluginService: PluginService) {
+  constructor(http: HttpClient, dialog: MatDialog, pluginService: PluginService, settingsService: SettingsService) {
     this.http = http;
     this.dialog = dialog;
     this.pluginService = pluginService;
+    this.settingsService = settingsService;
+
+    this.settings = new EventEmitter<TemplateRef<any>>();
+    this.settingsService.getObservable().subscribe((template) => {
+      this.settings.emit(template);
+    });
   }
 
   debug() {

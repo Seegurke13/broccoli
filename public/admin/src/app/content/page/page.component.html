@@ -6,7 +6,7 @@
   </mat-drawer>
 
   <mat-drawer-content>
-    <div style="padding-left: 15px;">
+    <div style="padding: 15px;">
       <app-page-view [pageId]="page" (onSave)="openSnackbar('saved'); treeComp.reload()"
                      (onDelete)="openSnackbar('delete'); treeComp.reload()"></app-page-view>
     </div>

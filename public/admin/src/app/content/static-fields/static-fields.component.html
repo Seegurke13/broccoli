@@ -19,34 +19,36 @@
   </mat-sidenav>
 
   <mat-sidenav-content>
-    <div *ngIf="field">
-      <div>
-        <button mat-icon-button (click)="save()">
-          <mat-icon>save</mat-icon>
-        </button>
+    <div style="padding: 15px;">
+      <div *ngIf="field">
+        <div>
+          <button mat-icon-button (click)="save()">
+            <mat-icon>save</mat-icon>
+          </button>
 
-        <button mat-icon-button (click)="delete()">
-          <mat-icon>delete</mat-icon>
-        </button>
-      </div>
+          <button mat-icon-button (click)="delete()">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
 
-      <div>
-        <mat-form-field style="margin-right: 15px;">
-          <mat-label>Name</mat-label>
-          <input matInput [(ngModel)]="field.name">
-        </mat-form-field>
+        <div>
+          <mat-form-field style="margin-right: 15px;">
+            <mat-label>Name</mat-label>
+            <input matInput [(ngModel)]="field.name">
+          </mat-form-field>
 
-        <mat-form-field>
-          <mat-label>Type</mat-label>
-          <mat-select [value]="field.element.type" (selectionChange)="changeType($event)">
-            <mat-option value="text">Text</mat-option>
-            <mat-option value="layout">Layout</mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
+          <mat-form-field>
+            <mat-label>Type</mat-label>
+            <mat-select [value]="field.element.type" (selectionChange)="changeType($event)">
+              <mat-option value="text">Text</mat-option>
+              <mat-option value="layout">Layout</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
 
-      <div>
-        <app-editor2 [content]="field.element" [root]="'layout'"></app-editor2>
+        <div>
+          <app-editor2 [content]="field.element" [root]="'layout'"></app-editor2>
+        </div>
       </div>
     </div>
   </mat-sidenav-content>

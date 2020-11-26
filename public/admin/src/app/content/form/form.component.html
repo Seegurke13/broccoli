@@ -1,17 +1,17 @@
 <mat-sidenav-container style="flex-grow: 1;">
-  <mat-sidenav [opened]="leftMenuOpen" mode="side" style="width: 200px;" #pageNav>
+  <mat-sidenav [opened]="leftMenuOpen" mode="side" #pageNav>
     <div style="width: 200px;">
       <mat-list>
         <mat-list-item>
-          <button mat-icon-button (click)="leftMenuOpen = false">
-            <mat-icon>keyboard_arrow_left</mat-icon>
-          </button>
-        </mat-list-item>
+          <div matLine style="display: flex; justify-content: space-between;">
+            <button mat-icon-button (click)="add()">
+              <mat-icon>add</mat-icon>
+            </button>
 
-        <mat-list-item>
-          <button mat-icon-button (click)="add()">
-            <mat-icon>add</mat-icon>
-          </button>
+            <button mat-icon-button (click)="leftMenuOpen = false">
+              <mat-icon>keyboard_arrow_left</mat-icon>
+            </button>
+          </div>
         </mat-list-item>
 
         <mat-divider></mat-divider>
@@ -25,10 +25,16 @@
   </mat-sidenav>
 
   <mat-sidenav-content>
-    <div style="position: relative;">
-      <div *ngIf="!leftMenuOpen">
+    <div style="position: relative; padding: 15px;">
+      <div *ngIf="!leftMenuOpen" style="position: absolute; top: 0; left: 0;">
         <button mat-icon-button (click)="leftMenuOpen = true">
           <mat-icon>keyboard_arrow_right</mat-icon>
+        </button>
+      </div>
+
+      <div *ngIf="!rightMenuOpen" style="position: absolute; top: 0; right: 0">
+        <button mat-icon-button (click)="rightMenuOpen = true">
+          <mat-icon>keyboard_arrow_left</mat-icon>
         </button>
       </div>
 
@@ -49,14 +55,20 @@
         </mat-form-field>
 
         <div>
-          <app-editor2 [content]="form.definition" [root]="'layout'"></app-editor2>
+          <app-editor2 [content]="form.definition" [root]="'layout'" (settings)="toolbar = $event"></app-editor2>
         </div>
       </div>
     </div>
   </mat-sidenav-content>
 
-  <mat-sidenav position="end" mode="side" opened>
+  <mat-sidenav position="end" mode="side" [opened]="toolbar && rightMenuOpen">
     <div style="padding: 15px; position: relative; width: 200px;">
+      <div *ngIf="rightMenuOpen">
+        <button mat-icon-button (click)="rightMenuOpen = false;">
+          <mat-icon>keyboard_arrow_right</mat-icon>
+        </button>
+      </div>
+
       <ng-container *ngTemplateOutlet="toolbar"></ng-container>
     </div>
   </mat-sidenav>
