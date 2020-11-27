@@ -6,7 +6,7 @@ services:
       - mysql
     image: webdevops/php-apache-dev:7.4
     volumes:
-      - ./:/app
+      - ./backend/:/app
     environment:
       WEB_DOCUMENT_ROOT: /app/public
       PHP_MEMORY_LIMIT: 4G
