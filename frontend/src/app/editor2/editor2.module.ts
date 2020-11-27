@@ -9,11 +9,8 @@ import {MatSelectModule} from "@angular/material/select";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatChipsModule} from "@angular/material/chips";
 import {MatInputModule} from "@angular/material/input";
-import {ImageComponent} from "./elements/image/image.component";
 import {FileModule} from "../file/file.module";
 import {MatDialogModule} from "@angular/material/dialog";
-import {LayoutComponent} from "./elements/layout/layout.component";
-import {TextComponent} from "./elements/text/text.component";
 import {CKEditorModule} from "@ckeditor/ckeditor5-angular";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import { HtmlComponent } from './html/html.component';
@@ -23,12 +20,7 @@ import { ElementSelectionModalComponent } from './element-selection-modal/elemen
 import { SafePipe } from './safe.pipe';
 import {MatMenuModule} from "@angular/material/menu";
 import { ClasslistComponent } from './classlist/classlist.component';
-import { PlainComponent } from './elements/plain/plain.component';
 import {MonacoEditorModule} from "ngx-monaco-editor";
-import { TwigComponent } from './elements/twig/twig.component';
-import { IframeComponent } from './elements/iframe/iframe.component';
-import { LoopComponent } from './elements/loop/loop.component';
-import { CarouselComponent } from './elements/carousel/carousel.component';
 
 
 @NgModule({
@@ -38,14 +30,14 @@ import { CarouselComponent } from './elements/carousel/carousel.component';
     ElementSelectionModalComponent,
     SafePipe,
     ClasslistComponent,
-    PlainComponent,
-    TwigComponent,
-    IframeComponent,
-    LoopComponent,
-    CarouselComponent,
-    ImageComponent,
-    LayoutComponent,
-    TextComponent,
+    // PlainComponent,
+    // TwigComponent,
+    // IframeComponent,
+    // LoopComponent,
+    // CarouselComponent,
+    // ImageComponent,
+    // LayoutComponent,
+    // TextComponent,
     // TemplateComponent,
     HtmlComponent
   ],
