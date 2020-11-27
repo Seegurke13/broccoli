@@ -18,6 +18,8 @@ import {MatDialogModule} from "@angular/material/dialog";
 import {MatSelectModule} from "@angular/material/select";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {MatChipsModule} from "@angular/material/chips";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {CKEditorModule} from "@ckeditor/ckeditor5-angular";
 
 const EXTRA_BREAKPOINTS = [{
   alias: 'xs.landscape',
@@ -45,6 +47,8 @@ export function initializeApp(appInitService: AppService) {
     AppRoutingModule,
     BrowserAnimationsModule,
     FileModule,
+    FormsModule,
+    ReactiveFormsModule,
     MatDialogModule,
     MatSelectModule,
     MatAutocompleteModule,
@@ -57,7 +61,8 @@ export function initializeApp(appInitService: AppService) {
     MatButtonModule,
     MatSidenavModule,
     MatSnackBarModule,
-    MonacoEditorModule.forRoot()
+    MonacoEditorModule.forRoot(),
+    CKEditorModule
   ],
   providers: [
     {

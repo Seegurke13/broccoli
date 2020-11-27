@@ -8,8 +8,8 @@ import {PluginRepositoryService} from "./plugin-repository.service";
 export class PluginService {
   private http: HttpClient;
 
-  public enabledTypes: string[] = [];
   private pluginRepository: PluginRepositoryService;
+  private types = [];
 
   constructor(http: HttpClient, pluginRepository: PluginRepositoryService) {
     this.http = http
@@ -18,19 +18,33 @@ export class PluginService {
 
   public getComponent(type: string): any {
     // console.log(type);
-    return this.pluginRepository.getPlugins().find((el) => {
+    return this.types.find((el) => {
       return el.type === type;
-    })?.component;
+    }).component;
+
+    // return this.pluginRepository.getPlugins().find((el) => {
+    //   return el.type === type;
+    // })?.component;
   }
 
   public getPresets(filter: string[] = null) {
-    return this.pluginRepository.getPlugins().filter((el) => {
-      return !filter ? true : filter.includes(el.type);
-    }).map((el) => {
+    Object.keys(this.types).forEach((el) => {
       return {
-        name: el.name,
-        type: el.type
+        name: 'Layout',
+        type: 'layout'
       };
     });
+    // return this.pluginRepository.getPlugins().filter((el) => {
+    //   return !filter ? true : filter.includes(el.type);
+    // }).map((el) => {
+    //   return {
+    //     name: el.name,
+    //     type: el.type
+    //   };
+    // });
+  }
+
+  public setPresets(types: any) {
+    this.types = types;
   }
 }

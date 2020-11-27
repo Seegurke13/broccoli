@@ -1,9 +1,6 @@
-import {Compiler, Injectable, Injector, NgModuleFactory, NgModuleFactoryLoader} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Route, Router} from '@angular/router';
 import {HttpClient} from "@angular/common/http";
-
-import * as AngularCommon from '@angular/common';
-import * as AngularCore from '@angular/core';
 import {AppModuleService} from "./app-module.service";
 
 
@@ -30,11 +27,6 @@ export class AppService {
         Promise.all(loadedModules).then((modules: any[]) => {
           data.routes.forEach((el) => {
             this.router.config.push(this.buildRoute(el, modules));
-
-            // this.router.config.push({
-            //   path: el.path,
-            //   component: modules.find((m => m.name === el.component.split('.')[0])).components[el.component.split('.')[1]].component
-            // });
           });
 
           this.router.resetConfig(routes);
@@ -52,13 +44,13 @@ export class AppService {
     }
 
     if (el.component) {
-      route['component'] = modules.find((m => m.name === el.component.split('.')[0])).components[el.component.split('.')[1]].component;
+      route['component'] = modules.find((m => m.name === el.component.split('.')[0])).components[el.component.split('.')[1]].type;
     }
 
     if (el.children && el.children.length > 0) {
-      let tmp = el.children.map((el1) => {return this.buildRoute(el1, modules)});
-      console.log(el.children, tmp);
-      route['children'] = tmp;
+      route['children'] = el.children.map((el1) => {
+        return this.buildRoute(el1, modules)
+      });
     }
 
     return route;

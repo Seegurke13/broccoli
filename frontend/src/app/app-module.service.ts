@@ -7,7 +7,7 @@ export class AppModuleService {
   private loader: NgModuleFactoryLoader;
   private injector: Injector;
   private compiler: Compiler;
-  private modules: any = {};
+  private cache = {};
 
   constructor(loader: NgModuleFactoryLoader, injector: Injector, compiler: Compiler) {
     this.loader = loader;
@@ -16,15 +16,24 @@ export class AppModuleService {
   }
 
   public loadModule(module: string) {
+    if (this.cache[module]) {
+      return new Promise((resolve) => {
+        resolve(this.cache[module]);
+      });
+    }
+
     return this.loader.load(module).then(((m: NgModuleFactory<any>) => {
       let compiled = this.compiler.compileModuleAndAllComponentsSync(m.moduleType);
 
-      return {
+      let moduleInfo = {
         type: m.moduleType,
         module: m.create(this.injector),
         components: this.getComponents(compiled.componentFactories),
         name: m.moduleType.name
       };
+      this.cache[module] = moduleInfo;
+
+      return moduleInfo;
     }));
   }
 
@@ -32,7 +41,7 @@ export class AppModuleService {
     return factories.reduce((prev, curr) => {
       prev[curr.componentType.name] = {
         factory: curr,
-        component: curr.componentType
+        type: curr.componentType
       };
 
       return prev;

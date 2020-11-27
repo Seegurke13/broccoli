@@ -11,6 +11,7 @@
   "include": [
     "src/**/*.d.ts",
     "src/app/user/user.module.ts",
-    "src/app/content/content.module.ts"
+    "src/app/content/content.module.ts",
+    "src/app/content-elements/content-elements.module.ts"
   ]
 }

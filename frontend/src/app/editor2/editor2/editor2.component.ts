@@ -5,6 +5,7 @@ import {ElementSelectionModalComponent} from "../element-selection-modal/element
 import {MatDialog} from "@angular/material/dialog";
 import {PluginService} from "../plugin.service";
 import {SettingsService} from "../settings.service";
+import {AppModuleService} from "../../app-module.service";
 
 @Component({
   selector: 'app-editor2',
@@ -22,6 +23,13 @@ export class Editor2Component {
   @Input()
   public root = null;
 
+  public _config: {
+    types: {
+      template: '',
+      text: '',
+    }
+  }
+
   @Output()
   public settings: EventEmitter<TemplateRef<any>>;
 
@@ -29,17 +37,37 @@ export class Editor2Component {
   private dialog: MatDialog;
   private pluginService: PluginService;
   private settingsService: SettingsService;
+  private moduleService: AppModuleService;
 
-  constructor(http: HttpClient, dialog: MatDialog, pluginService: PluginService, settingsService: SettingsService) {
+  constructor(http: HttpClient, dialog: MatDialog, pluginService: PluginService, settingsService: SettingsService, moduleService: AppModuleService) {
     this.http = http;
     this.dialog = dialog;
     this.pluginService = pluginService;
     this.settingsService = settingsService;
+    this.moduleService = moduleService;
 
     this.settings = new EventEmitter<TemplateRef<any>>();
     this.settingsService.getObservable().subscribe((template) => {
       this.settings.emit(template);
     });
+  }
+
+  @Input()
+  set config(config: any) {
+      console.log(config);
+      Promise.all(Object.keys(config.types).map((key) => {
+        return new Promise((resolve) => {
+          this.moduleService.loadModule(config.types[key].split('!')[0]).then((module: any) => {
+            resolve({
+              type: key,
+              component: module.components[config.types[key].split('!')[1]].type,
+              block: ''
+            });
+          });
+        })
+      })).then((types: any) => {
+        this.pluginService.setPresets(types);
+      });
   }
 
   debug() {

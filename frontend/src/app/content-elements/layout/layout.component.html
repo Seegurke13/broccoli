@@ -1,0 +1,33 @@
+<ng-template #settings>
+  <div>
+    <button mat-icon-button (click)="addChildren()">
+      <mat-icon>add</mat-icon>
+    </button>
+
+    <button mat-icon-button (click)="onDelete.emit({})">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
+
+  <div>
+    <mat-form-field>
+      <mat-label>Element</mat-label>
+      <mat-select [(ngModel)]="values.type">
+        <mat-option value="div">Div</mat-option>
+        <mat-option value="section">Section</mat-option>
+        <mat-option value="section">Article</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <app-html [values]="values"></app-html>
+</ng-template>
+
+<div *ngIf="values.children.length < 1" style="text-align: center;">
+  <div style=" padding: 10px;" (click)="addChildren()">Kein Inhaltselement</div>
+</div>
+
+<ng-container *ngFor="let child of values.children; let i = index">
+  <ng-template appElementPlugin [element]="child" (onDelete)="removeChildren(i)"></ng-template>
+</ng-container>
+

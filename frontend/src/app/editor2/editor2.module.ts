@@ -15,7 +15,6 @@ import {MatDialogModule} from "@angular/material/dialog";
 import {LayoutComponent} from "./elements/layout/layout.component";
 import {TextComponent} from "./elements/text/text.component";
 import {CKEditorModule} from "@ckeditor/ckeditor5-angular";
-import {TemplateComponent} from "./elements/template/template.component";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import { HtmlComponent } from './html/html.component';
 import {MatSidenavModule} from "@angular/material/sidenav";
@@ -35,11 +34,6 @@ import { CarouselComponent } from './elements/carousel/carousel.component';
 @NgModule({
   declarations: [
     Editor2Component,
-    ImageComponent,
-    LayoutComponent,
-    TextComponent,
-    TemplateComponent,
-    HtmlComponent,
     ElementPluginDirective,
     ElementSelectionModalComponent,
     SafePipe,
@@ -48,10 +42,19 @@ import { CarouselComponent } from './elements/carousel/carousel.component';
     TwigComponent,
     IframeComponent,
     LoopComponent,
-    CarouselComponent
+    CarouselComponent,
+    ImageComponent,
+    LayoutComponent,
+    TextComponent,
+    // TemplateComponent,
+    HtmlComponent
   ],
   exports: [
-    Editor2Component
+    Editor2Component,
+    HtmlComponent,
+    ClasslistComponent,
+    ElementPluginDirective,
+    SafePipe
   ],
   imports: [
     CommonModule,

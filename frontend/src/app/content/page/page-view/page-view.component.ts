@@ -10,6 +10,15 @@ import {ActivatedRoute} from "@angular/router";
   styleUrls: ['./page-view.component.scss']
 })
 export class PageViewComponent implements OnInit {
+  public editorConfig = {
+    types: {
+      layout: 'src/app/content-elements/content-elements.module#ContentElementsModule!LayoutComponent',
+      template: 'src/app/content-elements/content-elements.module#ContentElementsModule!TemplateComponent',
+      text: 'src/app/content-elements/content-elements.module#ContentElementsModule!TextComponent',
+      image: 'src/app/content-elements/content-elements.module#ContentElementsModule!ImageComponent',
+    }
+  };
+
   @Input()
   set pageId(id: number) {
     if (id) {
